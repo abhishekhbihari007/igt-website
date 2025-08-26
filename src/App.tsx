@@ -430,6 +430,43 @@ const GlobalStyles = () => (
         background-color: #f8f9fa;
     }
     
+    .no-results-container {
+        text-align: center;
+        padding: 60px 20px;
+    }
+    
+    .no-results-title {
+        color: #495057;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .no-results-message {
+        color: #6c757d;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .clear-filters-btn {
+        background: #D32F2F;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .clear-filters-btn:hover {
+        background: #B71C1C;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+    }
+    
     .programs-overview {
         background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
         color: white;
@@ -2986,7 +3023,7 @@ const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsC
 const ProgramModal = ({ course, onClose }: { course: Course; onClose: () => void }) => (
     <div className="modal-overlay" onClick={onClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={onClose}>
+            <button className="modal-close" onClick={onClose} aria-label="Close modal" title="Close modal">
                 <i className="fas fa-times"></i>
             </button>
             <div className="modal-header">
@@ -3051,7 +3088,7 @@ const ProgramsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [showModal, setShowModal] = useState(false);
-    const [selectedCourse, setSelectedCourse] = useState(null);
+    const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
     const filteredPrograms = programsData.map(category => ({
         ...category,
@@ -3061,7 +3098,7 @@ const ProgramsPage = () => {
         )
     })).filter(category => category.courses.length > 0);
 
-    const openModal = (course) => {
+    const openModal = (course: Course) => {
         setSelectedCourse(course);
         setShowModal(true);
     };
@@ -3080,29 +3117,74 @@ const ProgramsPage = () => {
                 </div>
             </div>
             
-
-            
-
-            
-            {filteredPrograms.map((category, categoryIndex) => (
-                <div key={`${category.category}-${categoryIndex}`} className="program-category">
-                    <div className="container">
-                        <div className="category-header">
-                            <h3>{category.category}</h3>
-                            <p>{category.subtitle}</p>
+            <div className="search-filter-section">
+                <div className="container">
+                    <div className="search-filter-container">
+                        <div className="search-box">
+                            <i className="fas fa-search"></i>
+                            <input
+                                type="text"
+                                placeholder="Search programs..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                aria-label="Search programs"
+                            />
                         </div>
-                        <div className="program-cards-grid">
-                            {category.courses.map((course, courseIndex) => (
-                                <ProgramCard 
-                                    key={`${course.title}-${courseIndex}`} 
-                                    course={course}
-                                    onDetailsClick={() => openModal(course)}
-                                />
-                            ))}
+                        <div className="category-filter">
+                            <select
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
+                                aria-label="Filter by category"
+                            >
+                                <option value="all">All Categories</option>
+                                {programsData.map((category, index) => (
+                                    <option key={index} value={category.category}>
+                                        {category.category}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
                 </div>
-            ))}
+            </div>
+            
+            {filteredPrograms.length > 0 ? (
+                filteredPrograms.map((category, categoryIndex) => (
+                    <div key={`${category.category}-${categoryIndex}`} className="program-category">
+                        <div className="container">
+                            <div className="category-header">
+                                <h3>{category.category}</h3>
+                                <p>{category.subtitle}</p>
+                            </div>
+                            <div className="program-cards-grid">
+                                {category.courses.map((course, courseIndex) => (
+                                    <ProgramCard 
+                                        key={`${course.title}-${courseIndex}`} 
+                                        course={course}
+                                        onDetailsClick={() => openModal(course)}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <div className="container no-results-container">
+                    <h3 className="no-results-title">No programs found</h3>
+                    <p className="no-results-message">
+                        Try adjusting your search terms or category filter to find what you're looking for.
+                    </p>
+                    <button 
+                        onClick={() => {
+                            setSearchTerm('');
+                            setSelectedCategory('all');
+                        }}
+                        className="clear-filters-btn"
+                    >
+                        Clear Filters
+                    </button>
+                </div>
+            )}
             
             <div className="admissions-cta">
                 <h3>Ready to take the next step?</h3>
