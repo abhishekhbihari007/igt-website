@@ -429,6 +429,281 @@ const GlobalStyles = () => (
         padding: 0;
         background-color: #f8f9fa;
     }
+    
+    .programs-overview {
+        background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+        color: white;
+        padding: 60px 20px;
+        margin: 0;
+    }
+    
+    .overview-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .overview-stats .stat-item {
+        text-align: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .overview-stats .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #FFD700;
+    }
+    
+    .overview-stats .stat-label {
+        font-size: 1rem;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+    
+    .search-filter-section {
+        background: white;
+        padding: 40px 20px;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .search-filter-container {
+        display: flex;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .search-box {
+        position: relative;
+        flex: 1;
+        min-width: 300px;
+    }
+    
+    .search-box i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+    }
+    
+    .search-box input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 2px solid #e9ecef;
+        border-radius: 25px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+    
+    .search-box input:focus {
+        outline: none;
+        border-color: #D32F2F;
+    }
+    
+    .category-filter select {
+        padding: 12px 20px;
+        border: 2px solid #e9ecef;
+        border-radius: 25px;
+        font-size: 1rem;
+        background: white;
+        cursor: pointer;
+        min-width: 200px;
+    }
+    
+    .category-filter select:focus {
+        outline: none;
+        border-color: #D32F2F;
+    }
+    
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+    
+    /* ============== MODAL STYLES ============== */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+    }
+    
+    .modal-content {
+        background: white;
+        border-radius: 12px;
+        max-width: 800px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #f8f9fa;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #6c757d;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+    
+    .modal-close:hover {
+        background: #e9ecef;
+        color: #495057;
+    }
+    
+    .modal-header {
+        display: flex;
+        gap: 20px;
+        padding: 30px;
+        border-bottom: 1px solid #e9ecef;
+        align-items: center;
+    }
+    
+    .modal-image {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 3px solid #D32F2F;
+    }
+    
+    .modal-title h2 {
+        margin: 0 0 15px;
+        font-size: 1.8rem;
+        color: #212529;
+    }
+    
+    .modal-meta {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .modal-meta span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    
+    .modal-meta i {
+        color: #D32F2F;
+    }
+    
+    .modal-body {
+        padding: 30px;
+    }
+    
+    .modal-description h3,
+    .modal-list h3,
+    .modal-features h3 {
+        margin: 0 0 15px;
+        font-size: 1.3rem;
+        color: #212529;
+        border-bottom: 2px solid #D32F2F;
+        padding-bottom: 8px;
+    }
+    
+    .modal-description p {
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+    
+    .modal-list ul {
+        padding-left: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .modal-list li {
+        color: #495057;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .modal-features .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .modal-features .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #D32F2F;
+    }
+    
+    .modal-features .feature-item i {
+        color: #D32F2F;
+        font-size: 1.2rem;
+    }
+    
+    .modal-footer {
+        padding: 30px;
+        border-top: 1px solid #e9ecef;
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+    }
+    
+    .btn-apply-large {
+        background: #D32F2F;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-apply-large:hover {
+        background: #B71C1C;
+        transform: translateY(-2px);
+    }
     .page-banner {
         background-size: cover;
         background-position: center;
@@ -590,11 +865,14 @@ const GlobalStyles = () => (
     .btn-details {
         background-color: #D32F2F;
         color: #fff;
+        border: 2px solid #D32F2F;
+        transition: all 0.3s ease;
     }
     
     .btn-details:hover {
         background-color: #fff;
         color: #D32F2F;
+        border: 2px solid #D32F2F;
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
     }
@@ -687,7 +965,7 @@ const GlobalStyles = () => (
     .btn-details {
         background: #D32F2F;
         color: white;
-        border: none;
+        border: 2px solid #D32F2F;
         padding: 10px 20px;
         border-radius: 20px;
         font-weight: 600;
@@ -701,7 +979,9 @@ const GlobalStyles = () => (
     }
     
     .btn-details:hover {
-        background: #a32424;
+        background: white;
+        color: #D32F2F;
+        border: 2px solid #D32F2F;
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
     }
@@ -2332,6 +2612,42 @@ const GlobalStyles = () => (
         .admissions-journey-banner h2, .faculty-header h2 {
             font-size: 2.5rem;
         }
+        
+        .overview-stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .overview-stats .stat-number {
+            font-size: 2rem;
+        }
+        
+        .search-filter-container {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .search-box {
+            min-width: 100%;
+        }
+        
+        .category-filter select {
+            min-width: 100%;
+        }
+        
+        .modal-header {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .modal-image {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .modal-content {
+            max-width: 95vw;
+        }
     }
     
     @media (min-width: 768px) {
@@ -2361,6 +2677,28 @@ const GlobalStyles = () => (
         }
         .program-card-content {
             padding: 15px;
+        }
+        
+        .overview-stats {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .overview-stats .stat-number {
+            font-size: 1.8rem;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-footer {
+            padding: 20px;
+            flex-direction: column;
+        }
+        
+        .btn-apply-large {
+            width: 100%;
         }
         .form-container {
             padding: 25px;
@@ -2494,7 +2832,7 @@ const About = () => (
 const WhyChooseUs = () => (
   <section id="why-choose-us" className="why-choose-us">
     <div className="container">
-                  <h2>Why Choose Us<span className="question-mark">?</span></h2>
+      <h2>Why Choose Us<span className="question-mark">?</span></h2>
       <div className="features-grid">
         <div className="feature-item">
           <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Industrial Partners" />
@@ -2542,69 +2880,69 @@ const programsData = [
         category: "Precision Agriculture",
         subtitle: "Innovative programs combining technology with modern agricultural practices",
         courses: [
-            { title: "MASTER PROGRAM in Precision Agriculture", image: "https://www.innominds.com/hs-fs/hubfs/Innominds-201612/img/IM-News-and-Blogs/AI-Applications-in-Precision-Agriculture.jpg?width=800&name=AI-Applications-in-Precision-Agriculture.jpg", duration: "12 Months", description: "Master data-driven farming techniques using IoT, sensors, and AI for crop optimization." },
-            { title: "MASTER PROGRAM in Agriculture Drones", image: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Train in drone piloting, imaging, and data analysis for agricultural applications." },
-            { title: "MASTER PROGRAM in Hydroponics & Vertical Farming", image: "https://images.squarespace-cdn.com/content/v1/63064607eb816a4d50027fd1/1694614709295-LDS94MIWACFJ3TZH177O/eden-green-vertical-farm-facility.jpg", duration: "12 Months", description: "Learn sustainable farming techniques without soil in controlled environments." },
-            { title: "MASTER PROGRAM in AI & ML in Agriculture", image: "https://sageuniversity.edu.in/assets/images/blog/role-of-artificial-intelligence-in-agriculture.jpg", duration: "12 Months", description: "Apply artificial intelligence and machine learning to solve agricultural challenges." },
-            { title: "MASTER PROGRAM in Agriculture Robotics", image: "https://www.parvalux.com/app/uploads/fly-images/17652/Robots_Motors_in_Agriculture-750x415-f50_50.jpg", duration: "12 Months", description: "Develop and implement robotic solutions for planting, harvesting, and farm automation." },
-            { title: "MASTER PROGRAM in Advanced Technologies in Agriculture", image: "https://sageuniversity.edu.in/assets/images/blog/use-of-modern-technology-in-agriculture.webp", duration: "12 Months", description: "Explore cutting-edge technologies transforming modern agriculture." },
-            { title: "MASTER PROGRAM in Agri Entrepreneurship", image: "https://images.unsplash.com/photo-1579621970795-87facc2f976d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop business skills specific to agricultural ventures and startups." },
+            { title: "MASTER PROGRAM in Precision Agriculture", image: "https://www.innominds.com/hs-fs/hubfs/Innominds-201612/img/IM-News-and-Blogs/AI-Applications-in-Precision-Agriculture.jpg?width=800&name=AI-Applications-in-Precision-Agriculture.jpg", duration: "12 Months", description: "Master data-driven farming techniques using IoT, sensors, and AI for crop optimization. Learn advanced soil monitoring, weather prediction, and automated irrigation systems to maximize crop yields while minimizing resource waste." },
+            { title: "MASTER PROGRAM in Agriculture Drones", image: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Train in drone piloting, imaging, and data analysis for agricultural applications. Master flight planning, multispectral imaging, and thermal sensing for crop health monitoring." },
+            { title: "MASTER PROGRAM in Hydroponics & Vertical Farming", image: "https://images.squarespace-cdn.com/content/v1/63064607eb816a4d50027fd1/1694614709295-LDS94MIWACFJ3TZH177O/eden-green-vertical-farm-facility.jpg", duration: "12 Months", description: "Learn sustainable farming techniques without soil in controlled environments. Master nutrient solution management, climate control systems, and vertical stacking technologies for urban agriculture." },
+            { title: "MASTER PROGRAM in AI & ML in Agriculture", image: "https://sageuniversity.edu.in/assets/images/blog/role-of-artificial-intelligence-in-agriculture.jpg", duration: "12 Months", description: "Apply artificial intelligence and machine learning to solve agricultural challenges. Master predictive analytics for crop diseases, yield forecasting, and resource optimization." },
+            { title: "MASTER PROGRAM in Agriculture Robotics", image: "https://www.parvalux.com/app/uploads/fly-images/17652/Robots_Motors_in_Agriculture-750x415-f50_50.jpg", duration: "12 Months", description: "Develop and implement robotic solutions for planting, harvesting, and farm automation. Master robotic arm programming, computer vision integration, and autonomous navigation systems." },
+            { title: "MASTER PROGRAM in Advanced Technologies in Agriculture", image: "https://sageuniversity.edu.in/assets/images/blog/use-of-modern-technology-in-agriculture.webp", duration: "12 Months", description: "Explore cutting-edge technologies transforming modern agriculture. Master blockchain for supply chain transparency, IoT for smart farming, and biotechnology for crop improvement." },
+            { title: "MASTER PROGRAM in Agri Entrepreneurship", image: "https://images.unsplash.com/photo-1579621970795-87facc2f976d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop business skills specific to agricultural ventures and startups. Master market analysis, financial planning, and sustainable business models for agribusiness." },
         ]
     },
     {
         category: "AI & Robotics",
         subtitle: "Specialized programs in artificial intelligence and robotic systems",
         courses: [
-            { title: "MASTER PROGRAM in AI & Robotics", image: "https://www.technetexperts.com/wp-content/uploads/2024/08/AI-And-Robotics-1024x574.jpg", duration: "12 Months", description: "Comprehensive training in AI-driven robotic systems and automation." },
-            { title: "MASTER PROGRAM in Generative AI", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Master the creation of AI models that generate text, images, and media." },
-            { title: "MASTER PROGRAM in AI & Blockchain", image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Explore the convergence of AI and decentralized blockchain technologies." },
-            { title: "MASTER PROGRAM in AI & Data Analytics", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI techniques to extract insights from complex datasets." },
-            { title: "MASTER PROGRAM in AI & Biological Sciences", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI to biological research, drug discovery, and genetic analysis." },
-            { title: "MASTER PROGRAM in AI & Cybersecurity Systems", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop AI-powered solutions for cybersecurity threats and vulnerabilities." },
+            { title: "MASTER PROGRAM in AI & Robotics", image: "https://www.technetexperts.com/wp-content/uploads/2024/08/AI-And-Robotics-1024x574.jpg", duration: "12 Months", description: "Comprehensive training in AI-driven robotic systems and automation. Master machine learning algorithms for robotic control and autonomous decision-making in industrial applications." },
+            { title: "MASTER PROGRAM in Generative AI", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Master the creation of AI models that generate text, images, and media. Learn advanced techniques in natural language processing, computer vision, and creative AI applications for content generation." },
+            { title: "MASTER PROGRAM in AI & Blockchain", image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Explore the convergence of AI and decentralized blockchain technologies. Master smart contract development, AI-powered blockchain analytics, and decentralized AI systems for secure applications." },
+            { title: "MASTER PROGRAM in AI & Data Analytics", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI techniques to extract insights from complex datasets. Master predictive modeling, statistical analysis, and machine learning algorithms for business intelligence and decision-making." },
+            { title: "MASTER PROGRAM in AI & Biological Sciences", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI to biological research, drug discovery, and genetic analysis. Master bioinformatics algorithms, protein structure prediction, and AI-driven drug screening for pharmaceutical development." },
+            { title: "MASTER PROGRAM in AI & Cybersecurity Systems", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop AI-powered solutions for cybersecurity threats and vulnerabilities. Master threat detection algorithms, anomaly identification, and automated security response systems for network protection." },
         ]
     },
     {
         category: "AI & Business",
         subtitle: "Programs at the intersection of artificial intelligence and business applications",
         courses: [
-            { title: "MASTER PROGRAM in AI & Business", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Transform business operations with AI-driven strategies and solutions." },
-            { title: "MASTER PROGRAM in AI & Management Studies", image: "https://uks.bunts.edu.in/wp-content/uploads/2024/02/WhatsApp-Image-2024-02-16-at-4.23.10-PM.jpeg", duration: "12 Months", description: "Apply AI to organizational leadership, decision-making, and strategy." },
-            { title: "MASTER PROGRAM in AI & Law", image: "https://aitoolsnetwork.com/wp-content/uploads/2023/05/ai-for-lawyers.jpg", duration: "12 Months", description: "Explore the legal implications and applications of artificial intelligence." },
-            { title: "MASTER PROGRAM in IP Law", image: "https://blog.ipleaders.in/wp-content/uploads/2021/05/Intellectual-Property-Rights-in-India-1280x720-1.jpg", duration: "12 Months", description: "Specialize in intellectual property law for technology and innovation." },
-            { title: "MASTER PROGRAM in AI & Marketing", image: "https://www.marketingevolution.com/hs-fs/hubfs/iStock-1462024468.jpg?width=1060&height=708&name=iStock-1462024468.jpg", duration: "12 Months", description: "Leverage AI for customer insights, personalization, and campaign optimization." },
+            { title: "MASTER PROGRAM in AI & Business", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Transform business operations with AI-driven strategies and solutions. Master process automation, customer analytics, and AI-powered decision support systems for competitive advantage." },
+            { title: "MASTER PROGRAM in AI & Management Studies", image: "https://uks.bunts.edu.in/wp-content/uploads/2024/02/WhatsApp-Image-2024-02-16-at-4.23.10-PM.jpeg", duration: "12 Months", description: "Apply AI to organizational leadership, decision-making, and strategy. Master AI-driven management tools, predictive analytics for strategic planning, and intelligent automation for operational efficiency." },
+            { title: "MASTER PROGRAM in AI & Law", image: "https://aitoolsnetwork.com/wp-content/uploads/2023/05/ai-for-lawyers.jpg", duration: "12 Months", description: "Explore the legal implications and applications of artificial intelligence. Master legal tech tools, AI ethics frameworks, and regulatory compliance for emerging AI technologies." },
+            { title: "MASTER PROGRAM in IP Law", image: "https://blog.ipleaders.in/wp-content/uploads/2021/05/Intellectual-Property-Rights-in-India-1280x720-1.jpg", duration: "12 Months", description: "Specialize in intellectual property law for technology and innovation. Master patent law, copyright protection, and trademark strategies for emerging technologies and digital assets." },
+            { title: "MASTER PROGRAM in AI & Marketing", image: "https://www.marketingevolution.com/hs-fs/hubfs/iStock-1462024468.jpg?width=1060&height=708&name=iStock-1462024468.jpg", duration: "12 Months", description: "Leverage AI for customer insights, personalization, and campaign optimization. Master predictive customer analytics, automated marketing workflows, and AI-driven content generation for targeted campaigns." },
         ]
     },
     {
         category: "Healthcare & Life Sciences",
         subtitle: "Programs at the intersection of technology and life sciences",
         courses: [
-            { title: "MASTER PROGRAM in Clinical Research & Regulatory Affairs", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Gain expertise in clinical trials and pharmaceutical regulations." },
-            { title: "MASTER PROGRAM in Medical Coding", image: "https://ingenioushealthcare.co.in/wp-content/uploads/2021/09/medical-coding.jpg", duration: "12 Months", description: "Learn standardized coding systems for healthcare documentation." },
-            { title: "MASTER PROGRAM in Digital Forensics", image: "https://prd-cyberhub.oss-me-central-1.aliyuncs.com/uploads/CFTi7_AR4EQQE__jPvw8tUUxDtQ1af", duration: "12 Months", description: "Investigate cybercrimes and recover digital evidence." },
-            { title: "MASTER PROGRAM in Industrial Fermentation Technology", image: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Master microbial processes for food, pharmaceuticals, and biofuels." },
-            { title: "MASTER PROGRAM in Vaccine Technology", image: "https://sitescdn.wearevennture.co.uk/public/mrl/mediahub/vaccinehd.png", duration: "12 Months", description: "Study vaccine development, production, and quality control." },
-            { title: "MASTER PROGRAM in Bioentrepreneurship", image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop business ventures in biotechnology and life sciences." },
+            { title: "MASTER PROGRAM in Clinical Research & Regulatory Affairs", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Gain expertise in clinical trials and pharmaceutical regulations. Master clinical trial design, regulatory compliance, and drug development processes for global pharmaceutical markets." },
+            { title: "MASTER PROGRAM in Medical Coding", image: "https://ingenioushealthcare.co.in/wp-content/uploads/2021/09/medical-coding.jpg", duration: "12 Months", description: "Learn standardized coding systems for healthcare documentation. Master ICD-10, CPT coding, and healthcare billing systems for accurate medical record management and insurance processing." },
+            { title: "MASTER PROGRAM in Digital Forensics", image: "https://prd-cyberhub.oss-me-central-1.aliyuncs.com/uploads/CFTi7_AR4EQQE__jPvw8tUUxDtQ1af", duration: "12 Months", description: "Investigate cybercrimes and recover digital evidence. Master forensic tools, evidence preservation techniques, and legal procedures for digital crime investigation and prosecution." },
+            { title: "MASTER PROGRAM in Industrial Fermentation Technology", image: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Master microbial processes for food, pharmaceuticals, and biofuels. Learn bioreactor design, process optimization, and quality control for large-scale fermentation operations." },
+            { title: "MASTER PROGRAM in Vaccine Technology", image: "https://sitescdn.wearevennture.co.uk/public/mrl/mediahub/vaccinehd.png", duration: "12 Months", description: "Study vaccine development, production, and quality control. Master vaccine formulation, manufacturing processes, and regulatory standards for safe and effective immunization products." },
+            { title: "MASTER PROGRAM in Bioentrepreneurship", image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop business ventures in biotechnology and life sciences. Master biotech business models, funding strategies, and commercialization pathways for innovative life science technologies." },
         ]
     },
     {
         category: "AI & Creative Technologies",
         subtitle: "Programs combining artificial intelligence with creative disciplines",
         courses: [
-            { title: "MASTER PROGRAM in AI & Designing Technology", image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI to product, graphic, and UX/UI design processes." },
-            { title: "MASTER PROGRAM in AI & Arts", image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Explore the intersection of artificial intelligence and creative arts." },
+            { title: "MASTER PROGRAM in AI & Designing Technology", image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI to product, graphic, and UX/UI design processes. Master AI-powered design tools, automated layout generation, and intelligent user experience optimization for modern digital products." },
+            { title: "MASTER PROGRAM in AI & Arts", image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Explore the intersection of artificial intelligence and creative arts. Master generative art algorithms, AI-assisted composition, and digital creativity tools for innovative artistic expression." },
         ]
     },
     {
         category: "Emerging Technologies & Smart Systems",
         subtitle: "Innovative programs in AR, VR, IoT, and intelligent systems shaping the future",
         courses: [
-            { title: "Reality Architect: Master of AR/VR/XR Development", image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Master immersive technologies to build future-ready AR, VR, and XR applications." },
-            { title: "Virtual Vanguard: Master in Virtual & Augmented Reality Engineering", image: "https://caddcentre.com/blog/wp-content/uploads/2025/01/AR-VR-1-1.jpg", duration: "12 Months", description: "Engineer advanced virtual and augmented systems for industrial and consumer applications." },
-            { title: "Game Changer: Master Program in XR Gaming", image: "https://gamecloud-ltd.com/wp-content/uploads/2024/04/Screenshot-2024-04-15-165122.jpg", duration: "12 Months", description: "Design and develop immersive games using XR technology and gamification strategy." },
-            { title: "Master Program in AR and Mixed Reality", image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80", duration: "12 Months", description: "Specialize in designing cutting-edge MR life environments and interfaces." },
-            { title: "Master Program in Electric Vehicle Technology", image: "https://witricity.com/hs-fs/hubfs/EVs.png?width=1600&height=900&name=EVs.png", duration: "12 Months", description: "Learn about EV systems, battery design, automatic mobility, and energy management." },
-            { title: "Master Program in IoT and Embedded Systems", image: "https://tamediacdn.techaheadcorp.com/wp-content/uploads/2023/09/16045709/A-Step-By-Step-Tutorial-For-Building-Your-First-IoT-Embedded-System.webp", duration: "12 Months", description: "Build connected smart devices with microcontrollers, sensors, and communication protocols." },
-            { title: "Master Program in Human-Computer Interaction", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Focus on designing intuitive interfaces, enhancing user experiences, and usability testing." },
+            { title: "Reality Architect: Master of AR/VR/XR Development", image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Master immersive technologies to build future-ready AR, VR, and XR applications. Learn 3D modeling, spatial computing, and interactive design for creating engaging virtual experiences." },
+            { title: "Virtual Vanguard: Master in Virtual & Augmented Reality Engineering", image: "https://caddcentre.com/blog/wp-content/uploads/2025/01/AR-VR-1-1.jpg", duration: "12 Months", description: "Engineer advanced virtual and augmented systems for industrial and consumer applications. Master hardware integration, software development, and user interface design for cutting-edge VR/AR solutions." },
+            { title: "Game Changer: Master Program in XR Gaming", image: "https://gamecloud-ltd.com/wp-content/uploads/2024/04/Screenshot-2024-04-15-165122.jpg", duration: "12 Months", description: "Design and develop immersive games using XR technology and gamification strategy. Master game engine development, 3D asset creation, and interactive storytelling for next-generation gaming experiences." },
+            { title: "Master Program in AR and Mixed Reality", image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80", duration: "12 Months", description: "Specialize in designing cutting-edge MR life environments and interfaces. Master spatial computing, gesture recognition, and environmental mapping for seamless mixed reality experiences." },
+            { title: "Master Program in Electric Vehicle Technology", image: "https://witricity.com/hs-fs/hubfs/EVs.png?width=1600&height=900&name=EVs.png", duration: "12 Months", description: "Learn about EV systems, battery design, automatic mobility, and energy management. Master electric powertrain design, battery management systems, and smart charging infrastructure for sustainable transportation." },
+            { title: "Master Program in IoT and Embedded Systems", image: "https://tamediacdn.techaheadcorp.com/wp-content/uploads/2023/09/16045709/A-Step-By-Step-Tutorial-For-Building-Your-First-IoT-Embedded-System.webp", duration: "12 Months", description: "Build connected smart devices with microcontrollers, sensors, and communication protocols. Master embedded software development, wireless communication, and cloud integration for smart city and industrial IoT applications." },
+            { title: "Master Program in Human-Computer Interaction", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Focus on designing intuitive interfaces, enhancing user experiences, and usability testing. Master user research methodologies, interaction design principles, and accessibility standards for inclusive digital products." },
         ]
     },
     {
@@ -2618,7 +2956,7 @@ const programsData = [
 ];
 
 // ============== PROGRAM CARD COMPONENT ==============
-const ProgramCard = ({ course }: ProgramCardProps) => (
+const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsClick: () => void }) => (
     <div className="program-card">
         <img src={course.image} alt={course.title} className="program-card-image" />
         <div className="program-card-content">
@@ -2637,8 +2975,71 @@ const ProgramCard = ({ course }: ProgramCardProps) => (
                 )}
             </div>
             <div className="program-card-buttons">
-                <a href="#" className="btn btn-details">Details</a>
+                <button onClick={onDetailsClick} className="btn btn-details">Details</button>
                 <a href="#" className="btn btn-apply">Apply</a>
+            </div>
+        </div>
+    </div>
+);
+
+// ============== PROGRAM MODAL COMPONENT ==============
+const ProgramModal = ({ course, onClose }: { course: Course; onClose: () => void }) => (
+    <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={onClose}>
+                <i className="fas fa-times"></i>
+            </button>
+            <div className="modal-header">
+                <img src={course.image} alt={course.title} className="modal-image" />
+                <div className="modal-title">
+                    <h2>{course.title}</h2>
+                    <div className="modal-meta">
+                        <span><i className="far fa-clock"></i> {course.duration}</span>
+                        <span><i className="fas fa-calendar-alt"></i> September 2025</span>
+                        <span><i className="fas fa-users"></i> Limited Seats</span>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-body">
+                <div className="modal-description">
+                    <h3>Program Overview</h3>
+                    <p>{course.description}</p>
+                </div>
+                {course.list && (
+                    <div className="modal-list">
+                        <h3>Program Details</h3>
+                        <ul>
+                            {course.list.map((item: string, index: number) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                <div className="modal-features">
+                    <h3>Key Features</h3>
+                    <div className="features-grid">
+                        <div className="feature-item">
+                            <i className="fas fa-graduation-cap"></i>
+                            <span>Industry-Relevant Curriculum</span>
+                        </div>
+                        <div className="feature-item">
+                            <i className="fas fa-users"></i>
+                            <span>Expert Faculty</span>
+                        </div>
+                        <div className="feature-item">
+                            <i className="fas fa-briefcase"></i>
+                            <span>Career Support</span>
+                        </div>
+                        <div className="feature-item">
+                            <i className="fas fa-globe"></i>
+                            <span>Global Recognition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-footer">
+                <button className="btn btn-apply-large">Apply Now</button>
+                <button className="btn btn-secondary" onClick={onClose}>Close</button>
             </div>
         </div>
     </div>
@@ -2647,6 +3048,29 @@ const ProgramCard = ({ course }: ProgramCardProps) => (
 
 // ============== PROGRAMS COMPONENT (NOW A PAGE) ==============
 const ProgramsPage = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCourse, setSelectedCourse] = useState(null);
+
+    const filteredPrograms = programsData.map(category => ({
+        ...category,
+        courses: category.courses.filter(course =>
+            (selectedCategory === 'all' || category.category === selectedCategory) &&
+            course.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    })).filter(category => category.courses.length > 0);
+
+    const openModal = (course) => {
+        setSelectedCourse(course);
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedCourse(null);
+    };
+
     return (
         <section id="programs" className="programs-page">
             <div className="page-banner programs-banner">
@@ -2655,7 +3079,12 @@ const ProgramsPage = () => {
                     <p>Choose from our industry-focused postgraduate diplomas and gain cutting-edge skills for tomorrow's job market.</p>
                 </div>
             </div>
-            {programsData.map((category, categoryIndex) => (
+            
+
+            
+
+            
+            {filteredPrograms.map((category, categoryIndex) => (
                 <div key={`${category.category}-${categoryIndex}`} className="program-category">
                     <div className="container">
                         <div className="category-header">
@@ -2666,19 +3095,25 @@ const ProgramsPage = () => {
                             {category.courses.map((course, courseIndex) => (
                                 <ProgramCard 
                                     key={`${course.title}-${courseIndex}`} 
-                                    course={course} 
+                                    course={course}
+                                    onDetailsClick={() => openModal(course)}
                                 />
                             ))}
                         </div>
                     </div>
                 </div>
             ))}
+            
             <div className="admissions-cta">
                 <h3>Ready to take the next step?</h3>
                 <p>Our admissions team is here to help you through every step of the process.</p>
                 <button className="details-btn btn-red-cta" onClick={() => window.location.href = '/contact'}>Contact Admissions</button>
                 <button className="details-btn btn-secondary" onClick={() => window.location.href = '/tour'}>Schedule Campus Tour</button>
             </div>
+            
+            {showModal && selectedCourse && (
+                <ProgramModal course={selectedCourse} onClose={closeModal} />
+            )}
         </section>
     );
 };
