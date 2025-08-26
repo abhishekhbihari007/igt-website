@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useParams, useNavigate } from 'react-router-dom';
 
 // ============== TYPE DEFINITIONS ==============
 interface HeaderProps {
@@ -586,7 +586,7 @@ const GlobalStyles = () => (
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1000;
+        z-index: 9999;
         padding: 20px;
     }
     
@@ -599,6 +599,7 @@ const GlobalStyles = () => (
         overflow-y: auto;
         position: relative;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
     }
     
     .modal-close {
@@ -2740,6 +2741,492 @@ const GlobalStyles = () => (
         .form-container {
             padding: 25px;
         }
+
+        /* Advanced Agriculture Details Styles */
+        .advanced-agriculture-details {
+            padding: 20px 0;
+        }
+
+        .details-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8fbf8, #e8f5e9);
+            border-radius: 15px;
+            border-left: 5px solid #6ab04c;
+        }
+
+        .details-header h2 {
+            color: #1e4620;
+            font-size: 32px;
+            margin-bottom: 15px;
+            padding-left: 0;
+            display: block;
+            text-align: center;
+        }
+
+        .details-header .subtitle {
+            font-size: 18px;
+            color: #2a723d;
+            font-weight: 500;
+        }
+
+        .details-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .details-section h3 {
+            color: #1e4620;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .details-section h3 i {
+            color: #6ab04c;
+            font-size: 20px;
+        }
+
+        .details-section h4 {
+            color: #2a723d;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .details-section p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 25px 20px;
+            background: #f8fbf8;
+            border-radius: 12px;
+            border-bottom: 4px solid #6ab04c;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2a723d;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .career-grid, .study-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .career-card, .study-area-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: #f8fbf8;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .career-card:hover, .study-area-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #6ab04c;
+        }
+
+        .career-card i, .study-area-card i {
+            color: #6ab04c;
+            font-size: 24px;
+            margin-top: 5px;
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 50%;
+            min-width: 48px;
+            text-align: center;
+        }
+
+        .career-card h4, .study-area-card h4 {
+            color: #1e4620;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .career-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .syllabus-table {
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .syllabus-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .syllabus-table th {
+            background: linear-gradient(135deg, #2a723d, #1e4620);
+            color: white;
+            padding: 18px;
+            font-weight: 600;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .syllabus-table td {
+            padding: 18px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s ease;
+        }
+
+        .syllabus-table td:first-child {
+            font-weight: 600;
+            color: #1e4620;
+            background: #f8fbf8;
+        }
+
+        .syllabus-table tr:hover td {
+            background: #f7fdf7;
+        }
+
+        .syllabus-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(232, 245, 233, 0.5), rgba(241, 248, 233, 0.5));
+            border-radius: 15px;
+            border: 2px dashed #6ab04c;
+        }
+
+        .cta-section h3 {
+            color: #1e4620;
+            font-size: 28px;
+            margin-bottom: 15px;
+            padding-left: 0;
+            display: block;
+            text-align: center;
+        }
+
+        .cta-section p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #6ab04c, #82c91e);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(106, 176, 76, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(106, 176, 76, 0.5);
+        }
+
+        .apply-btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .apply-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .details-section {
+                padding: 20px;
+            }
+            
+            .details-header h2 {
+                font-size: 24px;
+            }
+            
+            .stats-grid, .career-grid, .study-areas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .syllabus-table th,
+            .syllabus-table td {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Program Details Page Styles */
+        .program-details-page {
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .program-details-banner {
+            background: linear-gradient(135deg, #1e4620, #2a723d);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .program-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .program-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .program-meta i {
+            color: #6ab04c;
+            font-size: 20px;
+        }
+
+        .program-content {
+            padding: 60px 0;
+        }
+
+        .program-overview, .program-details, .program-features, .program-cta {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .program-overview h3, .program-details h3, .program-features h3, .program-cta h3 {
+            color: #1e4620;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .program-overview p, .program-details p, .program-features p, .program-cta p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .program-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .program-details li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .program-details li:last-child {
+            border-bottom: none;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8fbf8;
+            border-radius: 12px;
+            border-left: 4px solid #6ab04c;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-item i {
+            color: #6ab04c;
+            font-size: 24px;
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        .feature-item span {
+            color: #1e4620;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-apply-large {
+            background: linear-gradient(135deg, #6ab04c, #82c91e);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(106, 176, 76, 0.4);
+        }
+
+        .btn-apply-large:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(106, 176, 76, 0.5);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .program-details-banner {
+                padding: 60px 20px;
+            }
+
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 20px;
+            }
+
+            .program-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .program-content {
+                padding: 40px 0;
+            }
+
+            .program-overview, .program-details, .program-features, .program-cta {
+                padding: 25px;
+                margin: 20px 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-apply-large, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
     }
   `}</style>
 );
@@ -2992,6 +3479,611 @@ const programsData = [
     }
 ];
 
+// ============== ADVANCED TECHNOLOGIES IN AGRICULTURE DETAILED COMPONENT ==============
+const AdvancedTechnologiesAgricultureDetails = () => {
+    // --- Data for Components ---
+    const statsData = [
+        { number: '95%', label: 'Job Placement Rate' },
+        { number: '50+', label: 'Industry Partners' },
+        { number: '2', label: 'Years Duration' },
+        { number: '24/7', label: 'Lab Access' },
+    ];
+
+    const careerData = [
+        { icon: 'fas fa-brain', title: 'AgriTech Solution Architect', text: 'Design comprehensive agricultural technology solutions for modern farming operations.' },
+        { icon: 'fas fa-crosshairs', title: 'Precision Agriculture Specialist', text: 'Implement precision farming techniques using GPS, sensors, and data analytics.' },
+        { icon: 'fas fa-robot', title: 'AI/ML Expert in Farming Analytics', text: 'Develop machine learning models for crop prediction and yield optimization.' },
+        { icon: 'fas fa-drone', title: 'Drone & IoT Integration Engineer', text: 'Build and maintain automated drone systems for agricultural monitoring.' },
+        { icon: 'fas fa-satellite', title: 'Remote Sensing & GIS Analyst', text: 'Analyze satellite imagery and geographic data for agricultural insights.' },
+        { icon: 'fas fa-flask', title: 'R&D Scientist in Sustainable AgTech', text: 'Research and develop sustainable agricultural technologies and practices.' },
+    ];
+
+    const studyAreasData = [
+        { icon: 'fas fa-tractor', title: 'Smart Farming & Precision Agriculture' },
+        { icon: 'fas fa-satellite-dish', title: 'Remote Sensing & Satellite Technologies' },
+        { icon: 'fas fa-wifi', title: 'IoT & Wireless Sensor Networks' },
+        { icon: 'fas fa-chart-line', title: 'AI & Data Science for Agriculture' },
+        { icon: 'fas fa-helicopter', title: 'Agri Drones and Robotics' },
+        { icon: 'fas fa-leaf', title: 'Climate-Smart Agriculture & Sustainability' },
+    ];
+
+    const semester1Data = [
+        { subject: 'Introduction to Smart Agriculture', subtopics: 'Smart farms, automation, impact of emerging technologies' },
+        { subject: 'Remote Sensing & GIS in Agriculture', subtopics: 'Crop mapping, NDVI, multispectral data, decision support' },
+        { subject: 'IoT for Agri Systems', subtopics: 'Sensor networks, wireless data, real-time environment monitoring' },
+        { subject: 'AI & ML Fundamentals', subtopics: 'Prediction models, image classification, precision inputs' },
+        { subject: 'Lab I – Smart Farm Setup', subtopics: 'IoT deployment, mobile app integration, data visualization' },
+    ];
+
+    const semester2Data = [
+        { subject: 'Agri Drones & Robotics', subtopics: 'UAV tech, robotic seeding/harvesting, automation in the field' },
+        { subject: 'Big Data & Predictive Analytics', subtopics: 'Cloud storage, pattern analysis, crop yield prediction models' },
+        { subject: 'Sustainable & Climate-Smart Agriculture', subtopics: 'Water use efficiency, carbon reduction, regenerative practices' },
+        { subject: 'AgriTech Entrepreneurship', subtopics: 'Startup building, innovation in food-tech, funding opportunities' },
+        { subject: 'Capstone Project', subtopics: 'Tech-enabled solution to real-life agriculture problem' },
+    ];
+
+    // --- Reusable Components ---
+    const Header = () => (
+        <header style={{
+            background: 'linear-gradient(135deg, #1e4620, #2a723d)',
+            color: 'white',
+            padding: '60px 20px',
+            textAlign: 'center',
+            position: 'relative',
+            overflow: 'hidden',
+            borderBottom: '5px solid #6ab04c',
+            borderRadius: '0',
+            marginBottom: '20px',
+            width: '100vw',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginRight: 'calc(-50vw + 50%)'
+        }}>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+                <h1 style={{
+                    fontSize: 'clamp(32px, 5vw, 52px)',
+                    fontWeight: 700,
+                    marginBottom: '20px',
+                    textShadow: '0 3px 6px rgba(0,0,0,0.3)',
+                    animation: 'fadeInDown 1s ease-out'
+                }}>Master Program in Advanced Technologies in Agriculture</h1>
+                <p style={{
+                    fontSize: '22px',
+                    marginTop: '15px',
+                    fontWeight: 300,
+                    opacity: 0.9,
+                    animation: 'fadeInUp 1s ease-out 0.5s both'
+                }}>Transforming Agriculture Through Innovation & Technology</p>
+            </div>
+        </header>
+    );
+
+    const Navbar = () => (
+        <nav style={{
+            background: 'rgba(255, 255, 255, 0.85)',
+            backdropFilter: 'blur(12px)',
+            padding: '15px 0',
+            position: 'sticky',
+            top: 0,
+            zIndex: 1000,
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            borderRadius: '0',
+            marginBottom: '20px',
+            width: '100vw',
+            marginLeft: 'calc(-50vw + 50%)',
+            marginRight: 'calc(-50vw + 50%)'
+        }}>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '10px',
+                maxWidth: '100%',
+                margin: '0 auto',
+                padding: '0 20px',
+                flexWrap: 'wrap'
+            }}>
+                <button onClick={() => document.getElementById('introduction')?.scrollIntoView({ behavior: 'smooth' })} style={{
+                    textDecoration: 'none',
+                    color: '#1e4620',
+                    fontWeight: 600,
+                    padding: '10px 25px',
+                    borderRadius: '50px',
+                    transition: 'all 0.3s ease-in-out',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    cursor: 'pointer',
+                    border: 'none',
+                    background: 'transparent'
+                }} onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#2a723d';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
+                }} onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#1e4620';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                }}><i className="fas fa-seedling"></i> Introduction</button>
+                <button onClick={() => document.getElementById('careers')?.scrollIntoView({ behavior: 'smooth' })} style={{
+                    textDecoration: 'none',
+                    color: '#1e4620',
+                    fontWeight: 600,
+                    padding: '10px 25px',
+                    borderRadius: '50px',
+                    transition: 'all 0.3s ease-in-out',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    cursor: 'pointer',
+                    border: 'none',
+                    background: 'transparent'
+                }} onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#2a723d';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
+                }} onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#1e4620';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                }}><i className="fas fa-briefcase"></i> Careers</button>
+                <button onClick={() => document.getElementById('curriculum')?.scrollIntoView({ behavior: 'smooth' })} style={{
+                    textDecoration: 'none',
+                    color: '#1e4620',
+                    fontWeight: 600,
+                    padding: '10px 25px',
+                    borderRadius: '50px',
+                    transition: 'all 0.3s ease-in-out',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    cursor: 'pointer',
+                    border: 'none',
+                    background: 'transparent'
+                }} onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#2a723d';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
+                }} onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#1e4620';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                }}><i className="fas fa-book"></i> Curriculum</button>
+                <button onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })} style={{
+                    textDecoration: 'none',
+                    color: '#1e4620',
+                    fontWeight: 600,
+                    padding: '10px 25px',
+                    borderRadius: '50px',
+                    transition: 'all 0.3s ease-in-out',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    cursor: 'pointer',
+                    border: 'none',
+                    background: 'transparent'
+                }} onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#2a723d';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
+                }} onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#1e4620';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                }}><i className="fas fa-graduation-cap"></i> Apply</button>
+            </div>
+        </nav>
+    );
+
+    const IntroductionSection = () => (
+        <section id="introduction" style={{
+            background: 'white',
+            margin: '20px 0',
+            padding: '40px 30px',
+            borderRadius: '20px',
+            boxShadow: '0 15px 40px rgba(0,0,0,0.07)',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+        }}>
+            <h2 style={{
+                color: '#1e4620',
+                fontSize: '36px',
+                fontWeight: 700,
+                marginBottom: '30px',
+                paddingLeft: '65px',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                <i style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '50px',
+                    height: '50px',
+                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px',
+                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
+                }} className="fas fa-seedling"></i>
+                Introduction
+            </h2>
+            <p style={{ fontSize: '18px', marginBottom: '30px', color: '#444' }}>
+                The Master's Program in Advanced Technologies in Agriculture aims to equip students with modern tools and knowledge to transform traditional farming practices. It integrates precision farming, automation, AI, IoT, drone tech, and sustainable innovations to build the future of smart agriculture. Students gain hands-on experience with technologies shaping global agri-systems.
+            </p>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '30px',
+                margin: '50px 0'
+            }}>
+                {statsData.map((stat, index) => (
+                    <div key={index} style={{
+                        textAlign: 'center',
+                        padding: '30px 20px',
+                        background: '#f8fbf8',
+                        borderRadius: '15px',
+                        borderBottom: '4px solid #6ab04c',
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer'
+                    }} onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-8px)';
+                        e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.08)';
+                    }} onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                    }}>
+                        <span style={{
+                            fontSize: '48px',
+                            fontWeight: 700,
+                            color: '#2a723d',
+                            display: 'block'
+                        }}>{stat.number}</span>
+                        <span style={{
+                            color: '#555',
+                            marginTop: '10px',
+                            fontWeight: 600
+                        }}>{stat.label}</span>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+
+    const CareersSection = () => (
+        <section id="careers" style={{
+            background: 'white',
+            margin: '20px 0',
+            padding: '40px 30px',
+            borderRadius: '20px',
+            boxShadow: '0 15px 40px rgba(0,0,0,0.07)',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+        }}>
+            <h2 style={{
+                color: '#1e4620',
+                fontSize: '36px',
+                fontWeight: 700,
+                marginBottom: '30px',
+                paddingLeft: '65px',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                <i style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '50px',
+                    height: '50px',
+                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px',
+                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
+                }} className="fas fa-briefcase"></i>
+                Career Opportunities
+            </h2>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '30px',
+                margin: '50px 0'
+            }}>
+                {careerData.map((career, index) => (
+                    <div key={index} style={{
+                        background: '#fff',
+                        padding: '30px',
+                        borderRadius: '15px',
+                        border: '1px solid #e0e0e0',
+                        transition: 'all 0.3s ease-in-out',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }} onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-10px)';
+                        e.currentTarget.style.boxShadow = '0 12px 35px rgba(0,0,0,0.1)';
+                        e.currentTarget.style.borderColor = '#6ab04c';
+                    }} onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.borderColor = '#e0e0e0';
+                    }}>
+                        <i style={{
+                            color: '#2a723d',
+                            marginRight: '20px',
+                            fontSize: '28px',
+                            marginTop: '5px',
+                            background: 'linear-gradient(135deg, #e8f5e9, #f1f8e9)',
+                            padding: '15px',
+                            borderRadius: '50%'
+                        }} className={career.icon}></i>
+                        <div>
+                            <h3 style={{
+                                color: '#1e4620',
+                                fontWeight: 600,
+                                marginBottom: '10px'
+                            }}>{career.title}</h3>
+                            <p style={{ color: '#555' }}>{career.text}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+
+    const StudyAreasSection = () => (
+        <section style={{
+            background: 'white',
+            margin: '0',
+            padding: '40px 20px',
+            borderRadius: '0',
+            boxShadow: 'none',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+            width: '100%'
+        }}>
+            <h2 style={{
+                color: '#1e4620',
+                fontSize: '36px',
+                fontWeight: 700,
+                marginBottom: '30px',
+                paddingLeft: '65px',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                <i style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '50px',
+                    height: '50px',
+                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px',
+                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
+                }} className="fas fa-target"></i>
+                Key Areas of Study
+            </h2>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '30px',
+                margin: '50px 0'
+            }}>
+                {studyAreasData.map((area, index) => (
+                    <div key={index} style={{
+                        background: '#fff',
+                        padding: '30px',
+                        borderRadius: '15px',
+                        border: '1px solid #e0e0e0',
+                        transition: 'all 0.3s ease-in-out',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }} onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-10px)';
+                        e.currentTarget.style.boxShadow = '0 12px 35px rgba(0,0,0,0.1)';
+                        e.currentTarget.style.borderColor = '#6ab04c';
+                    }} onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.borderColor = '#e0e0e0';
+                    }}>
+                        <i style={{
+                            color: '#2a723d',
+                            marginRight: '20px',
+                            fontSize: '28px',
+                            marginTop: '5px',
+                            background: 'linear-gradient(135deg, #e8f5e9, #f1f8e9)',
+                            padding: '15px',
+                            borderRadius: '50%'
+                        }} className={area.icon}></i>
+                        <div>
+                            <h4 style={{
+                                color: '#1e4620',
+                                fontWeight: 600,
+                                marginBottom: '10px'
+                            }}>{area.title}</h4>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+
+    const SyllabusTable = ({ data }) => (
+        <div style={{
+            margin: '30px 0',
+            borderRadius: '15px',
+            boxShadow: '0 8px 25px rgba(0,0,0,0.08)',
+            overflow: 'hidden'
+        }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                    <tr>
+                        <th style={{
+                            background: 'linear-gradient(135deg, #2a723d, #1e4620)',
+                            color: 'white',
+                            padding: '20px',
+                            fontWeight: 600,
+                            textAlign: 'left',
+                            fontSize: '18px'
+                        }}>Subject</th>
+                        <th style={{
+                            background: 'linear-gradient(135deg, #2a723d, #1e4620)',
+                            color: 'white',
+                            padding: '20px',
+                            fontWeight: 600,
+                            textAlign: 'left',
+                            fontSize: '18px'
+                        }}>Subtopics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((row, index) => (
+                        <tr key={index}>
+                            <td style={{
+                                padding: '20px',
+                                borderBottom: '1px solid #f0f0f0',
+                                transition: 'background 0.3s ease',
+                                fontWeight: 600,
+                                color: '#1e4620'
+                            }}>{row.subject}</td>
+                            <td style={{
+                                padding: '20px',
+                                borderBottom: '1px solid #f0f0f0',
+                                transition: 'background 0.3s ease',
+                                fontWeight: 400
+                            }}>{row.subtopics}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+
+    const CurriculumSection = () => (
+        <section id="curriculum" style={{
+            background: 'white',
+            margin: '20px 0',
+            padding: '40px 20px',
+            borderRadius: '20px',
+            boxShadow: '0 15px 40px rgba(0,0,0,0.07)',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+        }}>
+            <h2 style={{
+                color: '#1e4620',
+                fontSize: '36px',
+                fontWeight: 700,
+                marginBottom: '30px',
+                paddingLeft: '65px',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                <i style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: '50px',
+                    height: '50px',
+                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px',
+                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
+                }} className="fas fa-book"></i>
+                Semester-wise Syllabus
+            </h2>
+            <h3 style={{ color: '#1e4620', fontSize: '24px', margin: '30px 0 15px 0', fontWeight: '600' }}>Semester 1: Core Concepts & Tech Foundations</h3>
+            <SyllabusTable data={semester1Data} />
+            <h3 style={{ color: '#1e4620', fontSize: '24px', margin: '40px 0 15px 0', fontWeight: '600' }}>Semester 2: Advanced Integration & Applications</h3>
+            <SyllabusTable data={semester2Data} />
+        </section>
+    );
+
+    const ApplySection = () => (
+        <section id="apply" style={{padding: 0, background: 'none', boxShadow: 'none'}}>
+            <div style={{
+                textAlign: 'center',
+                padding: '40px 20px',
+                background: 'linear-gradient(135deg, rgba(232, 245, 233, 0.5), rgba(241, 248, 233, 0.5)), url("https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                borderRadius: '20px',
+                margin: '20px 0'
+            }}>
+                <h2 style={{ textAlign: 'center', paddingLeft: 0, display: 'block', color: '#1e4620' }}>
+                     Ready to Transform Agriculture?
+                </h2>
+                <p style={{ fontSize: '18px', marginBottom: '40px', textAlign: 'center', color: '#333', maxWidth: '700px', margin: '20px auto 40px' }}>
+                    Join the next generation of agricultural innovators and shape the future of farming with cutting-edge technology.
+                </p>
+                <button style={{
+                    display: 'inline-block',
+                    padding: '20px 45px',
+                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
+                    color: 'white',
+                    textDecoration: 'none',
+                    fontWeight: 700,
+                    fontSize: '20px',
+                    borderRadius: '50px',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 10px 30px rgba(106, 176, 76, 0.4)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.5px',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}>
+                    Apply Now <i style={{ marginLeft: '12px', transition: 'transform 0.3s ease' }} className="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    );
+
+    return (
+        <div style={{ background: '#f4f7f6', minHeight: '100vh' }}>
+            <Header />
+            <Navbar />
+            <main style={{ maxWidth: '100vw', margin: '0', padding: '0', width: '100vw' }}>
+                <IntroductionSection />
+                <CareersSection />
+                <StudyAreasSection />
+                <CurriculumSection />
+                <ApplySection />
+            </main>
+        </div>
+    );
+};
+
 // ============== PROGRAM CARD COMPONENT ==============
 const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsClick: () => void }) => (
     <div className="program-card">
@@ -3012,8 +4104,8 @@ const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsC
                 )}
             </div>
             <div className="program-card-buttons">
-                <button onClick={onDetailsClick} className="btn btn-details">Details</button>
-                <a href="#" className="btn btn-apply">Apply</a>
+                <Link to={`/program/${course.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} className="btn btn-details">Details</Link>
+                                                <button className="btn btn-apply" style={{ border: 'none', cursor: 'pointer' }}>Apply</button>
             </div>
         </div>
     </div>
@@ -3021,74 +4113,182 @@ const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsC
 
 // ============== PROGRAM MODAL COMPONENT ==============
 const ProgramModal = ({ course, onClose }: { course: Course; onClose: () => void }) => (
-    <div className="modal-overlay" onClick={onClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={onClose} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.8)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ background: 'white', borderRadius: '12px', maxWidth: '800px', width: '90%', maxHeight: '90vh', overflow: 'auto', position: 'relative' }}>
             <button className="modal-close" onClick={onClose} aria-label="Close modal" title="Close modal">
                 <i className="fas fa-times"></i>
             </button>
-            <div className="modal-header">
-                <img src={course.image} alt={course.title} className="modal-image" />
+            <div className="modal-header" style={{ padding: '30px', borderBottom: '1px solid #e9ecef', display: 'flex', gap: '20px', alignItems: 'center' }}>
+                <img src={course.image} alt={course.title} className="modal-image" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '3px solid #D32F2F' }} />
                 <div className="modal-title">
-                    <h2>{course.title}</h2>
-                    <div className="modal-meta">
-                        <span><i className="far fa-clock"></i> {course.duration}</span>
-                        <span><i className="fas fa-calendar-alt"></i> September 2025</span>
-                        <span><i className="fas fa-users"></i> Limited Seats</span>
+                    <h2 style={{ margin: '0 0 15px', fontSize: '1.8rem', color: '#212529' }}>{course.title}</h2>
+                    <div className="modal-meta" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6c757d', fontSize: '0.9rem' }}><i className="far fa-clock" style={{ color: '#D32F2F' }}></i> {course.duration}</span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6c757d', fontSize: '0.9rem' }}><i className="fas fa-calendar-alt" style={{ color: '#D32F2F' }}></i> September 2025</span>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6c757d', fontSize: '0.9rem' }}><i className="fas fa-users" style={{ color: '#D32F2F' }}></i> Limited Seats</span>
                     </div>
                 </div>
             </div>
-            <div className="modal-body">
-                <div className="modal-description">
-                    <h3>Program Overview</h3>
-                    <p>{course.description}</p>
-                </div>
-                {course.list && (
-                    <div className="modal-list">
-                        <h3>Program Details</h3>
-                        <ul>
-                            {course.list.map((item: string, index: number) => (
-                                <li key={index}>{item}</li>
-                            ))}
-                        </ul>
-                    </div>
+            <div className="modal-body" style={{ padding: '30px' }}>
+                {course.title === "MASTER PROGRAM in Advanced Technologies in Agriculture" ? (
+                    <AdvancedTechnologiesAgricultureDetails />
+                ) : (
+                    <>
+                        <div className="modal-description">
+                            <h3 style={{ color: '#212529', fontSize: '1.3rem', marginBottom: '15px' }}>Program Overview</h3>
+                            <p style={{ color: '#6c757d', lineHeight: '1.6', marginBottom: '20px' }}>{course.description}</p>
+                        </div>
+                        {course.list && (
+                            <div className="modal-list">
+                                <h3 style={{ color: '#212529', fontSize: '1.3rem', marginBottom: '15px' }}>Program Details</h3>
+                                <ul style={{ listStyle: 'none', padding: 0 }}>
+                                    {course.list.map((item: string, index: number) => (
+                                        <li key={index} style={{ padding: '8px 0', borderBottom: '1px solid #f0f0f0', color: '#6c757d' }}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        <div className="modal-features">
+                            <h3 style={{ color: '#212529', fontSize: '1.3rem', marginBottom: '15px' }}>Key Features</h3>
+                            <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+                                    <i className="fas fa-graduation-cap" style={{ color: '#D32F2F' }}></i>
+                                    <span style={{ color: '#495057' }}>Industry-Relevant Curriculum</span>
+                                </div>
+                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+                                    <i className="fas fa-users" style={{ color: '#D32F2F' }}></i>
+                                    <span style={{ color: '#495057' }}>Expert Faculty</span>
+                                </div>
+                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+                                    <i className="fas fa-briefcase" style={{ color: '#D32F2F' }}></i>
+                                    <span style={{ color: '#495057' }}>Career Support</span>
+                                </div>
+                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+                                    <i className="fas fa-globe" style={{ color: '#D32F2F' }}></i>
+                                    <span style={{ color: '#495057' }}>Global Recognition</span>
+                                </div>
+                            </div>
+                        </div>
+                    </>
                 )}
-                <div className="modal-features">
-                    <h3>Key Features</h3>
-                    <div className="features-grid">
-                        <div className="feature-item">
-                            <i className="fas fa-graduation-cap"></i>
-                            <span>Industry-Relevant Curriculum</span>
-                        </div>
-                        <div className="feature-item">
-                            <i className="fas fa-users"></i>
-                            <span>Expert Faculty</span>
-                        </div>
-                        <div className="feature-item">
-                            <i className="fas fa-briefcase"></i>
-                            <span>Career Support</span>
-                        </div>
-                        <div className="feature-item">
-                            <i className="fas fa-globe"></i>
-                            <span>Global Recognition</span>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div className="modal-footer">
-                <button className="btn btn-apply-large">Apply Now</button>
-                <button className="btn btn-secondary" onClick={onClose}>Close</button>
+            <div className="modal-footer" style={{ padding: '30px', borderTop: '1px solid #e9ecef', display: 'flex', gap: '15px', justifyContent: 'flex-end' }}>
+                <button className="btn btn-apply-large" style={{ background: '#D32F2F', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '25px', fontSize: '1.1rem', fontWeight: '600', cursor: 'pointer' }}>Apply Now</button>
+                <button className="btn btn-secondary" onClick={onClose} style={{ background: '#6c757d', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '25px', fontSize: '1.1rem', fontWeight: '600', cursor: 'pointer' }}>Close</button>
             </div>
         </div>
     </div>
 );
 
 
+// ============== PROGRAM DETAILS PAGE COMPONENT ==============
+const ProgramDetailsPage = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    
+    // Extract program ID from URL path
+    const pathParts = location.pathname.split('/');
+    const programId = pathParts[pathParts.length - 1];
+    
+    // Find the program by ID
+    const findProgram = (): Course | null => {
+        for (const category of programsData) {
+            const course = category.courses.find(c => 
+                c.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === programId
+            );
+            if (course) return course;
+        }
+        return null;
+    };
+
+    const program = findProgram();
+
+    if (!program) {
+        return (
+            <section className="program-details-page">
+                <div className="page-banner">
+                    <div className="container">
+                        <h2>Program Not Found</h2>
+                        <p>The requested program could not be found.</p>
+                        <button onClick={() => navigate('/programs')} className="btn btn-secondary">
+                            Back to Programs
+                        </button>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    return (
+        <section className="program-details-page">
+
+
+            <div className="container">
+                {program.title === "MASTER PROGRAM in Advanced Technologies in Agriculture" ? (
+                    <AdvancedTechnologiesAgricultureDetails />
+                ) : (
+                    <div className="program-content">
+                        <div className="program-overview">
+                            <h3>Program Overview</h3>
+                            <p>{program.description}</p>
+                        </div>
+                        
+                        {program.list && (
+                            <div className="program-details">
+                                <h3>Program Details</h3>
+                                <ul>
+                                    {program.list.map((item: string, index: number) => (
+                                        <li key={index}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        <div className="program-features">
+                            <h3>Key Features</h3>
+                            <div className="features-grid">
+                                <div className="feature-item">
+                                    <i className="fas fa-graduation-cap"></i>
+                                    <span>Industry-Relevant Curriculum</span>
+                                </div>
+                                <div className="feature-item">
+                                    <i className="fas fa-users"></i>
+                                    <span>Expert Faculty</span>
+                                </div>
+                                <div className="feature-item">
+                                    <i className="fas fa-briefcase"></i>
+                                    <span>Career Support</span>
+                                </div>
+                                <div className="feature-item">
+                                    <i className="fas fa-globe"></i>
+                                    <span>Global Recognition</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="program-cta">
+                            <h3>Ready to Get Started?</h3>
+                            <p>Join our program and take the first step towards your future career.</p>
+                            <div className="cta-buttons">
+                                <button className="btn btn-apply-large" style={{ border: 'none', cursor: 'pointer' }}>
+                                    Apply Now <i className="fas fa-arrow-right"></i>
+                                </button>
+                                <button onClick={() => navigate('/contact')} className="btn btn-secondary">
+                                    Contact Admissions
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+};
+
 // ============== PROGRAMS COMPONENT (NOW A PAGE) ==============
 const ProgramsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
-    const [showModal, setShowModal] = useState(false);
-    const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
     const filteredPrograms = programsData.map(category => ({
         ...category,
@@ -3097,16 +4297,6 @@ const ProgramsPage = () => {
             course.title.toLowerCase().includes(searchTerm.toLowerCase())
         )
     })).filter(category => category.courses.length > 0);
-
-    const openModal = (course: Course) => {
-        setSelectedCourse(course);
-        setShowModal(true);
-    };
-
-    const closeModal = () => {
-        setShowModal(false);
-        setSelectedCourse(null);
-    };
 
     return (
         <section id="programs" className="programs-page">
@@ -3161,7 +4351,7 @@ const ProgramsPage = () => {
                                     <ProgramCard 
                                         key={`${course.title}-${courseIndex}`} 
                                         course={course}
-                                        onDetailsClick={() => openModal(course)}
+                                        onDetailsClick={() => {}}
                                     />
                                 ))}
                             </div>
@@ -3193,9 +4383,6 @@ const ProgramsPage = () => {
                 <button className="details-btn btn-secondary" onClick={() => window.location.href = '/tour'}>Schedule Campus Tour</button>
             </div>
             
-            {showModal && selectedCourse && (
-                <ProgramModal course={selectedCourse} onClose={closeModal} />
-            )}
         </section>
     );
 };
@@ -4240,6 +5427,7 @@ const Layout = () => {
                     <Route path="/" element={<Navigate to="/home" replace />} />
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/programs" element={<ProgramsPage />} />
+                    <Route path="/program/:programId" element={<ProgramDetailsPage />} />
                     <Route path="/departments" element={<DepartmentsPage />} />
                     <Route path="/faculty" element={<FacultyPage />} />
                     <Route path="/admissions" element={<AdmissionsPage />} />
