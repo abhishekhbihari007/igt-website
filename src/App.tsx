@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 
 // ============== TYPE DEFINITIONS ==============
 interface HeaderProps {
@@ -83,6 +83,8 @@ const GlobalStyles = () => (
         align-items: center;
         cursor: pointer;
         flex-shrink: 0;
+        text-decoration: none;
+        border-bottom: none;
     }
 
     .logo-crest {
@@ -101,12 +103,16 @@ const GlobalStyles = () => (
         color: #D32F2F;
         margin: 0;
         white-space: nowrap;
+        text-decoration: none;
+        border-bottom: none;
     }
 
     .logo-tagline {
         font-size: 12px;
         color: #212529;
         margin: 0;
+        text-decoration: none;
+        border-bottom: none;
     }
 
     .header nav {
@@ -461,7 +467,7 @@ const GlobalStyles = () => (
         font-size: 2.5rem;
         margin-bottom: 15px;
         font-weight: 700;
-        color: #D32F2F;
+        color: #000000;
         position: relative;
     }
     
@@ -473,7 +479,7 @@ const GlobalStyles = () => (
         transform: translateX(-50%);
         width: 60px;
         height: 3px;
-        background: linear-gradient(90deg, #D32F2F, #C0A062);
+        background: linear-gradient(90deg, #000000, #C0A062);
         border-radius: 2px;
     }
     
@@ -2396,16 +2402,16 @@ const Header = ({ activePage }: HeaderProps) => {
   return (
     <header className="header">
       <div className="container">
-        <div className="logo-container" onClick={handleNavClick}>
+        <Link to="/home" className="logo-container" onClick={handleNavClick}>
           <img src="https://i.ibb.co/cSBD74Mm/Red-Yellow-Vintage-Classic-School-Academy-Logo.png" alt="IGT Logo" className="logo-crest" />
           <div className="logo-text-container">
             <h1 className="logo-title">INSTITUTE OF GLOBAL TECHNOLOGY</h1>
             <p className="logo-tagline">Gateway to Excellence in Education</p>
           </div>
-        </div>
+        </Link>
         <nav>
           <ul className={isMenuOpen ? 'active' : ''}>
-            <li><Link to="/" className={activePage === '/' ? 'active' : ''} onClick={handleNavClick}>Home</Link></li>
+                            <li><Link to="/home" className={activePage === '/home' ? 'active' : ''} onClick={handleNavClick}>Home</Link></li>
             <li><Link to="/programs" className={activePage === '/programs' ? 'active' : ''} onClick={handleNavClick}>Programs</Link></li>
             <li><Link to="/departments" className={activePage === '/departments' ? 'active' : ''} onClick={handleNavClick}>Departments</Link></li>
             <li><Link to="/faculty" className={activePage === '/faculty' ? 'active' : ''} onClick={handleNavClick}>Faculty</Link></li>
@@ -3465,7 +3471,7 @@ const Footer = () => {
             <div className="footer-column">
               <h3>Quick Links</h3>
               <ul>
-                <li><Link to="/" className="footer-nav-link">Home</Link></li>
+                <li><Link to="/home" className="footer-nav-link">Home</Link></li>
                 <li><Link to="/programs" className="footer-nav-link">Academic Programs</Link></li>
                 <li><Link to="/departments" className="footer-nav-link">Research Departments</Link></li>
                 <li><Link to="/faculty" className="footer-nav-link">Faculty</Link></li>
@@ -3714,7 +3720,8 @@ const Layout = () => {
             <Header activePage={location.pathname} />
             <main>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<Navigate to="/home" replace />} />
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/programs" element={<ProgramsPage />} />
                     <Route path="/departments" element={<DepartmentsPage />} />
                     <Route path="/faculty" element={<FacultyPage />} />
