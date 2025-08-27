@@ -6334,42 +6334,79 @@ const FacultyPage = () => (
 
 
 // ============== 🚀 MAIN APP & ROUTING ==============
+// Layout component that wraps all pages with common elements
+// Handles page transitions and scroll behavior
 const Layout = () => {
+    // Hook to get current location for navigation highlighting
     const location = useLocation();
     
+    // Effect to scroll to top when navigating to a new page
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
     return (
         <>
+            {/* Global styles component for consistent styling across the app */}
             <GlobalStyles />
+            
+            {/* Font Awesome loader for icon support */}
             <FontAwesomeLoader />
+            
+            {/* Header component with navigation */}
             <Header activePage={location.pathname} />
+            
+            {/* Main content area with routing */}
             <main>
                 <Routes>
+                    {/* Redirect root to home page */}
                     <Route path="/" element={<Navigate to="/home" replace />} />
+                    
+                    {/* Home page route */}
                     <Route path="/home" element={<HomePage />} />
+                    
+                    {/* Programs page route */}
                     <Route path="/programs" element={<ProgramsPage />} />
+                    
+                    {/* Individual program details page with dynamic routing */}
                     <Route path="/program/:programSlug" element={<ProgramDetailsPage />} />
+                    
+                    {/* Departments page route */}
                     <Route path="/departments" element={<DepartmentsPage />} />
+                    
+                    {/* Faculty page route */}
                     <Route path="/faculty" element={<FacultyPage />} />
+                    
+                    {/* Admissions page route */}
                     <Route path="/admissions" element={<AdmissionsPage />} />
+                    
+                    {/* Contact page route */}
                     <Route path="/contact" element={<ContactPage />} />
+                    
+                    {/* Campus tour page route */}
                     <Route path="/tour" element={<TourPage />} />
+                    
+                    {/* Catch-all route - redirect to home for unknown paths */}
                     <Route path="*" element={<Navigate to="/home" replace />} />
                 </Routes>
             </main>
+            
+            {/* Footer component displayed on all pages */}
             <Footer />
         </>
     );
 };
 
-// ProgramDetailsPage component moved to separate file: src/components/ProgramDetailsPage.tsx
+// Note: ProgramDetailsPage component has been moved to a separate file
+// Location: src/components/ProgramDetailsPage.tsx
 
+// ============== 🚀 MAIN APP COMPONENT ==============
+// Root component that sets up routing and renders the main application
 export default function App() {
   return (
+    // Router wrapper for client-side navigation
     <Router>
+      {/* Layout component that provides the overall structure */}
       <Layout />
     </Router>
   );

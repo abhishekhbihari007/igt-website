@@ -1,50 +1,60 @@
-/* Program Details Page Styles */
+/* ============== 🎓 PROGRAM DETAILS PAGE STYLES ============== */
+/* This CSS file contains all styles specific to the ProgramDetailsPage component */
+/* It provides a clean, modern design for displaying comprehensive program information */
 
-/* Program Banner */
+/* ============== MAIN PAGE CONTAINER ============== */
+/* Main wrapper for the entire program details page */
+.program-details-page {
+    min-height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Light background for content separation */
+}
+
+/* ============== PROGRAM BANNER SECTION ============== */
+/* Hero banner at the top of the page with program title and subtitle */
 .program-banner {
+    /* Dark green overlay with subtle background pattern for visual interest */
     background: linear-gradient(rgba(0, 50, 0, 0.8), rgba(0, 50, 0, 0.8)), 
                 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/><rect width="100%" height="100%" fill="rgba(0,0,0,0.3)"/></svg>');
-    background-size: cover;
-    background-position: center;
-    min-height: 400px;
+    background-size: cover; /* Cover entire banner area */
+    background-position: center; /* Center the background */
+    min-height: 400px; /* Minimum height for visual impact */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 80px 20px;
+    padding: 80px 20px; /* Generous padding for content breathing room */
 }
 
+/* Banner content container for text alignment */
 .banner-content {
     text-align: center;
-    max-width: 1200px;
+    max-width: 1200px; /* Maximum width for large screens */
     width: 100%;
-    z-index: 2;
+    z-index: 2; /* Ensure content appears above background */
 }
 
+/* Main program title styling */
 .program-banner h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: white;
-    margin: 0 0 20px 0;
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 3.5rem; /* Large, impactful title */
+    font-weight: 700; /* Bold weight for emphasis */
+    color: white; /* White text for contrast against dark background */
+    margin: 0 0 20px 0; /* Bottom margin for spacing */
+    line-height: 1.2; /* Tight line height for title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
 }
 
+/* Program subtitle styling */
 .program-banner-subtitle {
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: white;
-    margin: 0;
-    opacity: 0.95;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 1.4rem; /* Medium size for subtitle */
+    font-weight: 400; /* Regular weight for subtitle */
+    color: white; /* White text for consistency */
+    margin: 0; /* No margins for tight spacing */
+    opacity: 0.95; /* Slight transparency for visual hierarchy */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
 }
 
-/* Program Details Page Styling */
-.program-details-page {
-  background: #ffffff;
-  min-height: 100vh;
-}
-
+/* ============== PROGRAM DETAILS BANNER SECTION ============== */
+/* This section contains the program title and meta information */
 .program-details-banner {
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
   padding: 4rem 0 3rem 0;
@@ -90,7 +100,8 @@
   font-size: 1.2rem;
 }
 
-/* Navigation Tabs */
+/* ============== NAVIGATION TABS SECTION ============== */
+/* This section contains the tabs for different program sections */
 .program-nav-tabs {
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -135,7 +146,8 @@
   font-size: 1rem;
 }
 
-/* Program Content Sections */
+/* ============== PROGRAM CONTENT SECTIONS ============== */
+/* This section contains the main content of the program details */
 .program-content-section {
   max-width: 1200px;
   margin: 0 auto;
@@ -188,7 +200,8 @@
   text-align: justify;
 }
 
-/* Stats Grid */
+/* ============== STATS GRID SECTION ============== */
+/* This section displays key statistics about the program */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -223,7 +236,8 @@
   font-weight: 500;
 }
 
-/* Program Features */
+/* ============== PROGRAM FEATURES SECTION ============== */
+/* This section lists the key features of the program */
 .program-features {
   margin-top: 4rem;
 }
@@ -278,7 +292,8 @@
   margin: 0;
 }
 
-/* Program Highlights */
+/* ============== PROGRAM HIGHLIGHTS SECTION ============== */
+/* This section highlights important aspects of the program */
 .program-highlights {
   margin-top: 4rem;
 }
@@ -320,7 +335,8 @@
   color: #2f855a;
 }
 
-/* Career Grid */
+/* ============== CAREER GRID SECTION ============== */
+/* This section lists available career opportunities */
 .career-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -375,7 +391,8 @@
   margin: 0;
 }
 
-/* Areas Grid */
+/* ============== AREAS GRID SECTION ============== */
+/* This section lists the different areas of study within the program */
 .areas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -421,7 +438,8 @@
   color: #1a202c;
 }
 
-/* Semester Section */
+/* ============== SEMESTER SECTION ============== */
+/* This section details the curriculum and syllabus */
 .semester-section {
   margin: 3rem 0;
 }
@@ -473,7 +491,8 @@
   line-height: 1.5;
 }
 
-/* Admission Requirements */
+/* ============== ADMISSION REQUIREMENTS SECTION ============== */
+/* This section outlines the requirements for admission */
 .requirements-list {
   list-style: none;
   padding: 0;
@@ -497,7 +516,8 @@
   font-size: 1.1rem;
 }
 
-/* Faculty Section */
+/* ============== FACULTY SECTION ============== */
+/* This section lists the faculty members */
 .faculty-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -555,7 +575,8 @@
   margin: 0;
 }
 
-/* Apply Section */
+/* ============== APPLY SECTION ============== */
+/* This section provides information on how to apply */
 .apply-section {
   text-align: center;
   margin-bottom: 3rem;
@@ -596,7 +617,8 @@
   box-shadow: 0 6px 20px rgba(56, 161, 105, 0.3);
 }
 
-/* Contact Section */
+/* ============== CONTACT SECTION ============== */
+/* This section provides contact information */
 .contact-section {
   text-align: center;
   margin-top: 3rem;
@@ -645,7 +667,8 @@
   font-weight: 500;
 }
 
-/* Responsive Design */
+/* ============== RESPONSIVE DESIGN ============== */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   .program-details-banner h1 {
     font-size: 2.5rem;

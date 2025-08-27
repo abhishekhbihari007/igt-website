@@ -47,6 +47,7 @@ const ProgramDetailsPage = () => {
                             </div>
                         </div>
 
+                        {/* Program features highlighting key benefits */}
                         <div className="program-features">
                             <div className="section-header">
                                 <div className="section-icon">
@@ -54,6 +55,8 @@ const ProgramDetailsPage = () => {
                                 </div>
                                 <h2>Program Features</h2>
                             </div>
+                            
+                            {/* Grid of feature cards */}
                             <div className="features-grid">
                                 <div className="feature-card">
                                     <div className="feature-icon">
@@ -81,9 +84,11 @@ const ProgramDetailsPage = () => {
                     </div>
                 </div>
 
-                {/* Careers Section */}
+                {/* ============== CAREER OPPORTUNITIES SECTION ============== */}
+                {/* Information about potential career paths after graduation */}
                 <div className="program-content-section">
                     <div className="section-container">
+                        {/* Section header with briefcase icon */}
                         <div className="section-header">
                             <div className="section-icon">
                                 <i className="fas fa-briefcase"></i>
@@ -91,7 +96,9 @@ const ProgramDetailsPage = () => {
                             <h2>Career Opportunities</h2>
                         </div>
                         
+                        {/* Grid of career options with descriptions */}
                         <div className="career-grid">
+                            {/* AgriTech Solution Architect */}
                             <div className="career-card">
                                 <div className="career-icon">
                                     <i className="fas fa-brain"></i>
@@ -101,6 +108,8 @@ const ProgramDetailsPage = () => {
                                     <p>Design comprehensive agricultural technology solutions for modern farming operations</p>
                                 </div>
                             </div>
+                            
+                            {/* Precision Agriculture Specialist */}
                             <div className="career-card">
                                 <div className="career-icon">
                                     <i className="fas fa-crosshairs"></i>
@@ -110,6 +119,8 @@ const ProgramDetailsPage = () => {
                                     <p>Implement precision farming techniques using GPS, sensors, and data analytics</p>
                                 </div>
                             </div>
+                            
+                            {/* AI/ML Expert in Farming Analytics */}
                             <div className="career-card">
                                 <div className="career-icon">
                                     <i className="fas fa-robot"></i>
@@ -119,6 +130,8 @@ const ProgramDetailsPage = () => {
                                     <p>Develop machine learning models for crop prediction and yield optimization</p>
                                 </div>
                             </div>
+                            
+                            {/* Drone & IoT Integration Engineer */}
                             <div className="career-card">
                                 <div className="career-icon">
                                     <i className="fas fa-circle"></i>
@@ -128,6 +141,8 @@ const ProgramDetailsPage = () => {
                                     <p>Build and maintain automated drone systems for agricultural monitoring</p>
                                 </div>
                             </div>
+                            
+                            {/* Remote Sensing & GIS Analyst */}
                             <div className="career-card">
                                 <div className="career-icon">
                                     <i className="fas fa-leaf"></i>
@@ -137,6 +152,8 @@ const ProgramDetailsPage = () => {
                                     <p>Analyze satellite imagery and geographic data for agricultural insights</p>
                                 </div>
                             </div>
+                            
+                            {/* R&D Scientist in Sustainable AgTech */}
                             <div className="career-card">
                                 <div className="career-icon">
                                     <i className="fas fa-flask"></i>
