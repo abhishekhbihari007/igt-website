@@ -715,6 +715,16 @@
   }
 }
 
+/* ============== AGRICULTURE DRONE TECHNOLOGY STYLES ============== */
+.agri-drone-header {
+    background-image: url('https://images.unsplash.com/photo-1582996269871-dad1e4adbbc7?q=80&w=2070&auto=format&fit=crop');
+}
+
+/* ============== PRECISION AGRICULTURE STYLES ============== */
+.precision-agri-header {
+    background-image: url('https://www.innominds.com/hs-fs/hubfs/Innominds-201612/img/IM-News-and-Blogs/AI-Applications-in-Precision-Agriculture.jpg?width=800&name=AI-Applications-in-Precision-Agriculture.jpg');
+}
+
 /* ============== AI & DATA ANALYTICS PROGRAM STYLES ============== */
 /* Specialized styling for the AI & Data Analytics program page - CLEAN VERSION */
 

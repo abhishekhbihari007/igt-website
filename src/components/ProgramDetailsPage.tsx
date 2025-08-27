@@ -7,6 +7,10 @@
 import './ProgramDetails.css';
 // Import React hooks for state management and navigation
 import { useLocation } from 'react-router-dom';
+// Import the new Agriculture Drone Technology component
+import AgricultureDroneTechnology from './AgricultureDroneTechnology';
+// Import the new Precision Agriculture component
+import PrecisionAgriculture from './PrecisionAgriculture';
 
 // Main component function - renders the complete program details page
 const ProgramDetailsPage = () => {
@@ -33,6 +37,41 @@ const ProgramDetailsPage = () => {
         return <AIDataAnalyticsProgram programData={programData} />;
     }
 
+    // Debug: Log the program title to see what we're working with
+    console.log("Program title:", programData.title);
+    console.log("Program title lowercase:", programData.title.toLowerCase());
+    console.log("Checking for Agriculture Drones match...");
+    
+    // Check if this is the Agriculture Drones program and render specific content
+    if (programData.title === "MASTER PROGRAM in Agriculture Drones") {
+        console.log("EXACT MATCH FOUND! Rendering AgricultureDroneTechnology component");
+        return <AgricultureDroneTechnology key={`agri-drone-${Date.now()}`} />;
+    }
+    
+    // Also check with lowercase for backup
+    if (programData.title.toLowerCase().includes("agriculture drones")) {
+        console.log("Lowercase match found! Rendering AgricultureDroneTechnology component");
+        return <AgricultureDroneTechnology key={`agri-drone-${Date.now()}`} />;
+    }
+    
+        console.log("No Agriculture Drones match found, checking for Precision Agriculture...");
+    
+    // Check if this is the Precision Agriculture program and render specific content
+    if (programData.title === "MASTER PROGRAM in Precision Agriculture") {
+        console.log("EXACT MATCH FOUND! Rendering PrecisionAgriculture component");
+        console.log("Program title matched:", programData.title);
+        return <PrecisionAgriculture key={`precision-agri-${Date.now()}`} />;
+    }
+    
+    // Check if this is the Agriculture Drones program and render specific content
+    if (programData.title === "MASTER PROGRAM in Agriculture Drones") {
+        console.log("EXACT MATCH FOUND! Rendering AgricultureDroneTechnology component");
+        console.log("Program title matched:", programData.title);
+        return <AgricultureDroneTechnology key={`agri-drone-${Date.now()}`} />;
+    }
+    
+    console.log("No specific program match found, using default page");
+    
     // Default program details page for other programs
     return (
         <div className="program-details-page">

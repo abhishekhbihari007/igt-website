@@ -56,15 +56,15 @@ const GlobalStyles = () => (
 
     /* ============== HEADER SECTION STYLES ============== */
     .header {
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        background: white;
         color: #333;
         padding: 15px 0;
         position: sticky;
         top: 0;
         z-index: 1000;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        border-bottom: 2px solid #e8e8e8;
-        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-bottom: 1px solid #e5e7eb;
+        backdrop-filter: none;
     }
 
     .header .container {
@@ -1315,7 +1315,7 @@ const GlobalStyles = () => (
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" x="0" y="0" width="100" height="100"/></svg>');
+        background: url('data:image/svg+xml,<svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" x="0" y="0" width="100" height="100"/></svg>');
         opacity: 0.3;
     }
 
