@@ -1027,6 +1027,272 @@ const GlobalStyles = () => (
         box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
     }
 
+    /* ============== PROGRAM MODAL STYLES ============== */
+    .program-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+        backdrop-filter: blur(5px);
+    }
+
+    .program-modal {
+        background: white;
+        border-radius: 16px;
+        max-width: 900px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .program-modal-header {
+        background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 16px 16px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .program-modal-header h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .modal-close-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    .modal-close-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+    }
+
+    .program-modal-content {
+        padding: 30px;
+    }
+
+    .modal-section {
+        margin-bottom: 40px;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .section-header i {
+        font-size: 1.5rem;
+        color: #D32F2F;
+        width: 30px;
+    }
+
+    .section-header h3 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #2d3748;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .modal-section p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #4a5568;
+        margin: 0;
+    }
+
+    .career-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+    }
+
+    .career-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #D32F2F;
+    }
+
+    .career-item i {
+        color: #D32F2F;
+        font-size: 1rem;
+    }
+
+    .career-item span {
+        font-weight: 500;
+        color: #2d3748;
+    }
+
+    .semester-section {
+        margin-bottom: 30px;
+    }
+
+    .semester-section h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #D32F2F;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e2e8f0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .course-card {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-color: #D32F2F;
+    }
+
+    .course-card h5 {
+        margin: 0 0 12px 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .course-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #4a5568;
+    }
+
+    .program-modal-footer {
+        padding: 30px;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        background: #f8f9fa;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .program-modal-footer .btn {
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        min-width: 150px;
+    }
+
+    .program-modal-footer .btn-apply {
+        background: #D32F2F;
+        color: white;
+    }
+
+    .program-modal-footer .btn-apply:hover {
+        background: #B71C1C;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+    }
+
+    .program-modal-footer .btn-secondary {
+        background: #6c757d;
+        color: white;
+    }
+
+    .program-modal-footer .btn-secondary:hover {
+        background: #5a6268;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+    }
+
+    /* Responsive Modal */
+    @media (max-width: 768px) {
+        .program-modal {
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        .program-modal-header {
+            padding: 20px;
+        }
+
+        .program-modal-header h2 {
+            font-size: 1.4rem;
+        }
+
+        .program-modal-content {
+            padding: 20px;
+        }
+
+        .career-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .course-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .program-modal-footer {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .program-modal-footer .btn {
+            width: 100%;
+        }
+    }
+
     /* ============== ACADEMIC PROGRAMS STYLES ============== */
     .academic-programs {
         background-color: #f8f9fa;
@@ -3638,8 +3904,142 @@ const programsData = [
 
 
 
+// ============== PROGRAM DETAILS MODAL COMPONENT ==============
+const ProgramDetailsModal = ({ program, onClose }: { program: any, onClose: () => void }) => {
+    const getProgramDetails = (title: string) => {
+        // AI & Data Analytics specific details
+        if (title.includes("AI & Data Analytics")) {
+            return {
+                overview: "The Master Program in AI & Data Analytics is designed to empower students with the ability to extract actionable insights from data using advanced Artificial Intelligence techniques. It blends machine learning, statistical modeling, big data processing, and modern AI tools to build intelligent, data-driven systems and solutions.",
+                careerOpportunities: [
+                    "Data Scientist / Machine Learning Engineer",
+                    "Business Intelligence Analyst", 
+                    "Data Visualization Expert",
+                    "Predictive Modeling Specialist",
+                    "AI & Analytics Consultant",
+                    "Big Data Engineer",
+                    "Product Analyst / AI Product Manager"
+                ],
+                semester1: [
+                    { title: "Foundations of AI & ML", description: "Supervised & unsupervised learning, neural networks, model training" },
+                    { title: "Data Mining & Warehousing", description: "ETL processes, data marts, clustering & association techniques" },
+                    { title: "Statistics for Data Science", description: "Probability, hypothesis testing, regression, inferential stats" },
+                    { title: "Python & Data Visualization", description: "NumPy, Pandas, Matplotlib, Seaborn, Dash/Plotly" }
+                ],
+                semester2: [
+                    { title: "Deep Learning & Neural Networks", description: "CNNs, RNNs, LSTMs, model tuning, Keras/PyTorch" },
+                    { title: "Big Data Analytics", description: "Hadoop, Spark, Hive, distributed data processing" },
+                    { title: "Natural Language Processing", description: "Text classification, sentiment analysis, transformers" },
+                    { title: "AI Ethics & Explainability", description: "Bias, fairness, transparency, model interpretability" },
+                    { title: "Capstone Project", description: "Real-world AI project implementation" }
+                ]
+            };
+        }
+        
+        // Default details for other programs
+        return {
+            overview: program.description,
+            careerOpportunities: [
+                "Industry Specialist",
+                "Research Analyst",
+                "Technology Consultant",
+                "Project Manager",
+                "Innovation Lead"
+            ],
+            semester1: [
+                { title: "Core Fundamentals", description: "Essential concepts and foundational knowledge" },
+                { title: "Advanced Techniques", description: "Specialized methods and practical applications" },
+                { title: "Industry Applications", description: "Real-world implementation and case studies" }
+            ],
+            semester2: [
+                { title: "Specialized Topics", description: "Advanced specialization and cutting-edge topics" },
+                { title: "Research Project", description: "Capstone project and research implementation" }
+            ]
+        };
+    };
+
+    const details = getProgramDetails(program.title);
+
+    return (
+        <div className="program-modal-overlay" onClick={onClose}>
+            <div className="program-modal" onClick={(e) => e.stopPropagation()}>
+                <div className="program-modal-header">
+                    <h2>{program.title}</h2>
+                    <button className="modal-close-btn" onClick={onClose}>
+                        <i className="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div className="program-modal-content">
+                    {/* Overview Section */}
+                    <div className="modal-section">
+                        <div className="section-header">
+                            <i className="fas fa-brain"></i>
+                            <h3>Introduction</h3>
+                        </div>
+                        <p>{details.overview}</p>
+                    </div>
+
+                    {/* Career Opportunities */}
+                    <div className="modal-section">
+                        <div className="section-header">
+                            <i className="fas fa-briefcase"></i>
+                            <h3>Career Opportunities</h3>
+                        </div>
+                        <div className="career-grid">
+                            {details.careerOpportunities.map((career, index) => (
+                                <div key={index} className="career-item">
+                                    <i className="fas fa-check"></i>
+                                    <span>{career}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Semester-wise Syllabus */}
+                    <div className="modal-section">
+                        <div className="section-header">
+                            <i className="fas fa-book"></i>
+                            <h3>Semester-wise Syllabus</h3>
+                        </div>
+                        
+                        <div className="semester-section">
+                            <h4>Semester 1: Core Fundamentals</h4>
+                            <div className="course-grid">
+                                {details.semester1.map((course, index) => (
+                                    <div key={index} className="course-card">
+                                        <h5>{course.title}</h5>
+                                        <p>{course.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="semester-section">
+                            <h4>Semester 2: Advanced Applications</h4>
+                            <div className="course-grid">
+                                {details.semester2.map((course, index) => (
+                                    <div key={index} className="course-card">
+                                        <h5>{course.title}</h5>
+                                        <p>{course.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="program-modal-footer">
+                    <button className="btn btn-apply">Apply Now</button>
+                    <button className="btn btn-secondary">Download Brochure</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 // ============== PROGRAM CARD COMPONENT ==============
-const ProgramCard = ({ course }: ProgramCardProps) => (
+const ProgramCard = ({ course, onDetailsClick }: { course: any, onDetailsClick: (course: any) => void }) => (
     <div className="program-card">
         <img src={course.image} alt={course.title} className="program-card-image" />
         <div className="program-card-content">
@@ -3658,7 +4058,7 @@ const ProgramCard = ({ course }: ProgramCardProps) => (
                 )}
             </div>
             <div className="program-card-buttons">
-                <button className="btn btn-details">Details</button>
+                <button className="btn btn-details" onClick={() => onDetailsClick(course)}>Details</button>
                 <button className="btn btn-apply ag-btn-apply">Apply</button>
             </div>
         </div>
@@ -3676,6 +4076,8 @@ const ProgramCard = ({ course }: ProgramCardProps) => (
 const ProgramsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
+    const [selectedProgram, setSelectedProgram] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredPrograms = programsData.map(category => ({
         ...category,
@@ -3738,6 +4140,10 @@ const ProgramsPage = () => {
                                     <ProgramCard 
                                         key={`${course.title}-${courseIndex}`} 
                                         course={course}
+                                        onDetailsClick={(course) => {
+                                            setSelectedProgram(course);
+                                            setIsModalOpen(true);
+                                        }}
                                     />
                                 ))}
                             </div>
@@ -3769,6 +4175,16 @@ const ProgramsPage = () => {
                 <button className="details-btn btn-secondary" onClick={() => window.location.href = '/tour'}>Schedule Campus Tour</button>
             </div>
             
+            {/* Program Details Modal */}
+            {isModalOpen && selectedProgram && (
+                <ProgramDetailsModal 
+                    program={selectedProgram}
+                    onClose={() => {
+                        setIsModalOpen(false);
+                        setSelectedProgram(null);
+                    }}
+                />
+            )}
         </section>
     );
 };
