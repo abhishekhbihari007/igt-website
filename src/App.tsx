@@ -1068,7 +1068,7 @@ const GlobalStyles = () => (
     .program-modal-header {
         background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
         color: white;
-        padding: 30px;
+        padding: 20px 30px;
         border-radius: 16px 16px 0 0;
         display: flex;
         justify-content: space-between;
@@ -1103,18 +1103,24 @@ const GlobalStyles = () => (
     }
 
     .program-modal-content {
-        padding: 30px;
+        padding: 15px 25px;
     }
 
     .modal-section {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        border: 1px solid #e2e8f0;
     }
 
     .section-header {
         display: flex;
         align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: 12px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f1f5f9;
     }
 
     .section-header i {
@@ -1140,18 +1146,24 @@ const GlobalStyles = () => (
 
     .career-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 10px;
     }
 
     .career-item {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 15px;
+        gap: 10px;
+        padding: 12px 15px;
         background: #f8f9fa;
-        border-radius: 8px;
-        border-left: 4px solid #D32F2F;
+        border-radius: 6px;
+        border-left: 3px solid #D32F2F;
+        transition: all 0.2s ease;
+    }
+
+    .career-item:hover {
+        background: #f1f5f9;
+        transform: translateX(3px);
     }
 
     .career-item i {
@@ -1165,31 +1177,36 @@ const GlobalStyles = () => (
     }
 
     .semester-section {
-        margin-bottom: 30px;
+        margin-bottom: 15px;
+        padding: 15px;
+        background: #fafbfc;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
     }
 
     .semester-section h4 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 600;
         color: #D32F2F;
-        margin: 0 0 20px 0;
-        padding-bottom: 10px;
+        margin: 0 0 12px 0;
+        padding-bottom: 8px;
         border-bottom: 2px solid #e2e8f0;
         font-family: 'Poppins', sans-serif;
     }
 
     .course-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
     }
 
     .course-card {
         background: #f8f9fa;
-        padding: 20px;
-        border-radius: 12px;
+        padding: 12px 15px;
+        border-radius: 8px;
         border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
+        border-left: 3px solid #D32F2F;
     }
 
     .course-card:hover {
@@ -1214,7 +1231,7 @@ const GlobalStyles = () => (
     }
 
     .program-modal-footer {
-        padding: 30px;
+        padding: 20px 30px;
         border-top: 1px solid #e2e8f0;
         display: flex;
         gap: 15px;
@@ -3906,6 +3923,8 @@ const programsData = [
 
 // ============== PROGRAM DETAILS MODAL COMPONENT ==============
 const ProgramDetailsModal = ({ program, onClose }: { program: any, onClose: () => void }) => {
+    console.log('Modal rendered with program:', program);
+    
     const getProgramDetails = (title: string) => {
         // AI & Data Analytics specific details
         if (title.includes("AI & Data Analytics")) {
@@ -4076,7 +4095,7 @@ const ProgramCard = ({ course, onDetailsClick }: { course: any, onDetailsClick: 
 const ProgramsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
-    const [selectedProgram, setSelectedProgram] = useState(null);
+    const [selectedProgram, setSelectedProgram] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredPrograms = programsData.map(category => ({
@@ -4141,8 +4160,10 @@ const ProgramsPage = () => {
                                         key={`${course.title}-${courseIndex}`} 
                                         course={course}
                                         onDetailsClick={(course) => {
+                                            console.log('Details clicked for:', course.title);
                                             setSelectedProgram(course);
                                             setIsModalOpen(true);
+                                            console.log('Modal state:', { selectedProgram: course, isModalOpen: true });
                                         }}
                                     />
                                 ))}
@@ -4173,6 +4194,23 @@ const ProgramsPage = () => {
                 <p>Our admissions team is here to help you through every step of the process.</p>
                 <button className="details-btn btn-red-cta" onClick={() => window.location.href = '/contact'}>Contact Admissions</button>
                 <button className="details-btn btn-secondary" onClick={() => window.location.href = '/tour'}>Schedule Campus Tour</button>
+                
+                {/* Test Modal Button */}
+                <button 
+                    className="details-btn btn-red-cta" 
+                    style={{marginTop: '20px'}}
+                    onClick={() => {
+                        const testProgram = {
+                            title: "Test Program",
+                            description: "This is a test program to check if modal works"
+                        };
+                        setSelectedProgram(testProgram);
+                        setIsModalOpen(true);
+                        console.log('Test modal opened');
+                    }}
+                >
+                    Test Modal
+                </button>
             </div>
             
             {/* Program Details Modal */}
