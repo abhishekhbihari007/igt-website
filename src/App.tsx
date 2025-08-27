@@ -1,8 +1,7 @@
-
-
 // ============== 🚀 IMPORTS & DEPENDENCIES ==============
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useNavigate } from 'react-router-dom';
+import ProgramDetailsPage from './components/ProgramDetailsPage';
 // import './advancedAgriculture.css'; // CSS moved to GlobalStyles component
 
 // ============== 📋 TYPES & INTERFACES ==============
@@ -10,17 +9,9 @@ interface HeaderProps {
   activePage: string;
 }
 
-interface Course {
-  title: string;
-  image: string;
-  duration: string;
-  description: string;
-  list?: string[];
-}
 
-interface ProgramCardProps {
-  course: Course;
-}
+
+
 
 // ============== 🎨 GLOBAL STYLES ==============
 
@@ -65,14 +56,15 @@ const GlobalStyles = () => (
 
     /* ============== HEADER SECTION STYLES ============== */
     .header {
-        background-color: #ffffff;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         color: #333;
-        padding: 10px 0;
+        padding: 15px 0;
         position: sticky;
         top: 0;
         z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border-bottom: 2px solid #e8e8e8;
+        backdrop-filter: blur(10px);
     }
 
     .header .container {
@@ -88,11 +80,15 @@ const GlobalStyles = () => (
         flex-shrink: 0;
         text-decoration: none;
         border-bottom: none;
-        transition: opacity 0.3s ease;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 12px;
     }
     
     .logo-container:hover {
-        opacity: 0.8;
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(211, 47, 47, 0.15);
     }
 
     .logo-crest {
@@ -141,17 +137,23 @@ const GlobalStyles = () => (
 
     .header nav ul li a,
     .header nav ul li .nav-link {
-        color: #212529;
+        color: #495057;
         text-decoration: none;
         font-weight: 600;
-        transition: color 0.3s ease;
+        font-size: 15px;
+        transition: all 0.3s ease;
         cursor: pointer;
         background: none;
         border: none;
-        font-size: inherit;
         font-family: inherit;
-        padding: 0;
+        padding: 12px 20px;
         margin: 0;
+        border-radius: 25px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .header nav ul li a:hover,
@@ -159,6 +161,9 @@ const GlobalStyles = () => (
     .header nav ul li .nav-link:hover,
     .header nav ul li .nav-link.active {
         color: #D32F2F;
+        background: rgba(211, 47, 47, 0.08);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(211, 47, 47, 0.15);
     }
     
     .header nav ul li .nav-link:focus {
@@ -1103,24 +1108,18 @@ const GlobalStyles = () => (
     }
 
     .program-modal-content {
-        padding: 15px 25px;
+        padding: 20px 30px;
     }
 
     .modal-section {
-        margin-bottom: 20px;
-        background: #ffffff;
-        border-radius: 8px;
-        padding: 20px;
-        border: 1px solid #e2e8f0;
+        margin-bottom: 25px;
     }
 
     .section-header {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #f1f5f9;
+        gap: 15px;
+        margin-bottom: 20px;
     }
 
     .section-header i {
@@ -1146,24 +1145,18 @@ const GlobalStyles = () => (
 
     .career-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
     }
 
     .career-item {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 12px 15px;
+        gap: 12px;
+        padding: 15px;
         background: #f8f9fa;
-        border-radius: 6px;
-        border-left: 3px solid #D32F2F;
-        transition: all 0.2s ease;
-    }
-
-    .career-item:hover {
-        background: #f1f5f9;
-        transform: translateX(3px);
+        border-radius: 8px;
+        border-left: 4px solid #D32F2F;
     }
 
     .career-item i {
@@ -1177,18 +1170,14 @@ const GlobalStyles = () => (
     }
 
     .semester-section {
-        margin-bottom: 15px;
-        padding: 15px;
-        background: #fafbfc;
-        border-radius: 6px;
-        border: 1px solid #e2e8f0;
+        margin-bottom: 20px;
     }
 
     .semester-section h4 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: #D32F2F;
-        margin: 0 0 12px 0;
+        margin: 0 0 15px 0;
         padding-bottom: 8px;
         border-bottom: 2px solid #e2e8f0;
         font-family: 'Poppins', sans-serif;
@@ -1196,17 +1185,16 @@ const GlobalStyles = () => (
 
     .course-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
     }
 
     .course-card {
         background: #f8f9fa;
-        padding: 12px 15px;
-        border-radius: 8px;
+        padding: 15px;
+        border-radius: 12px;
         border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
-        border-left: 3px solid #D32F2F;
     }
 
     .course-card:hover {
@@ -1307,6 +1295,421 @@ const GlobalStyles = () => (
 
         .program-modal-footer .btn {
             width: 100%;
+        }
+    }
+
+    /* New Modal Design - Matching Reference Images */
+    .modal-header-banner {
+        background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .modal-header-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" x="0" y="0" width="100" height="100"/></svg>');
+        opacity: 0.3;
+    }
+
+    .modal-header-banner h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0 0 15px 0;
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+        z-index: 1;
+    }
+
+    .modal-header-banner p {
+        font-size: 1.2rem;
+        margin: 0;
+        color: #A5D6A7;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Navigation Bar */
+    .modal-navigation {
+        background: white;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+
+    .nav-item:hover {
+        background: #f5f5f5;
+        transform: translateY(-2px);
+    }
+
+    .nav-item i {
+        font-size: 1.5rem;
+        color: #2E7D32;
+    }
+
+    .nav-item span {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #2E7D32;
+    }
+
+    /* Content */
+    .modal-content {
+        padding: 40px;
+    }
+
+    .content-section {
+        margin-bottom: 50px;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .section-icon {
+        width: 60px;
+        height: 60px;
+        background: #E8F5E8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .section-icon i {
+        font-size: 1.8rem;
+        color: #2E7D32;
+    }
+
+    .section-header h2 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1B5E20;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .overview-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+        margin: 0 0 30px 0;
+        max-width: 100%;
+    }
+
+    /* Statistics Grid */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 25px 20px;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #4CAF50;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: #2E7D32;
+        box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+    }
+
+    .stat-value {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #4CAF50;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        color: #666;
+        font-weight: 600;
+    }
+
+    /* Career Grid */
+    .career-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .career-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #E8F5E8;
+        display: flex;
+        gap: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .career-card:hover {
+        transform: translateY(-5px);
+        border-color: #4CAF50;
+        box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+    }
+
+    .career-icon {
+        width: 60px;
+        height: 60px;
+        background: #E8F5E8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .career-icon i {
+        font-size: 1.5rem;
+        color: #2E7D32;
+    }
+
+    .career-content h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1B5E20;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .career-content p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Areas Grid */
+    .areas-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .area-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #E8F5E8;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .area-card:hover {
+        border-color: #4CAF50;
+        background: #F8F9FA;
+        transform: translateY(-3px);
+    }
+
+    .area-icon {
+        width: 50px;
+        height: 50px;
+        background: #E8F5E8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .area-icon i {
+        font-size: 1.3rem;
+        color: #2E7D32;
+    }
+
+    .area-card span {
+        font-weight: 600;
+        color: #1B5E20;
+        font-size: 1rem;
+    }
+
+    /* Semester Sections */
+    .semester-section {
+        margin-bottom: 40px;
+    }
+
+    .semester-section h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2E7D32;
+        margin: 0 0 20px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Syllabus Table */
+    .syllabus-table {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid #E8F5E8;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .table-header {
+        background: #1B5E20;
+        color: white;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding: 20px;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .table-row {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding: 20px;
+        border-bottom: 1px solid #E8F5E8;
+        transition: background-color 0.2s ease;
+    }
+
+    .table-row:hover {
+        background: #F8F9FA;
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .subject {
+        font-weight: 700;
+        color: #1B5E20;
+        font-size: 1rem;
+    }
+
+    .subtopics {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* Apply Section */
+    .apply-section {
+        background: linear-gradient(135deg, #F8F9FA 0%, #E8F5E8 100%);
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .apply-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1B5E20;
+        margin: 0 0 20px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .apply-content p {
+        font-size: 1.2rem;
+        color: #666;
+        margin: 0 0 40px 0;
+        line-height: 1.6;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .apply-button {
+        background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        color: white;
+        padding: 20px 40px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+    }
+
+    .apply-button:hover {
+        background: linear-gradient(135deg, #45A049 0%, #1B5E20 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+    }
+
+    .apply-button i {
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .apply-button:hover i {
+        transform: translateX(5px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .modal-header-banner h1 {
+            font-size: 2rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .career-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .areas-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .modal-navigation {
+            padding: 15px 20px;
+        }
+
+        .nav-item span {
+            font-size: 0.8rem;
+        }
+
+        .modal-content {
+            padding: 20px;
         }
     }
 
@@ -2928,27 +3331,60 @@ const GlobalStyles = () => (
             display: none;
             flex-direction: column;
             position: absolute;
-            top: 70px;
+            top: 100px;
             left: 0;
             width: 100%;
-            background-color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-radius: 0 0 20px 20px;
+            padding: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-top: none;
         }
         .header nav ul.active {
             display: flex;
+            animation: slideDown 0.3s ease-out;
         }
         .header nav ul li {
             margin: 0;
             width: 100%;
             text-align: center;
         }
-        .header nav ul li a {
-            padding: 15px;
-            display: block;
-            border-bottom: 1px solid #eee;
+        .header nav ul li a,
+        .header nav ul li .nav-link {
+            padding: 18px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            margin: 0 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        .header nav ul li a:hover,
+        .header nav ul li .nav-link:hover {
+            background: rgba(211, 47, 47, 0.1);
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2);
+        }
+        .header nav ul li:last-child a,
+        .header nav ul li:last-child .nav-link {
+            border-bottom: none;
         }
         .menu-toggle {
             display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     }
     
@@ -3398,11 +3834,789 @@ const GlobalStyles = () => (
         }
 
         .program-details-banner {
-            background: linear-gradient(135deg, #1e4620, #2a723d);
+            background: linear-gradient(rgba(30, 70, 32, 0.9), rgba(42, 114, 61, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
             position: relative;
+        }
+
+        .program-details-banner h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            line-height: 1.2;
+        }
+
+        .program-meta {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .program-meta span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px 24px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .program-meta i {
+            color: #4CAF50;
+            font-size: 1.4rem;
+        }
+
+        /* Navigation Tabs */
+        .program-nav-tabs {
+            background: white;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 90px;
+            z-index: 100;
+        }
+
+        .nav-tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 20px 25px;
+            background: none;
+            border: none;
+            color: #2a723d;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            background: rgba(42, 114, 61, 0.1);
+            border-bottom-color: #4CAF50;
+            color: #1e4620;
+        }
+
+        .nav-tab i {
+            font-size: 1.2rem;
+        }
+
+        /* Content Sections */
+        .program-content-section {
+            padding: 60px 20px;
+            background: white;
+            margin: 0;
+        }
+
+        .program-content-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e4620;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #E8F5E8;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Career Grid */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .career-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #E8F5E8;
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+        }
+
+        .career-icon {
+            width: 60px;
+            height: 60px;
+            background: #E8F5E8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .career-icon i {
+            font-size: 1.5rem;
+            color: #2E7D32;
+        }
+
+        .career-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e4620;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .career-content p {
+            margin: 0;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Areas Grid */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .area-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #E8F5E8;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .area-card:hover {
+            border-color: #4CAF50;
+            background: #F8F9FA;
+            transform: translateY(-3px);
+        }
+
+        .area-icon {
+            width: 50px;
+            height: 50px;
+            background: #E8F5E8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .area-icon i {
+            font-size: 1.3rem;
+            color: #2E7D32;
+        }
+
+        .area-card span {
+            font-weight: 600;
+            color: #1e4620;
+            font-size: 1.1rem;
+        }
+
+        /* Syllabus Table */
+        .syllabus-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #E8F5E8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #1e4620, #2a723d);
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            padding: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            padding: 25px;
+            border-bottom: 1px solid #E8F5E8;
+            transition: background-color 0.2s ease;
+        }
+
+        .table-row:hover {
+            background: #F8F9FA;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .subject {
+            font-weight: 700;
+            color: #1e4620;
+            font-size: 1.1rem;
+        }
+
+        .subtopics {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Semester Section */
+        .semester-section {
+            margin-bottom: 40px;
+        }
+
+        .semester-section h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2E7D32;
+            margin: 0 0 25px 0;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        /* Apply Section */
+        .apply-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .apply-content h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1e4620;
+            margin: 0 0 20px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .apply-content p {
+            font-size: 1.3rem;
+            color: #666;
+            margin: 0 0 40px 0;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .apply-button {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .apply-button:hover {
+            background: linear-gradient(135deg, #45A049, #1B5E20);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+        }
+
+        .apply-button i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .apply-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Additional Program Elements */
+        .program-features {
+            margin-top: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #E8F5E8;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: #2E7D32;
+        }
+
+        .feature-card h4 {
+            color: #1e4620;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Program Highlights */
+        .program-highlights {
+            background: linear-gradient(135deg, #F8F9FA, #E8F5E8);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid #E8F5E8;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-3px);
+            border-color: #4CAF50;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+        }
+
+        .highlight-icon {
+            width: 50px;
+            height: 50px;
+            background: #E8F5E8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .highlight-icon i {
+            font-size: 1.3rem;
+            color: #2E7D32;
+        }
+
+        .highlight-text {
+            color: #1e4620;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Admission Requirements */
+        .admission-requirements {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            border: 1px solid #E8F5E8;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0 0 0;
+        }
+
+        .requirements-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #E8F5E8;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .requirements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            color: #4CAF50;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: #E8F5E8;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Faculty Section */
+        .faculty-section {
+            background: #F8F9FA;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .faculty-member {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #E8F5E8;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .faculty-member:hover {
+            transform: translateY(-5px);
+            border-color: #4CAF50;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.2);
+        }
+
+        .faculty-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #2E7D32;
+        }
+
+        .faculty-member h4 {
+            color: #1e4620;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .faculty-member .title {
+            color: #2E7D32;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .faculty-member p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #1e4620, #2a723d);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+
+        .contact-item span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design for Program Details */
+        @media (max-width: 768px) {
+            .program-details-banner h1 {
+                font-size: 2.5rem;
+            }
+            
+            .program-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-tabs-container {
+                flex-direction: column;
+                max-width: 100%;
+            }
+            
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .career-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .areas-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .syllabus-table {
+                margin-top: 20px;
+            }
+            
+            .table-header,
+            .table-row {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+            
+            .apply-content h3 {
+                font-size: 2rem;
+            }
+            
+            .apply-content p {
+                font-size: 1.1rem;
+            }
+            
+            .apply-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            /* Additional responsive styles for new elements */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .highlights-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .faculty-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-info {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .program-highlights,
+            .admission-requirements,
+            .faculty-section,
+            .contact-section {
+                padding: 25px;
+                margin-top: 30px;
+            }
+
+            .feature-card,
+            .faculty-member {
+                padding: 20px;
+            }
+
+            .highlight-item {
+                padding: 15px;
+            }
         }
 
         .back-btn {
@@ -3664,6 +4878,34 @@ const GlobalStyles = () => (
             max-width: 700px;
             margin: 20px auto 40px;
         }
+
+        /* ============== SOCIAL MEDIA ICONS ============== */
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            color: #D32F2F;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons a:hover {
+            background: #D32F2F;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+        }
     `}</style>
 );
 
@@ -3922,172 +5164,48 @@ const programsData = [
 
 
 // ============== PROGRAM DETAILS MODAL COMPONENT ==============
-const ProgramDetailsModal = ({ program, onClose }: { program: any, onClose: () => void }) => {
-    console.log('Modal rendered with program:', program);
+// Note: This component was removed as it was not being used in the application
+
+// ============== PROGRAM CARD COMPONENT ==============
+const ProgramCard = ({ course }: { course: any }) => {
+    const navigate = useNavigate();
     
-    const getProgramDetails = (title: string) => {
-        // AI & Data Analytics specific details
-        if (title.includes("AI & Data Analytics")) {
-            return {
-                overview: "The Master Program in AI & Data Analytics is designed to empower students with the ability to extract actionable insights from data using advanced Artificial Intelligence techniques. It blends machine learning, statistical modeling, big data processing, and modern AI tools to build intelligent, data-driven systems and solutions.",
-                careerOpportunities: [
-                    "Data Scientist / Machine Learning Engineer",
-                    "Business Intelligence Analyst", 
-                    "Data Visualization Expert",
-                    "Predictive Modeling Specialist",
-                    "AI & Analytics Consultant",
-                    "Big Data Engineer",
-                    "Product Analyst / AI Product Manager"
-                ],
-                semester1: [
-                    { title: "Foundations of AI & ML", description: "Supervised & unsupervised learning, neural networks, model training" },
-                    { title: "Data Mining & Warehousing", description: "ETL processes, data marts, clustering & association techniques" },
-                    { title: "Statistics for Data Science", description: "Probability, hypothesis testing, regression, inferential stats" },
-                    { title: "Python & Data Visualization", description: "NumPy, Pandas, Matplotlib, Seaborn, Dash/Plotly" }
-                ],
-                semester2: [
-                    { title: "Deep Learning & Neural Networks", description: "CNNs, RNNs, LSTMs, model tuning, Keras/PyTorch" },
-                    { title: "Big Data Analytics", description: "Hadoop, Spark, Hive, distributed data processing" },
-                    { title: "Natural Language Processing", description: "Text classification, sentiment analysis, transformers" },
-                    { title: "AI Ethics & Explainability", description: "Bias, fairness, transparency, model interpretability" },
-                    { title: "Capstone Project", description: "Real-world AI project implementation" }
-                ]
-            };
-        }
-        
-        // Default details for other programs
-        return {
-            overview: program.description,
-            careerOpportunities: [
-                "Industry Specialist",
-                "Research Analyst",
-                "Technology Consultant",
-                "Project Manager",
-                "Innovation Lead"
-            ],
-            semester1: [
-                { title: "Core Fundamentals", description: "Essential concepts and foundational knowledge" },
-                { title: "Advanced Techniques", description: "Specialized methods and practical applications" },
-                { title: "Industry Applications", description: "Real-world implementation and case studies" }
-            ],
-            semester2: [
-                { title: "Specialized Topics", description: "Advanced specialization and cutting-edge topics" },
-                { title: "Research Project", description: "Capstone project and research implementation" }
-            ]
-        };
+    const handleDetailsClick = () => {
+        const programSlug = course.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        navigate(`/program/${programSlug}`, { state: { program: course } });
     };
 
-    const details = getProgramDetails(program.title);
-
     return (
-        <div className="program-modal-overlay" onClick={onClose}>
-            <div className="program-modal" onClick={(e) => e.stopPropagation()}>
-                <div className="program-modal-header">
-                    <h2>{program.title}</h2>
-                    <button className="modal-close-btn" onClick={onClose}>
-                        <i className="fas fa-times"></i>
-                    </button>
+        <div className="program-card">
+            <img src={course.image} alt={course.title} className="program-card-image" />
+            <div className="program-card-content">
+                <h4>{course.title}</h4>
+                <div className="program-card-duration">
+                    <i className="far fa-clock"></i>{course.duration}
                 </div>
-                
-                <div className="program-modal-content">
-                    {/* Overview Section */}
-                    <div className="modal-section">
-                        <div className="section-header">
-                            <i className="fas fa-brain"></i>
-                            <h3>Introduction</h3>
-                        </div>
-                        <p>{details.overview}</p>
-                    </div>
-
-                    {/* Career Opportunities */}
-                    <div className="modal-section">
-                        <div className="section-header">
-                            <i className="fas fa-briefcase"></i>
-                            <h3>Career Opportunities</h3>
-                        </div>
-                        <div className="career-grid">
-                            {details.careerOpportunities.map((career, index) => (
-                                <div key={index} className="career-item">
-                                    <i className="fas fa-check"></i>
-                                    <span>{career}</span>
-                                </div>
+                <div className="program-card-description">
+                    {course.description}
+                    {course.list && (
+                        <ul>
+                            {course.list.map((item: any, index: number) => (
+                                <li key={index}>{item}</li>
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Semester-wise Syllabus */}
-                    <div className="modal-section">
-                        <div className="section-header">
-                            <i className="fas fa-book"></i>
-                            <h3>Semester-wise Syllabus</h3>
-                        </div>
-                        
-                        <div className="semester-section">
-                            <h4>Semester 1: Core Fundamentals</h4>
-                            <div className="course-grid">
-                                {details.semester1.map((course, index) => (
-                                    <div key={index} className="course-card">
-                                        <h5>{course.title}</h5>
-                                        <p>{course.description}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="semester-section">
-                            <h4>Semester 2: Advanced Applications</h4>
-                            <div className="course-grid">
-                                {details.semester2.map((course, index) => (
-                                    <div key={index} className="course-card">
-                                        <h5>{course.title}</h5>
-                                        <p>{course.description}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                        </ul>
+                    )}
                 </div>
-
-                <div className="program-modal-footer">
-                    <button className="btn btn-apply">Apply Now</button>
-                    <button className="btn btn-secondary">Download Brochure</button>
+                <div className="program-card-buttons">
+                    <button className="btn btn-details" onClick={handleDetailsClick}>Details</button>
+                    <button className="btn btn-apply ag-btn-apply">Apply</button>
                 </div>
             </div>
         </div>
     );
 };
 
-// ============== PROGRAM CARD COMPONENT ==============
-const ProgramCard = ({ course, onDetailsClick }: { course: any, onDetailsClick: (course: any) => void }) => (
-    <div className="program-card">
-        <img src={course.image} alt={course.title} className="program-card-image" />
-        <div className="program-card-content">
-            <h4>{course.title}</h4>
-            <div className="program-card-duration">
-                <i className="far fa-clock"></i>{course.duration}
-            </div>
-            <div className="program-card-description">
-                {course.description}
-                {course.list && (
-                    <ul>
-                        {course.list.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-            <div className="program-card-buttons">
-                <button className="btn btn-details" onClick={() => onDetailsClick(course)}>Details</button>
-                <button className="btn btn-apply ag-btn-apply">Apply</button>
-            </div>
-        </div>
-    </div>
-);
 
 
 
-
-// ProgramDetailsPage component removed - no longer needed
+// ProgramDetailsPage component moved to separate file: src/components/ProgramDetailsPage.tsx
 
 
 
@@ -4095,8 +5213,6 @@ const ProgramCard = ({ course, onDetailsClick }: { course: any, onDetailsClick: 
 const ProgramsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
-    const [selectedProgram, setSelectedProgram] = useState<any>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredPrograms = programsData.map(category => ({
         ...category,
@@ -4159,12 +5275,6 @@ const ProgramsPage = () => {
                                     <ProgramCard 
                                         key={`${course.title}-${courseIndex}`} 
                                         course={course}
-                                        onDetailsClick={(course) => {
-                                            console.log('Details clicked for:', course.title);
-                                            setSelectedProgram(course);
-                                            setIsModalOpen(true);
-                                            console.log('Modal state:', { selectedProgram: course, isModalOpen: true });
-                                        }}
                                     />
                                 ))}
                             </div>
@@ -4194,35 +5304,9 @@ const ProgramsPage = () => {
                 <p>Our admissions team is here to help you through every step of the process.</p>
                 <button className="details-btn btn-red-cta" onClick={() => window.location.href = '/contact'}>Contact Admissions</button>
                 <button className="details-btn btn-secondary" onClick={() => window.location.href = '/tour'}>Schedule Campus Tour</button>
-                
-                {/* Test Modal Button */}
-                <button 
-                    className="details-btn btn-red-cta" 
-                    style={{marginTop: '20px'}}
-                    onClick={() => {
-                        const testProgram = {
-                            title: "Test Program",
-                            description: "This is a test program to check if modal works"
-                        };
-                        setSelectedProgram(testProgram);
-                        setIsModalOpen(true);
-                        console.log('Test modal opened');
-                    }}
-                >
-                    Test Modal
-                </button>
             </div>
             
-            {/* Program Details Modal */}
-            {isModalOpen && selectedProgram && (
-                <ProgramDetailsModal 
-                    program={selectedProgram}
-                    onClose={() => {
-                        setIsModalOpen(false);
-                        setSelectedProgram(null);
-                    }}
-                />
-            )}
+
         </section>
     );
 };
@@ -5267,6 +6351,7 @@ const Layout = () => {
                     <Route path="/" element={<Navigate to="/home" replace />} />
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/programs" element={<ProgramsPage />} />
+                    <Route path="/program/:programSlug" element={<ProgramDetailsPage />} />
                     <Route path="/departments" element={<DepartmentsPage />} />
                     <Route path="/faculty" element={<FacultyPage />} />
                     <Route path="/admissions" element={<AdmissionsPage />} />
@@ -5279,6 +6364,8 @@ const Layout = () => {
         </>
     );
 };
+
+// ProgramDetailsPage component moved to separate file: src/components/ProgramDetailsPage.tsx
 
 export default function App() {
   return (

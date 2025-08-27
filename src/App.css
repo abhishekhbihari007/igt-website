@@ -58,3 +58,40 @@ main {
   border-radius: 4px;
   font-size: 0.9rem;
 }
+
+/* Program Banner Subtitle */
+.program-banner-subtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  letter-spacing: 0.025em;
+}
+
+/* Program Details CSS moved to separate file: src/components/ProgramDetails.css */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Divider Line */
+.section-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #d69e2e, #f6e05e);
+  margin: 2rem auto;
+  border-radius: 2px;
+}
