@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useParams, useNavigate } from 'react-router-dom';
 
-// ============== TYPE DEFINITIONS ==============
+
+// ============== 🚀 IMPORTS & DEPENDENCIES ==============
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useNavigate } from 'react-router-dom';
+// import './advancedAgriculture.css'; // CSS moved to GlobalStyles component
+
+// ============== 📋 TYPES & INTERFACES ==============
 interface HeaderProps {
   activePage: string;
 }
@@ -18,14 +22,13 @@ interface ProgramCardProps {
   course: Course;
 }
 
-// =================================================================================
-// STYLE COMPONENT
-// =================================================================================
+// ============== 🎨 GLOBAL STYLES ==============
 
 const GlobalStyles = () => (
   <style>{`
     /* ============== FONT IMPORT ============== */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
     /* ============== ROOT ELEMENT STYLES ============== */
     #root {
@@ -85,6 +88,11 @@ const GlobalStyles = () => (
         flex-shrink: 0;
         text-decoration: none;
         border-bottom: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    .logo-container:hover {
+        opacity: 0.8;
     }
 
     .logo-crest {
@@ -131,17 +139,34 @@ const GlobalStyles = () => (
         margin-left: 30px;
     }
 
-    .header nav ul li a {
+    .header nav ul li a,
+    .header nav ul li .nav-link {
         color: #212529;
         text-decoration: none;
         font-weight: 600;
         transition: color 0.3s ease;
         cursor: pointer;
+        background: none;
+        border: none;
+        font-size: inherit;
+        font-family: inherit;
+        padding: 0;
+        margin: 0;
     }
 
     .header nav ul li a:hover,
-    .header nav ul li a.active {
+    .header nav ul li a.active,
+    .header nav ul li .nav-link:hover,
+    .header nav ul li .nav-link.active {
         color: #D32F2F;
+    }
+    
+    .header nav ul li .nav-link:focus {
+        outline: none;
+    }
+    
+    .header nav ul li .nav-link:active {
+        transform: none;
     }
     
     .menu-toggle {
@@ -505,62 +530,138 @@ const GlobalStyles = () => (
     }
     
     .search-filter-section {
-        background: white;
-        padding: 40px 20px;
+        background: #f8f9fa;
+        padding: 15px 20px;
         border-bottom: 1px solid #e9ecef;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: relative;
     }
+    
+
     
     .search-filter-container {
         display: flex;
-        gap: 20px;
-        max-width: 800px;
+        gap: 30px;
+        max-width: 1000px;
         margin: 0 auto;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+        padding: 20px;
     }
     
     .search-box {
         position: relative;
         flex: 1;
-        min-width: 300px;
+        min-width: 320px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .search-box:hover {
+        transform: translateY(-3px) scale(1.02);
     }
     
     .search-box i {
         position: absolute;
-        left: 15px;
+        left: 20px;
         top: 50%;
         transform: translateY(-50%);
         color: #6c757d;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        z-index: 2;
     }
     
     .search-box input {
         width: 100%;
-        padding: 12px 15px 12px 45px;
-        border: 2px solid #e9ecef;
-        border-radius: 25px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
+        padding: 18px 25px 18px 55px;
+        border: 2px solid #dee2e6;
+        border-radius: 35px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        font-family: 'Poppins', 'Inter', sans-serif;
+        transition: all 0.3s ease;
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        color: #495057;
     }
     
     .search-box input:focus {
         outline: none;
-        border-color: #D32F2F;
+        border-color: #007bff;
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.15);
+        transform: translateY(-2px);
+        background: white;
+    }
+    
+    .search-box input:focus + i {
+        color: #007bff;
+        transform: translateY(-50%) scale(1.1);
+    }
+    
+    .search-box input::placeholder {
+        color: #6c757d;
+        font-weight: 500;
+        font-family: 'Poppins', 'Inter', sans-serif;
+    }
+    
+    .search-box input:hover {
+        border-color: #adb5bd;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-filter {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .category-filter:hover {
+        transform: translateY(-3px) scale(1.02);
     }
     
     .category-filter select {
-        padding: 12px 20px;
-        border: 2px solid #e9ecef;
-        border-radius: 25px;
-        font-size: 1rem;
-        background: white;
+        padding: 18px 25px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 35px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        font-family: 'Poppins', 'Inter', sans-serif;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
         cursor: pointer;
-        min-width: 200px;
+        min-width: 240px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        background-size: 18px;
+        padding-right: 55px;
+        color: #2d3748;
     }
     
     .category-filter select:focus {
         outline: none;
-        border-color: #D32F2F;
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px) scale(1.02);
+        background: rgba(255, 255, 255, 1);
+    }
+    
+    .category-filter select:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 10px 35px rgba(255, 255, 255, 0.15);
+    }
+    
+    .category-filter select option {
+        font-family: 'Poppins', 'Inter', sans-serif;
+        font-weight: 500;
+        padding: 12px;
+        background: white;
+        color: #2d3748;
     }
     
     .sr-only {
@@ -894,7 +995,7 @@ const GlobalStyles = () => (
         border: 2px solid #D32F2F;
         font-size: 0.9rem;
         height: 48px;
-        width: 100%;
+        min-width: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -3227,8 +3328,60 @@ const GlobalStyles = () => (
                 justify-content: center;
             }
         }
-    }
-  `}</style>
+
+        /* Staggered animation for grid items */
+        .stagger-item {
+            transition-delay: var(--stagger-delay, 0s);
+        }
+
+        /* Staggered animation delays */
+        .stagger-0 { transition-delay: 0ms; }
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
+        .stagger-4 { transition-delay: 400ms; }
+        .stagger-5 { transition-delay: 500ms; }
+
+        /* Additional styles for replaced inline styles */
+        .intro-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        .semester-title {
+            color: #1e4620;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .semester-title-second {
+            margin: 40px 0 15px 0;
+        }
+
+        .apply-section {
+            padding: 0;
+            background: none;
+            box-shadow: none;
+        }
+
+        .cta-title {
+            text-align: center;
+            padding-left: 0;
+            display: block;
+            color: #1e4620;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+            max-width: 700px;
+            margin: 20px auto 40px;
+        }
+    `}</style>
 );
 
 // ============== FONT AWESOME LOADER COMPONENT ==============
@@ -3253,32 +3406,34 @@ const FontAwesomeLoader = () => {
     return null;
 };
 
-// ============== HEADER COMPONENT ==============
+// ============== 🏠 HEADER & NAVIGATION COMPONENTS ==============
 const Header = ({ activePage }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleNavClick = () => {
+  const handleNavClick = (path: string) => {
     setIsMenuOpen(false);
+    navigate(path);
   };
   
   return (
     <header className="header">
       <div className="container">
-        <Link to="/home" className="logo-container" onClick={handleNavClick}>
+        <div className="logo-container" onClick={() => handleNavClick('/home')}>
           <img src="https://i.ibb.co/cSBD74Mm/Red-Yellow-Vintage-Classic-School-Academy-Logo.png" alt="IGT Logo" className="logo-crest" />
           <div className="logo-text-container">
             <h1 className="logo-title">INSTITUTE OF GLOBAL TECHNOLOGY</h1>
             <p className="logo-tagline">Gateway to Excellence in Education</p>
           </div>
-        </Link>
+        </div>
         <nav>
           <ul className={isMenuOpen ? 'active' : ''}>
-                            <li><Link to="/home" className={activePage === '/home' ? 'active' : ''} onClick={handleNavClick}>Home</Link></li>
-            <li><Link to="/programs" className={activePage === '/programs' ? 'active' : ''} onClick={handleNavClick}>Programs</Link></li>
-            <li><Link to="/departments" className={activePage === '/departments' ? 'active' : ''} onClick={handleNavClick}>Departments</Link></li>
-            <li><Link to="/faculty" className={activePage === '/faculty' ? 'active' : ''} onClick={handleNavClick}>Faculty</Link></li>
-            <li><Link to="/admissions" className={activePage === '/admissions' ? 'active' : ''} onClick={handleNavClick}>Admissions</Link></li>
-            <li><Link to="/contact" className={activePage === '/contact' ? 'active' : ''} onClick={handleNavClick}>Contact</Link></li>
+            <li><button onClick={() => handleNavClick('/home')} className={`nav-link ${activePage === '/home' ? 'active' : ''}`}>Home</button></li>
+            <li><button onClick={() => handleNavClick('/programs')} className={`nav-link ${activePage === '/programs' ? 'active' : ''}`}>Programs</button></li>
+            <li><button onClick={() => handleNavClick('/departments')} className={`nav-link ${activePage === '/departments' ? 'active' : ''}`}>Departments</button></li>
+            <li><button onClick={() => handleNavClick('/faculty')} className={`nav-link ${activePage === '/faculty' ? 'active' : ''}`}>Faculty</button></li>
+            <li><button onClick={() => handleNavClick('/admissions')} className={`nav-link ${activePage === '/admissions' ? 'active' : ''}`}>Admissions</button></li>
+            <li><button onClick={() => handleNavClick('/contact')} className={`nav-link ${activePage === '/contact' ? 'active' : ''}`}>Contact</button></li>
           </ul>
         </nav>
         <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Open Menu">
@@ -3289,7 +3444,7 @@ const Header = ({ activePage }: HeaderProps) => {
   );
 };
 
-// ============== HERO COMPONENT ==============
+// ============== 🏠 HOME PAGE COMPONENTS ==============
 const Hero = () => (
     <section id="hero" className="hero">
         <div className="hero-content">
@@ -3479,613 +3634,12 @@ const programsData = [
     }
 ];
 
-// ============== ADVANCED TECHNOLOGIES IN AGRICULTURE DETAILED COMPONENT ==============
-const AdvancedTechnologiesAgricultureDetails = () => {
-    // --- Data for Components ---
-    const statsData = [
-        { number: '95%', label: 'Job Placement Rate' },
-        { number: '50+', label: 'Industry Partners' },
-        { number: '2', label: 'Years Duration' },
-        { number: '24/7', label: 'Lab Access' },
-    ];
 
-    const careerData = [
-        { icon: 'fas fa-brain', title: 'AgriTech Solution Architect', text: 'Design comprehensive agricultural technology solutions for modern farming operations.' },
-        { icon: 'fas fa-crosshairs', title: 'Precision Agriculture Specialist', text: 'Implement precision farming techniques using GPS, sensors, and data analytics.' },
-        { icon: 'fas fa-robot', title: 'AI/ML Expert in Farming Analytics', text: 'Develop machine learning models for crop prediction and yield optimization.' },
-        { icon: 'fas fa-drone', title: 'Drone & IoT Integration Engineer', text: 'Build and maintain automated drone systems for agricultural monitoring.' },
-        { icon: 'fas fa-satellite', title: 'Remote Sensing & GIS Analyst', text: 'Analyze satellite imagery and geographic data for agricultural insights.' },
-        { icon: 'fas fa-flask', title: 'R&D Scientist in Sustainable AgTech', text: 'Research and develop sustainable agricultural technologies and practices.' },
-    ];
 
-    const studyAreasData = [
-        { icon: 'fas fa-tractor', title: 'Smart Farming & Precision Agriculture' },
-        { icon: 'fas fa-satellite-dish', title: 'Remote Sensing & Satellite Technologies' },
-        { icon: 'fas fa-wifi', title: 'IoT & Wireless Sensor Networks' },
-        { icon: 'fas fa-chart-line', title: 'AI & Data Science for Agriculture' },
-        { icon: 'fas fa-helicopter', title: 'Agri Drones and Robotics' },
-        { icon: 'fas fa-leaf', title: 'Climate-Smart Agriculture & Sustainability' },
-    ];
 
-    const semester1Data = [
-        { subject: 'Introduction to Smart Agriculture', subtopics: 'Smart farms, automation, impact of emerging technologies' },
-        { subject: 'Remote Sensing & GIS in Agriculture', subtopics: 'Crop mapping, NDVI, multispectral data, decision support' },
-        { subject: 'IoT for Agri Systems', subtopics: 'Sensor networks, wireless data, real-time environment monitoring' },
-        { subject: 'AI & ML Fundamentals', subtopics: 'Prediction models, image classification, precision inputs' },
-        { subject: 'Lab I – Smart Farm Setup', subtopics: 'IoT deployment, mobile app integration, data visualization' },
-    ];
-
-    const semester2Data = [
-        { subject: 'Agri Drones & Robotics', subtopics: 'UAV tech, robotic seeding/harvesting, automation in the field' },
-        { subject: 'Big Data & Predictive Analytics', subtopics: 'Cloud storage, pattern analysis, crop yield prediction models' },
-        { subject: 'Sustainable & Climate-Smart Agriculture', subtopics: 'Water use efficiency, carbon reduction, regenerative practices' },
-        { subject: 'AgriTech Entrepreneurship', subtopics: 'Startup building, innovation in food-tech, funding opportunities' },
-        { subject: 'Capstone Project', subtopics: 'Tech-enabled solution to real-life agriculture problem' },
-    ];
-
-    // --- Reusable Components ---
-    const Header = () => (
-        <header style={{
-            background: 'linear-gradient(135deg, #1e4620, #2a723d)',
-            color: 'white',
-            padding: '60px 20px',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden',
-            borderBottom: '5px solid #6ab04c',
-            borderRadius: '0',
-            marginBottom: '20px',
-            width: '100vw',
-            marginLeft: 'calc(-50vw + 50%)',
-            marginRight: 'calc(-50vw + 50%)'
-        }}>
-            <div style={{ position: 'relative', zIndex: 1 }}>
-                <h1 style={{
-                    fontSize: 'clamp(32px, 5vw, 52px)',
-                    fontWeight: 700,
-                    marginBottom: '20px',
-                    textShadow: '0 3px 6px rgba(0,0,0,0.3)',
-                    animation: 'fadeInDown 1s ease-out'
-                }}>Master Program in Advanced Technologies in Agriculture</h1>
-                <p style={{
-                    fontSize: '22px',
-                    marginTop: '15px',
-                    fontWeight: 300,
-                    opacity: 0.9,
-                    animation: 'fadeInUp 1s ease-out 0.5s both'
-                }}>Transforming Agriculture Through Innovation & Technology</p>
-            </div>
-        </header>
-    );
-
-    const Navbar = () => (
-        <nav style={{
-            background: 'rgba(255, 255, 255, 0.85)',
-            backdropFilter: 'blur(12px)',
-            padding: '15px 0',
-            position: 'sticky',
-            top: 0,
-            zIndex: 1000,
-            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
-            borderRadius: '0',
-            marginBottom: '20px',
-            width: '100vw',
-            marginLeft: 'calc(-50vw + 50%)',
-            marginRight: 'calc(-50vw + 50%)'
-        }}>
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '10px',
-                maxWidth: '100%',
-                margin: '0 auto',
-                padding: '0 20px',
-                flexWrap: 'wrap'
-            }}>
-                <button onClick={() => document.getElementById('introduction')?.scrollIntoView({ behavior: 'smooth' })} style={{
-                    textDecoration: 'none',
-                    color: '#1e4620',
-                    fontWeight: 600,
-                    padding: '10px 25px',
-                    borderRadius: '50px',
-                    transition: 'all 0.3s ease-in-out',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    cursor: 'pointer',
-                    border: 'none',
-                    background: 'transparent'
-                }} onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#2a723d';
-                    e.currentTarget.style.color = 'white';
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
-                }} onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = '#1e4620';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                }}><i className="fas fa-seedling"></i> Introduction</button>
-                <button onClick={() => document.getElementById('careers')?.scrollIntoView({ behavior: 'smooth' })} style={{
-                    textDecoration: 'none',
-                    color: '#1e4620',
-                    fontWeight: 600,
-                    padding: '10px 25px',
-                    borderRadius: '50px',
-                    transition: 'all 0.3s ease-in-out',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    cursor: 'pointer',
-                    border: 'none',
-                    background: 'transparent'
-                }} onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#2a723d';
-                    e.currentTarget.style.color = 'white';
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
-                }} onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = '#1e4620';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                }}><i className="fas fa-briefcase"></i> Careers</button>
-                <button onClick={() => document.getElementById('curriculum')?.scrollIntoView({ behavior: 'smooth' })} style={{
-                    textDecoration: 'none',
-                    color: '#1e4620',
-                    fontWeight: 600,
-                    padding: '10px 25px',
-                    borderRadius: '50px',
-                    transition: 'all 0.3s ease-in-out',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    cursor: 'pointer',
-                    border: 'none',
-                    background: 'transparent'
-                }} onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#2a723d';
-                    e.currentTarget.style.color = 'white';
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
-                }} onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = '#1e4620';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                }}><i className="fas fa-book"></i> Curriculum</button>
-                <button onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })} style={{
-                    textDecoration: 'none',
-                    color: '#1e4620',
-                    fontWeight: 600,
-                    padding: '10px 25px',
-                    borderRadius: '50px',
-                    transition: 'all 0.3s ease-in-out',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    cursor: 'pointer',
-                    border: 'none',
-                    background: 'transparent'
-                }} onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#2a723d';
-                    e.currentTarget.style.color = 'white';
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(42, 114, 61, 0.3)';
-                }} onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = '#1e4620';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                }}><i className="fas fa-graduation-cap"></i> Apply</button>
-            </div>
-        </nav>
-    );
-
-    const IntroductionSection = () => (
-        <section id="introduction" style={{
-            background: 'white',
-            margin: '20px 0',
-            padding: '40px 30px',
-            borderRadius: '20px',
-            boxShadow: '0 15px 40px rgba(0,0,0,0.07)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-        }}>
-            <h2 style={{
-                color: '#1e4620',
-                fontSize: '36px',
-                fontWeight: 700,
-                marginBottom: '30px',
-                paddingLeft: '65px',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center'
-            }}>
-                <i style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    width: '50px',
-                    height: '50px',
-                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '20px',
-                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
-                }} className="fas fa-seedling"></i>
-                Introduction
-            </h2>
-            <p style={{ fontSize: '18px', marginBottom: '30px', color: '#444' }}>
-                The Master's Program in Advanced Technologies in Agriculture aims to equip students with modern tools and knowledge to transform traditional farming practices. It integrates precision farming, automation, AI, IoT, drone tech, and sustainable innovations to build the future of smart agriculture. Students gain hands-on experience with technologies shaping global agri-systems.
-            </p>
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '30px',
-                margin: '50px 0'
-            }}>
-                {statsData.map((stat, index) => (
-                    <div key={index} style={{
-                        textAlign: 'center',
-                        padding: '30px 20px',
-                        background: '#f8fbf8',
-                        borderRadius: '15px',
-                        borderBottom: '4px solid #6ab04c',
-                        transition: 'all 0.3s ease',
-                        cursor: 'pointer'
-                    }} onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-8px)';
-                        e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.08)';
-                    }} onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = 'none';
-                    }}>
-                        <span style={{
-                            fontSize: '48px',
-                            fontWeight: 700,
-                            color: '#2a723d',
-                            display: 'block'
-                        }}>{stat.number}</span>
-                        <span style={{
-                            color: '#555',
-                            marginTop: '10px',
-                            fontWeight: 600
-                        }}>{stat.label}</span>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
-
-    const CareersSection = () => (
-        <section id="careers" style={{
-            background: 'white',
-            margin: '20px 0',
-            padding: '40px 30px',
-            borderRadius: '20px',
-            boxShadow: '0 15px 40px rgba(0,0,0,0.07)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-        }}>
-            <h2 style={{
-                color: '#1e4620',
-                fontSize: '36px',
-                fontWeight: 700,
-                marginBottom: '30px',
-                paddingLeft: '65px',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center'
-            }}>
-                <i style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    width: '50px',
-                    height: '50px',
-                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '20px',
-                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
-                }} className="fas fa-briefcase"></i>
-                Career Opportunities
-            </h2>
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '30px',
-                margin: '50px 0'
-            }}>
-                {careerData.map((career, index) => (
-                    <div key={index} style={{
-                        background: '#fff',
-                        padding: '30px',
-                        borderRadius: '15px',
-                        border: '1px solid #e0e0e0',
-                        transition: 'all 0.3s ease-in-out',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }} onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-10px)';
-                        e.currentTarget.style.boxShadow = '0 12px 35px rgba(0,0,0,0.1)';
-                        e.currentTarget.style.borderColor = '#6ab04c';
-                    }} onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = 'none';
-                        e.currentTarget.style.borderColor = '#e0e0e0';
-                    }}>
-                        <i style={{
-                            color: '#2a723d',
-                            marginRight: '20px',
-                            fontSize: '28px',
-                            marginTop: '5px',
-                            background: 'linear-gradient(135deg, #e8f5e9, #f1f8e9)',
-                            padding: '15px',
-                            borderRadius: '50%'
-                        }} className={career.icon}></i>
-                        <div>
-                            <h3 style={{
-                                color: '#1e4620',
-                                fontWeight: 600,
-                                marginBottom: '10px'
-                            }}>{career.title}</h3>
-                            <p style={{ color: '#555' }}>{career.text}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
-
-    const StudyAreasSection = () => (
-        <section style={{
-            background: 'white',
-            margin: '0',
-            padding: '40px 20px',
-            borderRadius: '0',
-            boxShadow: 'none',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            width: '100%'
-        }}>
-            <h2 style={{
-                color: '#1e4620',
-                fontSize: '36px',
-                fontWeight: 700,
-                marginBottom: '30px',
-                paddingLeft: '65px',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center'
-            }}>
-                <i style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    width: '50px',
-                    height: '50px',
-                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '20px',
-                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
-                }} className="fas fa-target"></i>
-                Key Areas of Study
-            </h2>
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '30px',
-                margin: '50px 0'
-            }}>
-                {studyAreasData.map((area, index) => (
-                    <div key={index} style={{
-                        background: '#fff',
-                        padding: '30px',
-                        borderRadius: '15px',
-                        border: '1px solid #e0e0e0',
-                        transition: 'all 0.3s ease-in-out',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        position: 'relative',
-                        overflow: 'hidden'
-                    }} onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-10px)';
-                        e.currentTarget.style.boxShadow = '0 12px 35px rgba(0,0,0,0.1)';
-                        e.currentTarget.style.borderColor = '#6ab04c';
-                    }} onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = 'none';
-                        e.currentTarget.style.borderColor = '#e0e0e0';
-                    }}>
-                        <i style={{
-                            color: '#2a723d',
-                            marginRight: '20px',
-                            fontSize: '28px',
-                            marginTop: '5px',
-                            background: 'linear-gradient(135deg, #e8f5e9, #f1f8e9)',
-                            padding: '15px',
-                            borderRadius: '50%'
-                        }} className={area.icon}></i>
-                        <div>
-                            <h4 style={{
-                                color: '#1e4620',
-                                fontWeight: 600,
-                                marginBottom: '10px'
-                            }}>{area.title}</h4>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
-
-    const SyllabusTable = ({ data }) => (
-        <div style={{
-            margin: '30px 0',
-            borderRadius: '15px',
-            boxShadow: '0 8px 25px rgba(0,0,0,0.08)',
-            overflow: 'hidden'
-        }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr>
-                        <th style={{
-                            background: 'linear-gradient(135deg, #2a723d, #1e4620)',
-                            color: 'white',
-                            padding: '20px',
-                            fontWeight: 600,
-                            textAlign: 'left',
-                            fontSize: '18px'
-                        }}>Subject</th>
-                        <th style={{
-                            background: 'linear-gradient(135deg, #2a723d, #1e4620)',
-                            color: 'white',
-                            padding: '20px',
-                            fontWeight: 600,
-                            textAlign: 'left',
-                            fontSize: '18px'
-                        }}>Subtopics</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((row, index) => (
-                        <tr key={index}>
-                            <td style={{
-                                padding: '20px',
-                                borderBottom: '1px solid #f0f0f0',
-                                transition: 'background 0.3s ease',
-                                fontWeight: 600,
-                                color: '#1e4620'
-                            }}>{row.subject}</td>
-                            <td style={{
-                                padding: '20px',
-                                borderBottom: '1px solid #f0f0f0',
-                                transition: 'background 0.3s ease',
-                                fontWeight: 400
-                            }}>{row.subtopics}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-
-    const CurriculumSection = () => (
-        <section id="curriculum" style={{
-            background: 'white',
-            margin: '20px 0',
-            padding: '40px 20px',
-            borderRadius: '20px',
-            boxShadow: '0 15px 40px rgba(0,0,0,0.07)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-        }}>
-            <h2 style={{
-                color: '#1e4620',
-                fontSize: '36px',
-                fontWeight: 700,
-                marginBottom: '30px',
-                paddingLeft: '65px',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center'
-            }}>
-                <i style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    width: '50px',
-                    height: '50px',
-                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '20px',
-                    boxShadow: '0 5px 15px rgba(106, 176, 76, 0.4)'
-                }} className="fas fa-book"></i>
-                Semester-wise Syllabus
-            </h2>
-            <h3 style={{ color: '#1e4620', fontSize: '24px', margin: '30px 0 15px 0', fontWeight: '600' }}>Semester 1: Core Concepts & Tech Foundations</h3>
-            <SyllabusTable data={semester1Data} />
-            <h3 style={{ color: '#1e4620', fontSize: '24px', margin: '40px 0 15px 0', fontWeight: '600' }}>Semester 2: Advanced Integration & Applications</h3>
-            <SyllabusTable data={semester2Data} />
-        </section>
-    );
-
-    const ApplySection = () => (
-        <section id="apply" style={{padding: 0, background: 'none', boxShadow: 'none'}}>
-            <div style={{
-                textAlign: 'center',
-                padding: '40px 20px',
-                background: 'linear-gradient(135deg, rgba(232, 245, 233, 0.5), rgba(241, 248, 233, 0.5)), url("https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80")',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                borderRadius: '20px',
-                margin: '20px 0'
-            }}>
-                <h2 style={{ textAlign: 'center', paddingLeft: 0, display: 'block', color: '#1e4620' }}>
-                     Ready to Transform Agriculture?
-                </h2>
-                <p style={{ fontSize: '18px', marginBottom: '40px', textAlign: 'center', color: '#333', maxWidth: '700px', margin: '20px auto 40px' }}>
-                    Join the next generation of agricultural innovators and shape the future of farming with cutting-edge technology.
-                </p>
-                <button style={{
-                    display: 'inline-block',
-                    padding: '20px 45px',
-                    background: 'linear-gradient(135deg, #6ab04c, #82c91e)',
-                    color: 'white',
-                    textDecoration: 'none',
-                    fontWeight: 700,
-                    fontSize: '20px',
-                    borderRadius: '50px',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 10px 30px rgba(106, 176, 76, 0.4)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1.5px',
-                    border: 'none',
-                    cursor: 'pointer'
-                }}>
-                    Apply Now <i style={{ marginLeft: '12px', transition: 'transform 0.3s ease' }} className="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </section>
-    );
-
-    return (
-        <div style={{ background: '#f4f7f6', minHeight: '100vh' }}>
-            <Header />
-            <Navbar />
-            <main style={{ maxWidth: '100vw', margin: '0', padding: '0', width: '100vw' }}>
-                <IntroductionSection />
-                <CareersSection />
-                <StudyAreasSection />
-                <CurriculumSection />
-                <ApplySection />
-            </main>
-        </div>
-    );
-};
 
 // ============== PROGRAM CARD COMPONENT ==============
-const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsClick: () => void }) => (
+const ProgramCard = ({ course }: ProgramCardProps) => (
     <div className="program-card">
         <img src={course.image} alt={course.title} className="program-card-image" />
         <div className="program-card-content">
@@ -4104,188 +3658,21 @@ const ProgramCard = ({ course, onDetailsClick }: ProgramCardProps & { onDetailsC
                 )}
             </div>
             <div className="program-card-buttons">
-                <Link to={`/program/${course.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} className="btn btn-details">Details</Link>
-                                                <button className="btn btn-apply" style={{ border: 'none', cursor: 'pointer' }}>Apply</button>
-            </div>
-        </div>
-    </div>
-);
-
-// ============== PROGRAM MODAL COMPONENT ==============
-const ProgramModal = ({ course, onClose }: { course: Course; onClose: () => void }) => (
-    <div className="modal-overlay" onClick={onClose} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.8)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ background: 'white', borderRadius: '12px', maxWidth: '800px', width: '90%', maxHeight: '90vh', overflow: 'auto', position: 'relative' }}>
-            <button className="modal-close" onClick={onClose} aria-label="Close modal" title="Close modal">
-                <i className="fas fa-times"></i>
-            </button>
-            <div className="modal-header" style={{ padding: '30px', borderBottom: '1px solid #e9ecef', display: 'flex', gap: '20px', alignItems: 'center' }}>
-                <img src={course.image} alt={course.title} className="modal-image" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '3px solid #D32F2F' }} />
-                <div className="modal-title">
-                    <h2 style={{ margin: '0 0 15px', fontSize: '1.8rem', color: '#212529' }}>{course.title}</h2>
-                    <div className="modal-meta" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6c757d', fontSize: '0.9rem' }}><i className="far fa-clock" style={{ color: '#D32F2F' }}></i> {course.duration}</span>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6c757d', fontSize: '0.9rem' }}><i className="fas fa-calendar-alt" style={{ color: '#D32F2F' }}></i> September 2025</span>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6c757d', fontSize: '0.9rem' }}><i className="fas fa-users" style={{ color: '#D32F2F' }}></i> Limited Seats</span>
-                    </div>
-                </div>
-            </div>
-            <div className="modal-body" style={{ padding: '30px' }}>
-                {course.title === "MASTER PROGRAM in Advanced Technologies in Agriculture" ? (
-                    <AdvancedTechnologiesAgricultureDetails />
-                ) : (
-                    <>
-                        <div className="modal-description">
-                            <h3 style={{ color: '#212529', fontSize: '1.3rem', marginBottom: '15px' }}>Program Overview</h3>
-                            <p style={{ color: '#6c757d', lineHeight: '1.6', marginBottom: '20px' }}>{course.description}</p>
-                        </div>
-                        {course.list && (
-                            <div className="modal-list">
-                                <h3 style={{ color: '#212529', fontSize: '1.3rem', marginBottom: '15px' }}>Program Details</h3>
-                                <ul style={{ listStyle: 'none', padding: 0 }}>
-                                    {course.list.map((item: string, index: number) => (
-                                        <li key={index} style={{ padding: '8px 0', borderBottom: '1px solid #f0f0f0', color: '#6c757d' }}>{item}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                        <div className="modal-features">
-                            <h3 style={{ color: '#212529', fontSize: '1.3rem', marginBottom: '15px' }}>Key Features</h3>
-                            <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-                                    <i className="fas fa-graduation-cap" style={{ color: '#D32F2F' }}></i>
-                                    <span style={{ color: '#495057' }}>Industry-Relevant Curriculum</span>
-                                </div>
-                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-                                    <i className="fas fa-users" style={{ color: '#D32F2F' }}></i>
-                                    <span style={{ color: '#495057' }}>Expert Faculty</span>
-                                </div>
-                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-                                    <i className="fas fa-briefcase" style={{ color: '#D32F2F' }}></i>
-                                    <span style={{ color: '#495057' }}>Career Support</span>
-                                </div>
-                                <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-                                    <i className="fas fa-globe" style={{ color: '#D32F2F' }}></i>
-                                    <span style={{ color: '#495057' }}>Global Recognition</span>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                )}
-            </div>
-            <div className="modal-footer" style={{ padding: '30px', borderTop: '1px solid #e9ecef', display: 'flex', gap: '15px', justifyContent: 'flex-end' }}>
-                <button className="btn btn-apply-large" style={{ background: '#D32F2F', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '25px', fontSize: '1.1rem', fontWeight: '600', cursor: 'pointer' }}>Apply Now</button>
-                <button className="btn btn-secondary" onClick={onClose} style={{ background: '#6c757d', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '25px', fontSize: '1.1rem', fontWeight: '600', cursor: 'pointer' }}>Close</button>
+                <button className="btn btn-details">Details</button>
+                <button className="btn btn-apply ag-btn-apply">Apply</button>
             </div>
         </div>
     </div>
 );
 
 
-// ============== PROGRAM DETAILS PAGE COMPONENT ==============
-const ProgramDetailsPage = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    
-    // Extract program ID from URL path
-    const pathParts = location.pathname.split('/');
-    const programId = pathParts[pathParts.length - 1];
-    
-    // Find the program by ID
-    const findProgram = (): Course | null => {
-        for (const category of programsData) {
-            const course = category.courses.find(c => 
-                c.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === programId
-            );
-            if (course) return course;
-        }
-        return null;
-    };
-
-    const program = findProgram();
-
-    if (!program) {
-        return (
-            <section className="program-details-page">
-                <div className="page-banner">
-                    <div className="container">
-                        <h2>Program Not Found</h2>
-                        <p>The requested program could not be found.</p>
-                        <button onClick={() => navigate('/programs')} className="btn btn-secondary">
-                            Back to Programs
-                        </button>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
-    return (
-        <section className="program-details-page">
 
 
-            <div className="container">
-                {program.title === "MASTER PROGRAM in Advanced Technologies in Agriculture" ? (
-                    <AdvancedTechnologiesAgricultureDetails />
-                ) : (
-                    <div className="program-content">
-                        <div className="program-overview">
-                            <h3>Program Overview</h3>
-                            <p>{program.description}</p>
-                        </div>
-                        
-                        {program.list && (
-                            <div className="program-details">
-                                <h3>Program Details</h3>
-                                <ul>
-                                    {program.list.map((item: string, index: number) => (
-                                        <li key={index}>{item}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
+// ProgramDetailsPage component removed - no longer needed
 
-                        <div className="program-features">
-                            <h3>Key Features</h3>
-                            <div className="features-grid">
-                                <div className="feature-item">
-                                    <i className="fas fa-graduation-cap"></i>
-                                    <span>Industry-Relevant Curriculum</span>
-                                </div>
-                                <div className="feature-item">
-                                    <i className="fas fa-users"></i>
-                                    <span>Expert Faculty</span>
-                                </div>
-                                <div className="feature-item">
-                                    <i className="fas fa-briefcase"></i>
-                                    <span>Career Support</span>
-                                </div>
-                                <div className="feature-item">
-                                    <i className="fas fa-globe"></i>
-                                    <span>Global Recognition</span>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className="program-cta">
-                            <h3>Ready to Get Started?</h3>
-                            <p>Join our program and take the first step towards your future career.</p>
-                            <div className="cta-buttons">
-                                <button className="btn btn-apply-large" style={{ border: 'none', cursor: 'pointer' }}>
-                                    Apply Now <i className="fas fa-arrow-right"></i>
-                                </button>
-                                <button onClick={() => navigate('/contact')} className="btn btn-secondary">
-                                    Contact Admissions
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
-        </section>
-    );
-};
 
-// ============== PROGRAMS COMPONENT (NOW A PAGE) ==============
+// ============== 📚 PROGRAMS PAGE COMPONENTS ==============
 const ProgramsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -4351,7 +3738,6 @@ const ProgramsPage = () => {
                                     <ProgramCard 
                                         key={`${course.title}-${courseIndex}`} 
                                         course={course}
-                                        onDetailsClick={() => {}}
                                     />
                                 ))}
                             </div>
@@ -5409,7 +4795,7 @@ const FacultyPage = () => (
 );
 
 
-// ============== MAIN LAYOUT COMPONENT ==============
+// ============== 🚀 MAIN APP & ROUTING ==============
 const Layout = () => {
     const location = useLocation();
     
@@ -5427,12 +4813,12 @@ const Layout = () => {
                     <Route path="/" element={<Navigate to="/home" replace />} />
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/programs" element={<ProgramsPage />} />
-                    <Route path="/program/:programId" element={<ProgramDetailsPage />} />
                     <Route path="/departments" element={<DepartmentsPage />} />
                     <Route path="/faculty" element={<FacultyPage />} />
                     <Route path="/admissions" element={<AdmissionsPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/tour" element={<TourPage />} />
+                    <Route path="*" element={<Navigate to="/home" replace />} />
                 </Routes>
             </main>
             <Footer />
