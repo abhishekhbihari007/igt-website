@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useNavigate } from 'react-router-dom';
 import ProgramDetailsPage from './components/ProgramDetailsPage';
+
+
+
 // import './advancedAgriculture.css'; // CSS moved to GlobalStyles component
 
 // ============== 📋 TYPES & INTERFACES ==============
@@ -917,7 +920,8 @@ const GlobalStyles = () => (
         margin: 0 auto;
         max-width: 1200px;
         padding: 0 20px;
-        justify-items: center;
+        justify-items: stretch;
+        align-items: start;
     }
     
     .program-card {
@@ -932,7 +936,7 @@ const GlobalStyles = () => (
         transition: all 0.3s ease;
         height: 100%;
         width: 100%;
-        max-width: 400px;
+        min-height: 500px;
     }
     
     .program-card:hover {
@@ -950,6 +954,8 @@ const GlobalStyles = () => (
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
     }
     
     .program-card-content h4 {
@@ -987,6 +993,7 @@ const GlobalStyles = () => (
         display: flex;
         gap: 12px;
         margin-top: auto;
+        justify-content: space-between;
     }
     
     .program-card-buttons .btn {
@@ -1030,6 +1037,26 @@ const GlobalStyles = () => (
         color: #fff;
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+    }
+    
+    /* Additional program card alignment fixes */
+    .program-cards-grid {
+        align-items: stretch;
+    }
+    
+    .program-card {
+        align-self: stretch;
+    }
+    
+    .program-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .program-card-description {
+        flex: 1;
+        margin-bottom: 20px;
     }
 
     /* ============== PROGRAM MODAL STYLES ============== */
@@ -1295,6 +1322,16 @@ const GlobalStyles = () => (
 
         .program-modal-footer .btn {
             width: 100%;
+        }
+        
+        .program-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            justify-items: stretch;
+        }
+        
+        .program-card {
+            min-height: 450px;
         }
     }
 
@@ -1738,8 +1775,8 @@ const GlobalStyles = () => (
         border: 1px solid #e8e8e8;
         border-top: 4px solid #D32F2F;
         width: 100%;
-        max-width: 400px;
-        height: 580px;
+        height: 100%;
+        min-height: 500px;
         display: flex;
         flex-direction: column;
     }
@@ -3436,6 +3473,7 @@ const GlobalStyles = () => (
         .program-cards-grid, .courses-grid, .research-grid, .events-grid, .department-grid {
             grid-template-columns: 1fr;
             gap: 20px;
+            justify-items: stretch;
         }
         .category-header h3 {
             font-size: 2rem;
@@ -4959,6 +4997,8 @@ const Header = ({ activePage }: HeaderProps) => {
             <li><button onClick={() => handleNavClick('/faculty')} className={`nav-link ${activePage === '/faculty' ? 'active' : ''}`}>Faculty</button></li>
             <li><button onClick={() => handleNavClick('/admissions')} className={`nav-link ${activePage === '/admissions' ? 'active' : ''}`}>Admissions</button></li>
             <li><button onClick={() => handleNavClick('/contact')} className={`nav-link ${activePage === '/contact' ? 'active' : ''}`}>Contact</button></li>
+
+
           </ul>
         </nav>
         <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Open Menu">
@@ -5103,6 +5143,7 @@ const programsData = [
             { title: "MASTER PROGRAM in AI & Data Analytics", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI techniques to extract insights from complex datasets. Master predictive modeling, statistical analysis, and machine learning algorithms for business intelligence and decision-making." },
             { title: "MASTER PROGRAM in AI & Biological Sciences", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Apply AI to biological research, drug discovery, and genetic analysis. Master bioinformatics algorithms, protein structure prediction, and AI-driven drug screening for pharmaceutical development." },
             { title: "MASTER PROGRAM in AI & Cybersecurity Systems", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "12 Months", description: "Develop AI-powered solutions for cybersecurity threats and vulnerabilities. Master threat detection algorithms, anomaly identification, and automated security response systems for network protection." },
+            { title: "Master Program in Cybersecurity", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "18 Months", description: "Defend the digital frontier with advanced cybersecurity techniques. Master threat detection, network security, ethical hacking, and security frameworks to protect organizations from evolving cyber threats." },
         ]
     },
     {
@@ -6333,6 +6374,8 @@ const FacultyPage = () => (
 );
 
 
+
+
 // ============== 🚀 MAIN APP & ROUTING ==============
 // Layout component that wraps all pages with common elements
 // Handles page transitions and scroll behavior
@@ -6385,6 +6428,8 @@ const Layout = () => {
                     
                     {/* Campus tour page route */}
                     <Route path="/tour" element={<TourPage />} />
+                    
+
                     
                     {/* Catch-all route - redirect to home for unknown paths */}
                     <Route path="*" element={<Navigate to="/home" replace />} />
