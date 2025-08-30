@@ -43,17 +43,18 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
         </div>
       </section>
 
-      {/* Career Opportunities */}
-      <section className="career-opportunities-section">
+      {/* Career Opportunities Section */}
+      <section className="career-section">
         <div className="container">
           <div className="section-header">
             <h2>Career Opportunities</h2>
             <div className="section-underline"></div>
           </div>
+
           <div className="career-grid">
-            {programData.careerOpportunities.map((career, index) => (
+            {programData.careerOpportunities.slice(0, 5).map((career, index) => (
               <div key={index} className="career-card">
-                <div className="career-icon">💼</div>
+                <div className="card-gradient-border"></div>
                 <h3>{career}</h3>
               </div>
             ))}
@@ -71,7 +72,6 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
           <div className="areas-grid">
             {programData.keyAreas.map((area, index) => (
               <div key={index} className="area-card">
-                <div className="area-icon">📚</div>
                 <h3>{area}</h3>
               </div>
             ))}
@@ -90,35 +90,55 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
             {/* Semester 1 */}
             <div className="semester-module">
               <div className="semester-header">
-                <h3>Semester 1</h3>
+                <h3>Semester 1: Foundations</h3>
               </div>
-              <ul className="semester-topics">
+              <div className="course-list">
                 {programData.semester1.map((topic, index) => (
-                  <li key={index}>
-                    <span className="topic-checkmark">✓</span>
-                    {topic}
-                  </li>
+                  <div key={index} className="course-item">
+                    <div className="course-header">
+                      <h4 className="course-title">{topic}</h4>
+                    </div>
+                    <div className="learning-objectives">
+                      <h5>Learning Objectives:</h5>
+                      <ul>
+                        <li>Master fundamental concepts and principles</li>
+                        <li>Develop practical skills and techniques</li>
+                        <li>Apply knowledge to real-world scenarios</li>
+                      </ul>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* Semester 2 */}
             <div className="semester-module">
               <div className="semester-header">
-                <h3>Semester 2</h3>
+                <h3>Semester 2: Advanced Applications</h3>
               </div>
-              <ul className="semester-topics">
+              <div className="course-list">
                 {programData.semester2.map((topic, index) => (
-                  <li key={index}>
-                    <span className="topic-checkmark">✓</span>
-                    {topic}
-                  </li>
+                  <div key={index} className="course-item">
+                    <div className="course-header">
+                      <h4 className="course-title">{topic}</h4>
+                    </div>
+                    <div className="learning-objectives">
+                      <h5>Learning Objectives:</h5>
+                      <ul>
+                        <li>Advanced implementation and development</li>
+                        <li>Industry-standard practices and tools</li>
+                        <li>Project-based learning and assessment</li>
+                      </ul>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+
 
       {/* Apply Button */}
       <section className="apply-section">

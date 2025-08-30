@@ -20,9 +20,8 @@ interface HeaderProps {
 
 const GlobalStyles = () => (
   <style>{`
-    /* ============== FONT IMPORT ============== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    /* ============== ENHANCED SYSTEM FONTS ============== */
+    /* Using high-quality system fonts for better performance and native feel */
 
     /* ============== ROOT ELEMENT STYLES ============== */
     #root {
@@ -33,7 +32,7 @@ const GlobalStyles = () => (
 
     /* ============== GENERAL BODY STYLES ============== */
     body {
-        font-family: 'Inter', Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -235,7 +234,7 @@ const GlobalStyles = () => (
         text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         letter-spacing: 2px;
         text-transform: uppercase;
-        font-family: 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         display: block;
     }
     
@@ -247,7 +246,7 @@ const GlobalStyles = () => (
         letter-spacing: 1px;
         line-height: 1.1;
         text-transform: none;
-        font-family: 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         display: block;
     }
     
@@ -270,7 +269,7 @@ const GlobalStyles = () => (
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
-        font-family: 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         font-style: normal;
         letter-spacing: 0.5px;
     }
@@ -281,7 +280,7 @@ const GlobalStyles = () => (
         color: white;
         margin-top: 20px;
         display: inline-block;
-        font-family: 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         text-transform: none;
         letter-spacing: 0.5px;
     }
@@ -589,7 +588,7 @@ const GlobalStyles = () => (
         border-radius: 35px;
         font-size: 1.1rem;
         font-weight: 600;
-        font-family: 'Poppins', 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         transition: all 0.3s ease;
         background: white;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -612,7 +611,7 @@ const GlobalStyles = () => (
     .search-box input::placeholder {
         color: #6c757d;
         font-weight: 500;
-        font-family: 'Poppins', 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
     
     .search-box input:hover {
@@ -635,7 +634,7 @@ const GlobalStyles = () => (
         border-radius: 35px;
         font-size: 1.1rem;
         font-weight: 600;
-        font-family: 'Poppins', 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         cursor: pointer;
@@ -665,7 +664,7 @@ const GlobalStyles = () => (
     }
     
     .category-filter select option {
-        font-family: 'Poppins', 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         font-weight: 500;
         padding: 12px;
         background: white;
@@ -1111,7 +1110,7 @@ const GlobalStyles = () => (
         margin: 0;
         font-size: 1.8rem;
         font-weight: 700;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .modal-close-btn {
@@ -1160,7 +1159,7 @@ const GlobalStyles = () => (
         font-size: 1.4rem;
         font-weight: 600;
         color: #2d3748;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .modal-section p {
@@ -1207,7 +1206,7 @@ const GlobalStyles = () => (
         margin: 0 0 15px 0;
         padding-bottom: 8px;
         border-bottom: 2px solid #e2e8f0;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .course-grid {
@@ -1235,7 +1234,7 @@ const GlobalStyles = () => (
         font-size: 1.1rem;
         font-weight: 600;
         color: #2d3748;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .course-card p {
@@ -1360,7 +1359,7 @@ const GlobalStyles = () => (
         font-size: 2.5rem;
         font-weight: 700;
         margin: 0 0 15px 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         position: relative;
         z-index: 1;
     }
@@ -1448,7 +1447,7 @@ const GlobalStyles = () => (
         font-size: 2rem;
         font-weight: 700;
         color: #1B5E20;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .overview-text {
@@ -1488,7 +1487,7 @@ const GlobalStyles = () => (
         font-weight: 800;
         color: #4CAF50;
         margin-bottom: 10px;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .stat-label {
@@ -1542,7 +1541,7 @@ const GlobalStyles = () => (
         font-size: 1.2rem;
         font-weight: 700;
         color: #1B5E20;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .career-content p {
@@ -1609,7 +1608,7 @@ const GlobalStyles = () => (
         font-weight: 700;
         color: #2E7D32;
         margin: 0 0 20px 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     /* Syllabus Table */
@@ -1673,7 +1672,7 @@ const GlobalStyles = () => (
         font-weight: 700;
         color: #1B5E20;
         margin: 0 0 20px 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
 
     .apply-content p {
@@ -1687,13 +1686,13 @@ const GlobalStyles = () => (
     }
 
     .apply-button {
-        background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
-        color: white;
+        background: white;
+        color: #D32F2F;
         padding: 20px 40px;
         font-size: 1.2rem;
         font-weight: 700;
         border-radius: 50px;
-        border: none;
+        border: 2px solid #D32F2F;
         cursor: pointer;
         transition: all 0.3s ease;
         display: inline-flex;
@@ -1701,13 +1700,14 @@ const GlobalStyles = () => (
         gap: 15px;
         text-transform: uppercase;
         letter-spacing: 1px;
-        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        box-shadow: 0 10px 30px rgba(211, 47, 47, 0.2);
     }
 
     .apply-button:hover {
-        background: linear-gradient(135deg, #45A049 0%, #1B5E20 100%);
+        background: #D32F2F;
+        color: white;
         transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+        box-shadow: 0 15px 40px rgba(211, 47, 47, 0.4);
     }
 
     .apply-button i {

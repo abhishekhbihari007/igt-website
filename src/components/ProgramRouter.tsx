@@ -42,6 +42,21 @@ import MedicalCodingProgram from './programs/MedicalCodingProgram';
 import IPLawProgram from './programs/IPLawProgram';
 import RegulatoryAffairsProgram from './programs/RegulatoryAffairsProgram';
 
+// Import new program components
+import AgricultureDronesProgram from './programs/AgricultureDronesProgram';
+import AdvancedTechnologiesAgricultureProgram from './programs/AdvancedTechnologiesAgricultureProgram';
+import GenerativeAIProgram from './programs/GenerativeAIProgram';
+import AIBiologicalSciencesProgram from './programs/AIBiologicalSciencesProgram';
+import AILawProgram from './programs/AILawProgram';
+import AIMarketingProgram from './programs/AIMarketingProgram';
+import ClinicalResearchRegulatoryAffairsProgram from './programs/ClinicalResearchRegulatoryAffairsProgram';
+import DigitalForensicsProgram from './programs/DigitalForensicsProgram';
+import BioentrepreneurshipProgram from './programs/BioentrepreneurshipProgram';
+import AIDesigningTechnologyProgram from './programs/AIDesigningTechnologyProgram';
+import AIArtsProgram from './programs/AIArtsProgram';
+import ARVRXRDevelopmentProgram from './programs/ARVRXRDevelopmentProgram';
+import VirtualAugmentedRealityEngineeringProgram from './programs/VirtualAugmentedRealityEngineeringProgram';
+
 const ProgramRouter: React.FC = () => {
   const { programSlug } = useParams<{ programSlug: string }>();
 
@@ -49,45 +64,45 @@ const ProgramRouter: React.FC = () => {
   const programComponents: { [key: string]: React.ComponentType } = {
     // Precision Agriculture Programs
     'master-program-in-precision-agriculture': PrecisionAgricultureProgram,
-    'master-program-in-agriculture-drones': AgricultureProgram,
+    'master-program-in-agriculture-drones': AgricultureDronesProgram,
     'master-program-in-hydroponics-vertical-farming': HydroponicsFarmingProgram,
     'master-program-in-hydroponics--vertical-farming': HydroponicsFarmingProgram, // Handle double hyphen case
     'master-program-in-ai-ml-in-agriculture': AIProgram,
     'master-program-in-agriculture-robotics': AgricultureRoboticsProgram,
-    'master-program-in-advanced-technologies-in-agriculture': AgricultureProgram,
+    'master-program-in-advanced-technologies-in-agriculture': AdvancedTechnologiesAgricultureProgram,
     'master-program-in-agri-entrepreneurship': AgriEntrepreneurshipProgram,
     
     // AI & Robotics Programs
     'master-program-in-ai-robotics': RoboticsProgram,
-    'master-program-in-generative-ai': AIProgram,
+    'master-program-in-generative-ai': GenerativeAIProgram,
     'master-program-in-ai-blockchain': AIBlockchainProgram,
     'master-program-in-ai-data-analytics': DataAnalyticsProgram,
-    'master-program-in-ai-biological-sciences': AIProgram,
+    'master-program-in-ai-biological-sciences': AIBiologicalSciencesProgram,
     'master-program-in-ai-cybersecurity-systems': AICybersecurityProgram,
     'master-program-in-cybersecurity': CybersecurityProgram,
     
     // AI & Business Programs
     'master-program-in-ai-business': AIBusinessProgram,
     'master-program-in-ai-management-studies': AIBusinessProgram,
-    'master-program-in-ai-law': AIProgram,
+    'master-program-in-ai-law': AILawProgram,
     'master-program-in-ip-law': IPLawProgram,
-    'master-program-in-ai-marketing': AIProgram,
+    'master-program-in-ai-marketing': AIMarketingProgram,
     
     // Healthcare & Life Sciences
-    'master-program-in-clinical-research-regulatory-affairs': RegulatoryAffairsProgram,
+    'master-program-in-clinical-research-regulatory-affairs': ClinicalResearchRegulatoryAffairsProgram,
     'master-program-in-medical-coding': MedicalCodingProgram,
-    'master-program-in-digital-forensics': CybersecurityProgram,
+    'master-program-in-digital-forensics': DigitalForensicsProgram,
     'master-program-in-industrial-fermentation-technology': FermentationTechnologyProgram,
     'master-program-in-vaccine-technology': VaccineTechnologyProgram,
-    'master-program-in-bioentrepreneurship': BiotechnologyProgram,
+    'master-program-in-bioentrepreneurship': BioentrepreneurshipProgram,
     
     // AI & Creative Technologies
-    'master-program-in-ai-designing-technology': AIProgram,
-    'master-program-in-ai-arts': AIProgram,
+    'master-program-in-ai-designing-technology': AIDesigningTechnologyProgram,
+    'master-program-in-ai-arts': AIArtsProgram,
     
     // Emerging Technologies & Smart Systems
-    'reality-architect-master-of-arvrxr-development': ARVRProgram,
-    'virtual-vanguard-master-in-virtual-augmented-reality-engineering': ARVRProgram,
+    'reality-architect-master-of-arvrxr-development': ARVRXRDevelopmentProgram,
+    'virtual-vanguard-master-in-virtual-augmented-reality-engineering': VirtualAugmentedRealityEngineeringProgram,
     'game-changer-master-program-in-xr-gaming': XRGamingProgram,
     'master-program-in-ar-and-mixed-reality': MixedRealityProgram,
     'master-program-in-electric-vehicle-technology': ElectricVehicleProgram,
