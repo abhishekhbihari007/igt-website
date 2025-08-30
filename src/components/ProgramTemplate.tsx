@@ -1,33 +1,15 @@
 import React from 'react';
 import './ProgramTemplate.css';
 
-// Interface for program data
 interface ProgramData {
   title: string;
-  subtitle: string;
-  introduction: string[];
-  stats: {
-    jobPlacement: string;
-    industryPartners: string;
-    duration: string;
-    level: string;
-  };
-  features: {
-    icon: string;
-    title: string;
-    description: string;
-  }[];
-  curriculum: {
-    title: string;
-    topics: string[];
-  }[];
-  careers: {
-    icon: string;
-    title: string;
-    description: string;
-  }[];
-  applyTitle: string;
-  applyDescription: string;
+  description: string;
+  duration: string;
+  overview: string;
+  careerOpportunities: string[];
+  keyAreas: string[];
+  semester1: string[];
+  semester2: string[];
 }
 
 interface ProgramTemplateProps {
@@ -36,148 +18,114 @@ interface ProgramTemplateProps {
 
 const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
   return (
-    <div className="program-details-page">
-      {/* ============== PROGRAM BANNER SECTION ============== */}
-      <div className="program-banner">
-        <div className="banner-content">
-          <h1>{programData.title}</h1>
-          <p className="program-banner-subtitle">
-            {programData.subtitle}
-          </p>
-        </div>
-      </div>
-
-      {/* ============== MAIN CONTENT SECTIONS ============== */}
-      <div className="program-content-wrapper">
-        
-        {/* ============== INTRODUCTION SECTION ============== */}
-        <div className="program-content-section">
-          <div className="section-container">
-            <div className="section-header">
-              <div className="section-icon">
-                <i className="fas fa-seedling"></i>
-              </div>
-              <h2>Introduction</h2>
+    <div className="program-template">
+      {/* Introduction Part */}
+      <section className="introduction-section">
+        <div className="container">
+          <div className="section-header">
+            <h1 className="program-title">{programData.title}</h1>
+            <p className="program-description">{programData.description}</p>
+            <div className="program-duration">
+              <span className="duration-badge">Duration: {programData.duration}</span>
             </div>
-            
-            {programData.introduction.map((paragraph, index) => (
-              <p key={index} className="section-subtitle">
-                {paragraph}
-              </p>
+          </div>
+          <div className="overview-content">
+            <p>{programData.overview}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Career Opportunities */}
+      <section className="career-opportunities-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Career Opportunities</h2>
+            <p>Explore exciting career paths after completing this program</p>
+          </div>
+          <div className="career-grid">
+            {programData.careerOpportunities.map((career, index) => (
+              <div key={index} className="career-card">
+                <div className="career-icon">💼</div>
+                <h3>{career}</h3>
+              </div>
             ))}
-            
-            {/* Key statistics grid showing program highlights */}
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-value">{programData.stats.jobPlacement}</div>
-                <div className="stat-label">Job Placement Rate</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-value">{programData.stats.industryPartners}</div>
-                <div className="stat-label">Industry Partners</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-value">{programData.stats.duration}</div>
-                <div className="stat-label">Duration</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-value">{programData.stats.level}</div>
-                <div className="stat-label">Program Level</div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Program features highlighting key benefits */}
-            <div className="program-features">
-              <div className="section-header">
-                <div className="section-icon">
-                  <i className="fas fa-star"></i>
-                </div>
-                <h2>Program Features</h2>
+      {/* Key Areas of Study */}
+      <section className="key-areas-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Key Areas of Study</h2>
+            <p>Core subjects and skills you'll master</p>
+          </div>
+          <div className="areas-grid">
+            {programData.keyAreas.map((area, index) => (
+              <div key={index} className="area-card">
+                <div className="area-icon">📚</div>
+                <h3>{area}</h3>
               </div>
-              
-              {/* Grid of feature cards */}
-              <div className="features-grid">
-                {programData.features.map((feature, index) => (
-                  <div key={index} className="feature-card">
-                    <div className="feature-icon">
-                      <i className={feature.icon}></i>
-                    </div>
-                    <h4>{feature.title}</h4>
-                    <p>{feature.description}</p>
-                  </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Semester-wise Syllabus */}
+      <section className="syllabus-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Semester-wise Syllabus</h2>
+            <p>Structured learning path across two semesters</p>
+          </div>
+          <div className="semester-container">
+            {/* Semester 1 */}
+            <div className="semester-module">
+              <div className="semester-header">
+                <h3>Semester 1</h3>
+                <span className="semester-badge">First Half</span>
+              </div>
+              <ul className="semester-topics">
+                {programData.semester1.map((topic, index) => (
+                  <li key={index}>
+                    <span className="topic-checkmark">✓</span>
+                    {topic}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
-          </div>
-        </div>
 
-        {/* ============== CURRICULUM SECTION ============== */}
-        <div className="program-content-section">
-          <div className="section-container">
-            <div className="section-header">
-              <div className="section-icon">
-                <i className="fas fa-graduation-cap"></i>
+            {/* Semester 2 */}
+            <div className="semester-module">
+              <div className="semester-header">
+                <h3>Semester 2</h3>
+                <span className="semester-badge">Second Half</span>
               </div>
-              <h2>Curriculum</h2>
-            </div>
-            
-            <div className="curriculum-grid">
-              {programData.curriculum.map((module, index) => (
-                <div key={index} className="curriculum-module">
-                  <h3>{module.title}</h3>
-                  <ul>
-                    {module.topics.map((topic, topicIndex) => (
-                      <li key={topicIndex}>{topic}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              <ul className="semester-topics">
+                {programData.semester2.map((topic, index) => (
+                  <li key={index}>
+                    <span className="topic-checkmark">✓</span>
+                    {topic}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* ============== CAREERS SECTION ============== */}
-        <div className="program-content-section">
-          <div className="section-container">
-            <div className="section-header">
-              <div className="section-icon">
-                <i className="fas fa-briefcase"></i>
-              </div>
-              <h2>Career Opportunities</h2>
-            </div>
-            
-            <div className="career-grid">
-              {programData.careers.map((career, index) => (
-                <div key={index} className="career-card">
-                  <div className="career-icon">
-                    <i className={career.icon}></i>
-                  </div>
-                  <div className="career-content">
-                    <h3>{career.title}</h3>
-                    <p>{career.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* Apply Button */}
+      <section className="apply-section">
+        <div className="container">
+          <div className="apply-content">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Join our program and transform your career</p>
+            <button className="apply-button">
+              Apply Now
+            </button>
           </div>
         </div>
-
-        {/* ============== APPLY SECTION ============== */}
-        <div className="program-content-section">
-          <div className="section-container">
-            <div className="apply-section">
-              <div className="apply-content">
-                <h3>{programData.applyTitle}</h3>
-                <p>{programData.applyDescription}</p>
-                <button className="apply-button">
-                  APPLY NOW
-                  <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 };
