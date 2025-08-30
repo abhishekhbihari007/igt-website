@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const VaccineTechnologyProgram: React.FC = () => {
   const programData = {
-    title: "Vaccine Technology Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering vaccine development, immunology, biotechnology, and pharmaceutical manufacturing processes.",
-    highlights: [
-      "Vaccine Development",
-      "Immunology & Immunology",
-      "Biotechnology Processes",
-      "Quality Assurance",
-      "Regulatory Compliance"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Immunology Fundamentals",
-          "Microbiology Basics",
-          "Molecular Biology",
-          "Biochemistry",
-          "Cell Biology"
-        ]
-      },
-      {
-        title: "Vaccine Technology Core",
-        topics: [
-          "Vaccine Types & Development",
-          "Antigen Design",
-          "Adjuvant Technology",
-          "Manufacturing Processes",
-          "Quality Control"
-        ]
-      },
-      {
-        title: "Advanced Applications",
-        topics: [
-          "mRNA Technology",
-          "Viral Vector Vaccines",
-          "Clinical Trials",
-          "Regulatory Affairs",
-          "Global Health"
-        ]
-      }
-    ],
+    title: "Master Program in Vaccine Technology",
+    description: "Develop life-saving vaccines and advance immunization science",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our Vaccine Technology Program covers the development, production, and distribution of vaccines. Students learn immunology, vaccine design, manufacturing processes, and regulatory requirements for vaccine development.",
     careerOpportunities: [
       "Vaccine Development Scientist",
       "Immunology Researcher",
-      "Biotechnology Engineer",
-      "Quality Assurance Specialist",
-      "Regulatory Affairs Officer"
+      "Vaccine Manufacturing Specialist",
+      "Clinical Research Associate",
+      "Regulatory Affairs Specialist",
+      "Public Health Advisor"
     ],
-    admissionRequirements: [
-      "Background in Biology or Medicine",
-      "Understanding of immunology",
-      "Interest in public health",
-      "Laboratory experience preferred"
+    keyAreas: [
+      "Immunology & Vaccine Science",
+      "Vaccine Development & Design",
+      "Manufacturing & Quality Control",
+      "Clinical Trials & Safety",
+      "Regulatory Compliance",
+      "Public Health Applications"
+    ],
+    semester1: [
+      "Introduction to Vaccine Technology",
+      "Immunology Fundamentals",
+      "Microbiology Basics",
+      "Vaccine Development Principles",
+      "Laboratory Safety",
+      "Research Methods"
+    ],
+    semester2: [
+      "Advanced Vaccine Development",
+      "Manufacturing Processes",
+      "Clinical Trial Design",
+      "Quality Control Systems",
+      "Regulatory Requirements",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default VaccineTechnologyProgram;

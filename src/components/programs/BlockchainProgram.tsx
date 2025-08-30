@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const BlockchainProgram: React.FC = () => {
   const programData = {
-    title: "Blockchain Technology Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering blockchain technology, cryptocurrency, smart contracts, and decentralized applications development.",
-    highlights: [
-      "Blockchain Fundamentals",
-      "Smart Contract Development",
-      "Cryptocurrency Technology",
-      "DeFi Applications",
-      "Blockchain Security"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Cryptography Basics",
-          "Distributed Systems",
-          "Peer-to-Peer Networks",
-          "Consensus Mechanisms",
-          "Blockchain Architecture"
-        ]
-      },
-      {
-        title: "Blockchain Development",
-        topics: [
-          "Ethereum Development",
-          "Smart Contract Programming",
-          "Solidity Language",
-          "Web3.js Integration",
-          "DApp Development"
-        ]
-      },
-      {
-        title: "Advanced Applications",
-        topics: [
-          "DeFi Protocols",
-          "NFT Development",
-          "Cross-Chain Solutions",
-          "Blockchain Security",
-          "Regulatory Compliance"
-        ]
-      }
-    ],
+    title: "Master Program in Blockchain Technology",
+    description: "Build decentralized applications and blockchain solutions",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our Blockchain Program covers the development of decentralized applications and blockchain solutions. Students learn smart contracts, distributed systems, cryptography, and creating secure blockchain applications.",
     careerOpportunities: [
       "Blockchain Developer",
-      "Smart Contract Developer",
-      "DeFi Developer",
-      "Blockchain Architect",
-      "Cryptocurrency Analyst"
+      "Smart Contract Engineer",
+      "Blockchain Solutions Architect",
+      "Cryptocurrency Developer",
+      "DeFi Specialist",
+      "Blockchain Consultant"
     ],
-    admissionRequirements: [
-      "Basic programming knowledge",
-      "Understanding of cryptography",
-      "Interest in financial technology",
-      "Analytical thinking skills"
+    keyAreas: [
+      "Blockchain Fundamentals & Architecture",
+      "Smart Contract Development",
+      "Cryptography & Security",
+      "Distributed Systems",
+      "DeFi & Cryptocurrency",
+      "Blockchain Applications"
+    ],
+    semester1: [
+      "Introduction to Blockchain",
+      "Cryptography Basics",
+      "Distributed Systems",
+      "Programming Fundamentals",
+      "Blockchain Architecture",
+      "Smart Contract Basics"
+    ],
+    semester2: [
+      "Advanced Smart Contracts",
+      "Blockchain Development",
+      "DeFi Applications",
+      "Blockchain Security",
+      "DApp Development",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default BlockchainProgram;

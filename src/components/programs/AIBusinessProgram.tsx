@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const AIBusinessProgram: React.FC = () => {
   const programData = {
-    title: "AI Business Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering artificial intelligence in business, AI strategy, implementation, and business transformation.",
-    highlights: [
-      "AI Business Strategy",
-      "AI Implementation",
-      "Business Process Automation",
-      "AI Ethics & Governance",
-      "Digital Transformation"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Business Fundamentals",
-          "AI & Machine Learning Basics",
-          "Digital Transformation",
-          "Business Strategy",
-          "Change Management"
-        ]
-      },
-      {
-        title: "AI Business Applications",
-        topics: [
-          "AI in Marketing",
-          "AI in Operations",
-          "AI in Finance",
-          "AI in Customer Service",
-          "AI in Supply Chain"
-        ]
-      },
-      {
-        title: "Advanced AI Business",
-        topics: [
-          "AI Strategy Development",
-          "AI Implementation Roadmap",
-          "AI Ethics & Governance",
-          "AI ROI & Metrics",
-          "Future of AI in Business"
-        ]
-      }
-    ],
+    title: "Master Program in AI Business",
+    description: "Transform business operations with artificial intelligence and data-driven strategies",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our AI Business Program combines artificial intelligence with business strategy to create innovative business solutions. Students learn AI applications in business, data analytics, automation, and strategic decision-making.",
     careerOpportunities: [
-      "AI Business Strategist",
-      "Digital Transformation Consultant",
-      "AI Implementation Manager",
-      "Business AI Analyst",
-      "AI Product Manager"
+      "AI Business Analyst",
+      "Business Intelligence Manager",
+      "AI Strategy Consultant",
+      "Data-Driven Business Manager",
+      "AI Product Manager",
+      "Business Automation Specialist"
     ],
-    admissionRequirements: [
-      "Business or Technology background",
-      "Understanding of business processes",
-      "Interest in AI applications",
-      "Strategic thinking skills"
+    keyAreas: [
+      "AI in Business Strategy",
+      "Data Analytics & Business Intelligence",
+      "Business Process Automation",
+      "AI-Powered Decision Making",
+      "Digital Transformation",
+      "AI Business Ethics"
+    ],
+    semester1: [
+      "Introduction to AI in Business",
+      "Business Fundamentals",
+      "Data Analytics Basics",
+      "AI Technology Overview",
+      "Business Strategy",
+      "Digital Business Models"
+    ],
+    semester2: [
+      "Advanced AI Business Applications",
+      "Business Process Automation",
+      "AI Strategy Development",
+      "Digital Transformation",
+      "AI Business Ethics",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default AIBusinessProgram;

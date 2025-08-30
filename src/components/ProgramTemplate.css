@@ -56,6 +56,21 @@
   opacity: 0.9;
 }
 
+/* ============== INTRODUCTION CONTENT SECTION ============== */
+.introduction-content-section {
+  padding: 80px 0;
+  background: white;
+}
+
+.introduction-content-section .overview-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  opacity: 0.95;
+  line-height: 1.7;
+  text-align: left;
+}
+
 /* ============== SECTION HEADERS ============== */
 .section-header {
   text-align: center;

@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const GameDevelopmentProgram: React.FC = () => {
   const programData = {
-    title: "Game Development Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering game development, game design, programming, and interactive media creation.",
-    highlights: [
-      "Game Design Principles",
-      "Unity & Unreal Engine",
-      "3D Modeling & Animation",
-      "Game Programming",
-      "Game Art & Graphics"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Game Design Fundamentals",
-          "Game Development Pipeline",
-          "Programming Basics",
-          "Mathematics for Games",
-          "Game Art Fundamentals"
-        ]
-      },
-      {
-        title: "Game Development Tools",
-        topics: [
-          "Unity Game Engine",
-          "Unreal Engine",
-          "3D Modeling (Blender)",
-          "Game Programming (C#/C++)",
-          "Game Audio Design"
-        ]
-      },
-      {
-        title: "Advanced Game Development",
-        topics: [
-          "3D Game Development",
-          "Mobile Game Development",
-          "Game Physics & AI",
-          "Multiplayer Games",
-          "Game Monetization"
-        ]
-      }
-    ],
+    title: "Master Program in Game Development",
+    description: "Create engaging games and interactive entertainment experiences",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our Game Development Program covers the complete game development process from concept to deployment. Students learn game design, programming, 3D modeling, animation, and game engine development.",
     careerOpportunities: [
       "Game Developer",
       "Game Designer",
-      "3D Artist",
+      "3D Game Artist",
       "Game Programmer",
-      "Level Designer"
+      "Game Producer",
+      "Game Quality Assurance Tester"
     ],
-    admissionRequirements: [
-      "Creative thinking skills",
-      "Basic computer literacy",
-      "Interest in gaming",
-      "No prior programming experience required"
+    keyAreas: [
+      "Game Design & Mechanics",
+      "Game Programming & Development",
+      "3D Modeling & Animation",
+      "Game Engine Development",
+      "Game Audio & Visual Effects",
+      "Game Testing & Quality Assurance"
+    ],
+    semester1: [
+      "Introduction to Game Development",
+      "Game Design Fundamentals",
+      "Programming for Games",
+      "3D Modeling Basics",
+      "Game Engine Overview",
+      "Basic Game Development"
+    ],
+    semester2: [
+      "Advanced Game Programming",
+      "3D Animation & Rigging",
+      "Game Engine Development",
+      "Game Audio & Effects",
+      "Game Testing & QA",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default GameDevelopmentProgram;

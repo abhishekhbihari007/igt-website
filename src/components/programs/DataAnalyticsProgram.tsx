@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const DataAnalyticsProgram: React.FC = () => {
   const programData = {
-    title: "Data Analytics Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering data analytics, business intelligence, statistical analysis, and data-driven decision making.",
-    highlights: [
-      "Statistical Analysis",
-      "Business Intelligence",
-      "Data Visualization",
-      "Predictive Analytics",
-      "Data Storytelling"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Statistics Fundamentals",
-          "Data Types & Sources",
-          "Data Cleaning & Preparation",
-          "Excel & Spreadsheets",
-          "Basic Programming (Python/R)"
-        ]
-      },
-      {
-        title: "Core Analytics",
-        topics: [
-          "Descriptive Analytics",
-          "Inferential Statistics",
-          "Data Visualization",
-          "Business Intelligence Tools",
-          "Dashboard Creation"
-        ]
-      },
-      {
-        title: "Advanced Analytics",
-        topics: [
-          "Predictive Analytics",
-          "Regression Analysis",
-          "Time Series Analysis",
-          "Data Storytelling",
-          "Analytics Strategy"
-        ]
-      }
-    ],
+    title: "Master Program in Data Analytics",
+    description: "Transform raw data into actionable business insights",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our Data Analytics Program teaches students to analyze complex data sets and extract meaningful insights. Students learn statistical analysis, data visualization, predictive modeling, and business intelligence tools.",
     careerOpportunities: [
       "Data Analyst",
-      "Business Analyst",
-      "Data Visualization Specialist",
       "Business Intelligence Analyst",
-      "Analytics Consultant"
+      "Data Visualization Specialist",
+      "Predictive Analytics Expert",
+      "Data Strategy Consultant",
+      "Analytics Manager"
     ],
-    admissionRequirements: [
-      "Basic mathematical skills",
-      "Logical thinking",
-      "Interest in data",
-      "No prior programming experience required"
+    keyAreas: [
+      "Statistical Analysis & Modeling",
+      "Data Visualization & Storytelling",
+      "Predictive Analytics",
+      "Business Intelligence",
+      "Data Mining & Processing",
+      "Analytics Tools & Platforms"
+    ],
+    semester1: [
+      "Introduction to Data Analytics",
+      "Statistics & Probability",
+      "Data Management",
+      "Programming for Analytics",
+      "Data Visualization Basics",
+      "Business Intelligence Tools"
+    ],
+    semester2: [
+      "Advanced Statistical Analysis",
+      "Predictive Modeling",
+      "Data Mining Techniques",
+      "Advanced Visualization",
+      "Analytics Strategy",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default DataAnalyticsProgram;

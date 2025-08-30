@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const AgricultureRoboticsProgram: React.FC = () => {
   const programData = {
-    title: "Agriculture Robotics Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering robotics in agriculture, automated farming systems, precision agriculture, and smart farming technologies.",
-    highlights: [
-      "Agricultural Robotics",
-      "Precision Agriculture",
-      "Automated Farming",
-      "Drone Technology",
-      "Smart Irrigation Systems"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Agricultural Fundamentals",
-          "Robotics Basics",
-          "Precision Agriculture",
-          "Sensor Technology",
-          "Control Systems"
-        ]
-      },
-      {
-        title: "Agricultural Robotics Core",
-        topics: [
-          "Agricultural Robot Design",
-          "Automated Harvesting",
-          "Weeding Robots",
-          "Drone Applications",
-          "Smart Irrigation"
-        ]
-      },
-      {
-        title: "Advanced Applications",
-        topics: [
-          "Multi-Robot Systems",
-          "AI in Agriculture",
-          "Sustainable Farming",
-          "Robotics Safety",
-          "Future of Ag Robotics"
-        ]
-      }
-    ],
+    title: "Master Program in Agriculture Robotics",
+    description: "Automate farming operations with cutting-edge robotics and AI technology",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our Agriculture Robotics Program combines robotics engineering with agricultural science to create intelligent farming systems. Students learn to design, build, and program robots for planting, harvesting, monitoring, and maintaining crops.",
     careerOpportunities: [
       "Agricultural Robotics Engineer",
-      "Precision Agriculture Specialist",
-      "Smart Farming Consultant",
-      "Agricultural Technology Engineer",
-      "Robotics Systems Integrator"
+      "Automation Specialist",
+      "Robotics System Designer",
+      "Precision Agriculture Engineer",
+      "Agricultural Technology Consultant",
+      "Robotics Maintenance Technician"
     ],
-    admissionRequirements: [
-      "Background in Agriculture or Engineering",
-      "Understanding of robotics",
-      "Interest in sustainable farming",
-      "Problem-solving skills"
+    keyAreas: [
+      "Robotics Engineering & Design",
+      "Agricultural Automation Systems",
+      "Computer Vision & AI",
+      "Precision Agriculture Technology",
+      "Sensor Integration",
+      "Robotic Control Systems"
+    ],
+    semester1: [
+      "Introduction to Agricultural Robotics",
+      "Robotics Fundamentals",
+      "Agricultural Science Basics",
+      "Programming for Robotics",
+      "Mechanical Design Principles",
+      "Sensor Technology"
+    ],
+    semester2: [
+      "Advanced Robotics Systems",
+      "Computer Vision & AI",
+      "Agricultural Automation",
+      "Precision Agriculture",
+      "Robotic Control Systems",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default AgricultureRoboticsProgram;

@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const DigitalMarketingProgram: React.FC = () => {
   const programData = {
-    title: "Digital Marketing Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering digital marketing strategies, social media marketing, SEO, and online advertising techniques.",
-    highlights: [
-      "Social Media Marketing",
-      "Search Engine Optimization (SEO)",
-      "Content Marketing",
-      "Email Marketing",
-      "Analytics & Reporting"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Marketing Fundamentals",
-          "Digital Marketing Landscape",
-          "Consumer Behavior",
-          "Marketing Strategy",
-          "Brand Management"
-        ]
-      },
-      {
-        title: "Digital Marketing Channels",
-        topics: [
-          "Social Media Marketing",
-          "Search Engine Optimization",
-          "Content Marketing",
-          "Email Marketing",
-          "Pay-Per-Click Advertising"
-        ]
-      },
-      {
-        title: "Advanced Digital Marketing",
-        topics: [
-          "Marketing Automation",
-          "Data Analytics",
-          "Conversion Optimization",
-          "Influencer Marketing",
-          "Digital Marketing Ethics"
-        ]
-      }
-    ],
+    title: "Master Program in Digital Marketing",
+    description: "Master online marketing strategies and digital brand building",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our Digital Marketing Program covers comprehensive online marketing strategies including social media, SEO, content marketing, and analytics. Students learn to build digital brands and drive online business growth.",
     careerOpportunities: [
-      "Digital Marketing Specialist",
-      "Social Media Manager",
+      "Digital Marketing Manager",
+      "Social Media Specialist",
       "SEO Specialist",
       "Content Marketing Manager",
-      "Digital Marketing Analyst"
+      "Digital Analytics Expert",
+      "Digital Brand Strategist"
     ],
-    admissionRequirements: [
-      "Basic computer literacy",
-      "Good communication skills",
-      "Creative thinking",
-      "Interest in marketing and technology"
+    keyAreas: [
+      "Social Media Marketing",
+      "Search Engine Optimization (SEO)",
+      "Content Marketing & Strategy",
+      "Digital Analytics & Reporting",
+      "Email Marketing & Automation",
+      "Digital Brand Building"
+    ],
+    semester1: [
+      "Introduction to Digital Marketing",
+      "Marketing Fundamentals",
+      "Social Media Marketing",
+      "Content Creation",
+      "Basic Analytics",
+      "Digital Marketing Tools"
+    ],
+    semester2: [
+      "Advanced SEO Strategies",
+      "Content Marketing",
+      "Digital Analytics",
+      "Email Marketing",
+      "Digital Brand Strategy",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default DigitalMarketingProgram;

@@ -19,15 +19,23 @@ interface ProgramTemplateProps {
 const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
   return (
     <div className="program-template">
-      {/* Introduction Part */}
+      {/* Introduction Part (Title Only) */}
       <section className="introduction-section">
         <div className="container">
           <div className="section-header">
-            <h1 className="program-title">{programData.title}</h1>
-            <p className="program-description">{programData.description}</p>
-            <div className="program-duration">
-              <span className="duration-badge">Duration: {programData.duration}</span>
-            </div>
+            <h1 className="program-title">
+              {programData.title}
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* Introduction Section (Content) */}
+      <section className="introduction-content-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Introduction</h2>
+            <div className="section-underline"></div>
           </div>
           <div className="overview-content">
             <p>{programData.overview}</p>
@@ -40,7 +48,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
         <div className="container">
           <div className="section-header">
             <h2>Career Opportunities</h2>
-            <p>Explore exciting career paths after completing this program</p>
+            <div className="section-underline"></div>
           </div>
           <div className="career-grid">
             {programData.careerOpportunities.map((career, index) => (
@@ -58,7 +66,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
         <div className="container">
           <div className="section-header">
             <h2>Key Areas of Study</h2>
-            <p>Core subjects and skills you'll master</p>
+            <div className="section-underline"></div>
           </div>
           <div className="areas-grid">
             {programData.keyAreas.map((area, index) => (
@@ -76,14 +84,13 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
         <div className="container">
           <div className="section-header">
             <h2>Semester-wise Syllabus</h2>
-            <p>Structured learning path across two semesters</p>
+            <div className="section-underline"></div>
           </div>
           <div className="semester-container">
             {/* Semester 1 */}
             <div className="semester-module">
               <div className="semester-header">
                 <h3>Semester 1</h3>
-                <span className="semester-badge">First Half</span>
               </div>
               <ul className="semester-topics">
                 {programData.semester1.map((topic, index) => (
@@ -99,7 +106,6 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
             <div className="semester-module">
               <div className="semester-header">
                 <h3>Semester 2</h3>
-                <span className="semester-badge">Second Half</span>
               </div>
               <ul className="semester-topics">
                 {programData.semester2.map((topic, index) => (

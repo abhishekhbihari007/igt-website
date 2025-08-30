@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const AICybersecurityProgram: React.FC = () => {
   const programData = {
-    title: "AI Cybersecurity Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering artificial intelligence in cybersecurity, threat detection, automated defense, and security analytics.",
-    highlights: [
-      "AI-Powered Threat Detection",
-      "Automated Security Response",
-      "Security Analytics",
-      "AI Security Tools",
-      "Cybersecurity Ethics"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Cybersecurity Fundamentals",
-          "AI & Machine Learning Basics",
-          "Network Security",
-          "Security Threats & Vulnerabilities",
-          "Security Architecture"
-        ]
-      },
-      {
-        title: "AI in Cybersecurity",
-        topics: [
-          "AI-Powered Threat Detection",
-          "Behavioral Analysis",
-          "Anomaly Detection",
-          "Automated Incident Response",
-          "Security Data Analytics"
-        ]
-      },
-      {
-        title: "Advanced AI Security",
-        topics: [
-          "AI Security Tools",
-          "Adversarial AI",
-          "AI Security Testing",
-          "Security Automation",
-          "Future of AI in Security"
-        ]
-      }
-    ],
+    title: "Master Program in AI Cybersecurity",
+    description: "Protect systems using artificial intelligence and advanced security techniques",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our AI Cybersecurity Program combines artificial intelligence with cybersecurity to create intelligent defense systems. Students learn AI-powered threat detection, automated security responses, and advanced cybersecurity techniques.",
     careerOpportunities: [
-      "AI Security Engineer",
-      "Cybersecurity Analyst",
-      "Security Automation Specialist",
+      "AI Cybersecurity Engineer",
+      "Security AI Specialist",
       "Threat Intelligence Analyst",
-      "AI Security Consultant"
+      "AI Security Researcher",
+      "Cybersecurity Architect",
+      "Security Automation Engineer"
     ],
-    admissionRequirements: [
-      "Background in Cybersecurity or Technology",
-      "Understanding of AI concepts",
-      "Interest in security technology",
-      "Analytical thinking skills"
+    keyAreas: [
+      "AI-Powered Threat Detection",
+      "Machine Learning Security",
+      "Automated Security Response",
+      "Cybersecurity Fundamentals",
+      "AI Security Ethics",
+      "Advanced Security Analytics"
+    ],
+    semester1: [
+      "Introduction to AI Cybersecurity",
+      "Cybersecurity Fundamentals",
+      "AI & Machine Learning Basics",
+      "Network Security",
+      "Programming for Security",
+      "Security Tools & Techniques"
+    ],
+    semester2: [
+      "AI-Powered Security Systems",
+      "Advanced Threat Detection",
+      "Security Automation",
+      "AI Security Ethics",
+      "Incident Response AI",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default AICybersecurityProgram;

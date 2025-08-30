@@ -1,128 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProgramTemplate from '../ProgramTemplate';
 
 const IPLawProgram: React.FC = () => {
   const programData = {
-    title: "Intellectual Property Law Program",
-    duration: "12 Months",
-    level: "Advanced",
-    overview: "Comprehensive program covering intellectual property law, patent law, copyright, trademarks, and legal aspects of technology innovation.",
-    highlights: [
-      "Patent Law",
-      "Copyright Law",
-      "Trademark Law",
-      "Technology Law",
-      "Legal Research"
-    ],
-    curriculum: [
-      {
-        title: "Foundation Modules",
-        topics: [
-          "Legal Fundamentals",
-          "Intellectual Property Basics",
-          "Constitutional Law",
-          "Contract Law",
-          "Legal Research Methods"
-        ]
-      },
-      {
-        title: "IP Law Core",
-        topics: [
-          "Patent Law & Procedures",
-          "Copyright Law",
-          "Trademark Law",
-          "Trade Secret Protection",
-          "IP Litigation"
-        ]
-      },
-      {
-        title: "Advanced Applications",
-        topics: [
-          "Technology Law",
-          "International IP Law",
-          "IP Strategy",
-          "Licensing & Technology Transfer",
-          "Emerging IP Issues"
-        ]
-      }
-    ],
+    title: "Master Program in Intellectual Property Law",
+    description: "Navigate the complex world of IP law and protect innovative ideas",
+    duration: "2 Years (4 Semesters)",
+    overview: "Our IP Law Program provides comprehensive training in intellectual property law, patent law, copyright, trademarks, and trade secrets. Students learn to protect innovations, navigate legal frameworks, and advise on IP strategy.",
     careerOpportunities: [
       "IP Attorney",
-      "Patent Agent",
+      "Patent Lawyer",
       "IP Consultant",
-      "Technology Lawyer",
-      "IP Policy Analyst"
+      "Legal Advisor",
+      "IP Strategy Manager",
+      "Technology Transfer Specialist"
     ],
-    admissionRequirements: [
-      "Bachelor's degree in any field",
-      "Strong analytical skills",
-      "Interest in law and technology",
-      "Good communication skills"
+    keyAreas: [
+      "Patent Law & Applications",
+      "Copyright & Trademark Law",
+      "Trade Secret Protection",
+      "IP Litigation & Enforcement",
+      "International IP Law",
+      "IP Strategy & Management"
+    ],
+    semester1: [
+      "Introduction to Intellectual Property Law",
+      "Patent Law Fundamentals",
+      "Copyright Law Basics",
+      "Trademark Law Principles",
+      "Legal Research Methods",
+      "IP Law Framework"
+    ],
+    semester2: [
+      "Advanced Patent Law",
+      "IP Litigation & Enforcement",
+      "International IP Law",
+      "IP Strategy & Management",
+      "Technology Transfer",
+      "Capstone Project Planning"
     ]
   };
 
-  return (
-    <div className="program-details">
-      <div className="program-header">
-        <h1>{programData.title}</h1>
-        <div className="program-meta">
-          <span className="duration">Duration: {programData.duration}</span>
-          <span className="level">Level: {programData.level}</span>
-        </div>
-      </div>
-
-      <div className="program-overview">
-        <h2>Program Overview</h2>
-        <p>{programData.overview}</p>
-        
-        <div className="highlights">
-          <h3>Key Highlights</h3>
-          <ul>
-            {programData.highlights.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="curriculum">
-        <h2>Curriculum</h2>
-        {programData.curriculum.map((module, index) => (
-          <div key={index} className="curriculum-module">
-            <h3>{module.title}</h3>
-            <ul>
-              {module.topics.map((topic, topicIndex) => (
-                <li key={topicIndex}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="career-opportunities">
-        <h2>Career Opportunities</h2>
-        <ul>
-          {programData.careerOpportunities.map((career, index) => (
-            <li key={index}>{career}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="admission-requirements">
-        <h2>Admission Requirements</h2>
-        <ul>
-          {programData.admissionRequirements.map((requirement, index) => (
-            <li key={index}>{requirement}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="program-actions">
-        <Link to="/programs" className="btn btn-secondary">Back to Programs</Link>
-        <button className="btn btn-primary">Apply Now</button>
-      </div>
-    </div>
-  );
+  return <ProgramTemplate programData={programData} />;
 };
 
 export default IPLawProgram;
