@@ -1,7 +1,7 @@
 // ============== 🚀 IMPORTS & DEPENDENCIES ==============
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useNavigate } from 'react-router-dom';
-import ProgramDetailsPage from './components/ProgramDetailsPage';
+import ProgramRouter from './components/ProgramRouter';
 
 
 
@@ -5212,7 +5212,14 @@ const ProgramCard = ({ course }: { course: any }) => {
     const navigate = useNavigate();
     
     const handleDetailsClick = () => {
-        const programSlug = course.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        // Fix slug generation to handle special characters and avoid double hyphens
+        const programSlug = course.title
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+            .replace(/\s+/g, '-') // Replace spaces with single hyphens
+            .replace(/-+/g, '-') // Replace multiple consecutive hyphens with single hyphen
+            .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+        
         navigate(`/program/${programSlug}`, { state: { program: course } });
     };
 
@@ -6412,7 +6419,7 @@ const Layout = () => {
                     <Route path="/programs" element={<ProgramsPage />} />
                     
                     {/* Individual program details page with dynamic routing */}
-                    <Route path="/program/:programSlug" element={<ProgramDetailsPage />} />
+                    <Route path="/program/:programSlug" element={<ProgramRouter />} />
                     
                     {/* Departments page route */}
                     <Route path="/departments" element={<DepartmentsPage />} />
@@ -6442,8 +6449,8 @@ const Layout = () => {
     );
 };
 
-// Note: ProgramDetailsPage component has been moved to a separate file
-// Location: src/components/ProgramDetailsPage.tsx
+// Note: ProgramDetailsPage has been replaced with ProgramRouter system
+// Uses ProgramTemplate for consistent design across all programs
 
 // ============== 🚀 MAIN APP COMPONENT ==============
 // Root component that sets up routing and renders the main application
