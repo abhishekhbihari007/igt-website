@@ -1,1 +1,0 @@
-import{j as e}from"./index-BBZqGO1b.js";const t=()=>e.jsxs("div",{style:{padding:"2rem",textAlign:"center"},children:[e.jsx("h1",{children:"Master Program in Cybersecurity"}),e.jsx("p",{children:"This is a test component to verify the import is working."}),e.jsx("p",{children:"If you can see this, the component is working correctly!"})]});export{t as default};

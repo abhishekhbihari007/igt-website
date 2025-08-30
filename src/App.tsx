@@ -1849,6 +1849,7 @@ const GlobalStyles = () => (
     }
     
     .learn-more {
+        background: white;
         color: #D32F2F;
         text-decoration: none;
         font-weight: 600;
@@ -1866,8 +1867,31 @@ const GlobalStyles = () => (
     }
     
     .learn-more:hover {
-        background: #D32F2F;
-        color: white;
+        background: #D32F2F !important;
+        color: white !important;
+        border-color: #D32F2F !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+    }
+    
+    /* Force consistent styling for all learn-more buttons */
+    .program-card .learn-more,
+    .learn-more {
+        background: white !important;
+        color: #D32F2F !important;
+        border: 2px solid #D32F2F !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        display: inline-block !important;
+        margin-bottom: 20px !important;
+        transition: all 0.3s ease !important;
+        text-align: center !important;
+        width: 100% !important;
+        padding: 10px 20px !important;
+        border-radius: 20px !important;
+        font-size: 0.9rem !important;
+        box-sizing: border-box !important;
+        margin-top: auto !important;
     }
     
     .program-info {
@@ -5212,15 +5236,77 @@ const ProgramCard = ({ course }: { course: any }) => {
     const navigate = useNavigate();
     
     const handleDetailsClick = () => {
-        // Fix slug generation to handle special characters and avoid double hyphens
-        const programSlug = course.title
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-            .replace(/\s+/g, '-') // Replace spaces with single hyphens
-            .replace(/-+/g, '-') // Replace multiple consecutive hyphens with single hyphen
-            .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+        console.log('Details button clicked for:', course.title);
         
-        navigate(`/program/${programSlug}`, { state: { program: course } });
+        // Map homepage program titles to their corresponding program slugs
+        const programSlugMap: { [key: string]: string } = {
+            // Precision Agriculture Programs
+            'MASTER PROGRAM in Precision Agriculture': 'master-program-in-precision-agriculture',
+            'MASTER PROGRAM in Agriculture Drones': 'master-program-in-agriculture-drones',
+            'MASTER PROGRAM in Hydroponics & Vertical Farming': 'master-program-in-hydroponics-vertical-farming',
+            'MASTER PROGRAM in AI & ML in Agriculture': 'master-program-in-ai-ml-in-agriculture',
+            'MASTER PROGRAM in Agriculture Robotics': 'master-program-in-agriculture-robotics',
+            'MASTER PROGRAM in Advanced Technologies in Agriculture': 'master-program-in-advanced-technologies-in-agriculture',
+            'MASTER PROGRAM in Agri Entrepreneurship': 'master-program-in-agri-entrepreneurship',
+            
+            // AI & Robotics Programs
+            'MASTER PROGRAM in AI & Robotics': 'master-program-in-ai-robotics',
+            'MASTER PROGRAM in Generative AI': 'master-program-in-generative-ai',
+            'MASTER PROGRAM in AI & Blockchain': 'master-program-in-ai-blockchain',
+            'MASTER PROGRAM in AI & Data Analytics': 'master-program-in-ai-data-analytics', // Maps to Data Science program
+            'MASTER PROGRAM in AI & Biological Sciences': 'master-program-in-ai-biological-sciences',
+            'MASTER PROGRAM in AI & Cybersecurity Systems': 'master-program-in-ai-cybersecurity-systems',
+            'Master Program in Cybersecurity': 'master-program-in-cybersecurity',
+            
+            // AI & Business Programs
+            'MASTER PROGRAM in AI & Business': 'master-program-in-ai-business',
+            'MASTER PROGRAM in AI & Management Studies': 'master-program-in-ai-business', // Maps to same program
+            'MASTER PROGRAM in AI & Law': 'master-program-in-ai-law',
+            'MASTER PROGRAM in IP Law': 'master-program-in-ip-law',
+            'MASTER PROGRAM in AI & Marketing': 'master-program-in-ai-marketing',
+            
+            // Healthcare & Life Sciences
+            'MASTER PROGRAM in Clinical Research & Regulatory Affairs': 'master-program-in-clinical-research-regulatory-affairs',
+            'MASTER PROGRAM in Medical Coding': 'master-program-in-medical-coding',
+            'MASTER PROGRAM in Digital Forensics': 'master-program-in-digital-forensics',
+            'MASTER PROGRAM in Industrial Fermentation Technology': 'master-program-in-industrial-fermentation-technology',
+            'MASTER PROGRAM in Vaccine Technology': 'master-program-in-vaccine-technology',
+            'MASTER PROGRAM in Bioentrepreneurship': 'master-program-in-bioentrepreneurship',
+            
+            // AI & Creative Technologies
+            'MASTER PROGRAM in AI & Designing Technology': 'master-program-in-ai-designing-technology',
+            'MASTER PROGRAM in AI & Arts': 'master-program-in-ai-arts',
+            
+            // Emerging Technologies & Smart Systems
+            'Reality Architect: Master of AR/VR/XR Development': 'reality-architect-master-of-arvrxr-development',
+            'Virtual Vanguard: Master in Virtual & Augmented Reality Engineering': 'virtual-vanguard-master-in-virtual-augmented-reality-engineering',
+            'Game Changer: Master Program in XR Gaming': 'reality-architect-master-of-arvrxr-development', // Maps to AR/VR/XR program
+            'Master Program in AR and Mixed Reality': 'reality-architect-master-of-arvrxr-development', // Maps to AR/VR/XR program
+            'Master Program in Electric Vehicle Technology': 'master-program-in-electric-vehicle-technology',
+            'Master Program in IoT and Embedded Systems': 'master-program-in-iot-and-embedded-systems',
+            'Master Program in Human-Computer Interaction': 'master-program-in-human-computer-interaction',
+            
+            // Doctoral & Postdoctoral Programs
+            'Doctoral Programs': 'doctoral-programs',
+            'Postdoctoral Programs': 'postdoctoral-programs'
+        };
+        
+        const programSlug = programSlugMap[course.title] || course.title
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+        
+        console.log('Generated slug:', programSlug);
+        console.log('Navigating to:', `/program/${programSlug}`);
+        
+        try {
+            navigate(`/program/${programSlug}`, { state: { program: course } });
+            console.log('Navigation successful');
+        } catch (error) {
+            console.error('Navigation error:', error);
+        }
     };
 
     return (
@@ -5244,6 +5330,7 @@ const ProgramCard = ({ course }: { course: any }) => {
                 <div className="program-card-buttons">
                     <button className="btn btn-details" onClick={handleDetailsClick}>Details</button>
                     <button className="btn btn-apply ag-btn-apply">Apply</button>
+                    <button className="btn btn-test" onClick={() => navigate('/programs')}>Test Navigation</button>
                 </div>
             </div>
         </div>
@@ -5825,7 +5912,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>MASTER PROGRAM in Medical Robotics</h4>
                         <p>Transform Healthcare with Robotic Innovation through surgical robotics, rehabilitation systems, and medical automation. Master robotic surgery, prosthetics, and healthcare technology integration.</p>
-                        <a href="#" className="learn-more">Learn More</a>
+                        <a href="#" className="learn-more">Details</a>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-graduation-cap"></i>
@@ -5846,7 +5933,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>MASTER PROGRAM in Agri Robotics</h4>
                         <p>Revolutionize Agriculture with Advanced Robotics for automated farming, crop harvesting, and precision agriculture. Master autonomous vehicles, sensor technology, and smart farming systems.</p>
-                        <a href="#" className="learn-more">Learn More</a>
+                        <a href="#" className="learn-more">Details</a>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-graduation-cap"></i>
@@ -5892,7 +5979,7 @@ const UpcomingCourses = () => (
                                 <span>12 Months</span>
                             </div>
                         </div>
-                        <button className="btn-enroll">Enroll Now</button>
+                        <button className="btn-enroll">Details</button>
                     </div>
                 </div>
 
@@ -5914,7 +6001,7 @@ const UpcomingCourses = () => (
                                 <span>12 Months</span>
                             </div>
                         </div>
-                        <button className="btn-enroll">Enroll Now</button>
+                        <button className="btn-enroll">Details</button>
                     </div>
                 </div>
 
