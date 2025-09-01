@@ -190,14 +190,14 @@ const GlobalStyles = () => (
     .hero {
         color: white;
         text-align: center;
-        padding: 80px 20px;
+        padding: 120px 20px;
         position: relative;
-        min-height: 70vh;
+        min-height: 80vh;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -210,18 +210,28 @@ const GlobalStyles = () => (
         position: relative;
         z-index: 2;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
     }
 
     .hero-title-glance {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .glance-line {
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         animation: fadeInUp 0.8s ease-out forwards;
         opacity: 0;
         transform: translateY(30px);
+        display: flex;
+        justify-content: center;
     }
     
     .glance-line:nth-child(1) { animation-delay: 0.2s; }
@@ -229,44 +239,42 @@ const GlobalStyles = () => (
     .glance-line:nth-child(3) { animation-delay: 0.6s; }
     
     .glance-label {
-        font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-        font-weight: 600;
+        font-size: 1.4rem;
+        font-weight: 500;
         color: #ffffff;
         text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        letter-spacing: 2px;
+        letter-spacing: 3px;
         text-transform: uppercase;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         display: block;
+        line-height: 1.2;
     }
     
     .glance-main {
-        font-size: clamp(2.5rem, 7vw, 4rem);
+        font-size: 4.5rem;
         font-weight: 700;
         color: #ffffff;
         text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        letter-spacing: 1px;
+        letter-spacing: 2px;
         line-height: 1.1;
-        text-transform: none;
+        text-transform: uppercase;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         display: block;
-    }
-    
-    .hero-glance-content {
-        max-width: 1000px;
-        margin: 0 auto;
+        line-height: 1.1;
     }
     
     .hero-description {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
+        max-width: 900px;
     }
     
     .hero p {
-        font-size: 1.5rem;
-        margin-bottom: 40px;
+        font-size: 1.3rem;
+        margin-bottom: 0;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        font-weight: 300;
+        font-weight: 400;
         color: #ffffff;
-        line-height: 1.8;
+        line-height: 1.6;
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
@@ -276,14 +284,69 @@ const GlobalStyles = () => (
     }
     
     .hero-accredited {
-        font-weight: 600;
+        font-weight: 500;
         font-size: 1.1rem;
         color: white;
-        margin-top: 20px;
+        margin-top: 40px;
         display: inline-block;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        text-transform: none;
-        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+    }
+
+    /* ============== RESPONSIVE HERO STYLES ============== */
+    @media (max-width: 768px) {
+        .hero {
+            padding: 80px 20px;
+            min-height: 70vh;
+        }
+        
+        .glance-label {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        .glance-main {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .hero-accredited {
+            font-size: 1rem;
+            margin-top: 30px;
+            letter-spacing: 1px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero {
+            padding: 60px 15px;
+            min-height: 60vh;
+        }
+        
+        .glance-label {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .glance-main {
+            font-size: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+        }
+        
+        .hero-accredited {
+            font-size: 0.9rem;
+            margin-top: 25px;
+        }
     }
 
     /* ============== GENERAL SECTION STYLES ============== */
@@ -407,54 +470,103 @@ const GlobalStyles = () => (
     /* ============== WHY CHOOSE US SECTION ============== */
     .why-choose-us {
         background-color: #f8f9fa;
+        padding: 80px 20px;
     }
     
     .why-choose-us h2 {
         color: #212529;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 50px;
+        font-family: 'Poppins', sans-serif;
     }
     
     .why-choose-us h2 .question-mark {
         color: #D32F2F;
+        font-weight: 800;
     }
     
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 15px;
+    .why-choose-us .container {
         max-width: 1200px;
         margin: 0 auto;
     }
+    
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
     
     .feature-item {
         background: #ffffff;
         padding: 0;
         text-align: left;
         border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         overflow: hidden;
         transition: all 0.3s ease;
-
+        border: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
     
     .feature-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
+    
+
 
     .feature-item img {
         width: 100%;
-        height: 180px;
+        height: 200px;
         object-fit: cover;
+        display: block;
     }
     
     .feature-content {
         padding: 25px;
+        background: #ffffff;
+        color: #212529;
     }
     
     .feature-content h3 {
         color: #212529;
         margin-top: 0;
         margin-bottom: 10px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .feature-content p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+
+    /* ============== RESPONSIVE STYLES FOR WHY CHOOSE US ============== */
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
+        .feature-item img {
+            height: 180px;
+        }
+        
+        .feature-content {
+            padding: 20px;
+        }
     }
 
     /* ============== PROGRAMS PAGE STYLES ============== */
@@ -5137,6 +5249,13 @@ const WhyChooseUs = () => (
           <div className="feature-content">
             <h3>Entrepreneurship Support</h3>
             <p>Incubation center and mentorship for student startups and innovations.</p>
+          </div>
+        </div>
+        <div className="feature-item">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Technology Innovation" />
+          <div className="feature-content">
+            <h3>Technology Innovation</h3>
+            <p>Cutting-edge facilities and labs for hands-on learning and experimentation.</p>
           </div>
         </div>
       </div>
