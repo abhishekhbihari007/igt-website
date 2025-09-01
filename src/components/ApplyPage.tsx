@@ -1,356 +1,273 @@
 import React, { useState } from 'react';
 import './ApplyPage.css';
 
+// --- TYPE DEFINITIONS ---
 interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  nationality: string;
-  programInterest: string;
-  educationLevel: string;
-  currentInstitution: string;
-  workExperience: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    dob: string;
+    highSchool: string;
+    graduationDate: string;
+    gpa: string;
+    program: string;
 }
 
-const ApplyPage: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    nationality: '',
-    programInterest: '',
-    educationLevel: '',
-    currentInstitution: '',
-    workExperience: ''
-  });
+// --- HELPER & UI COMPONENTS ---
 
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+interface IconProps {
+    path: string;
+    className?: string;
+}
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+const Icon: React.FC<IconProps> = ({ path, className = "icon" }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path fillRule="evenodd" d={path} clipRule="evenodd" />
+    </svg>
+);
 
-  const nextStep = () => {
-    if (currentStep < 2) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
+interface ProgressBarProps {
+    currentStep: number;
+    totalSteps: number;
+    stepTitles: string[];
+}
 
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
-    
-    setIsSubmitting(false);
-    // Show success message or redirect
-    alert('Application submitted successfully! We will contact you soon.');
-  };
-
-  const renderStep1 = () => (
-    <div className="form-step">
-      <div className="step-header">
-        <div className="step-icon">
-          <i className="fas fa-user"></i>
-        </div>
-        <h3>Personal Information</h3>
-        <p>Tell us about yourself</p>
-      </div>
-      
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="firstName">First Name *</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter your first name"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="lastName">Last Name *</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter your last name"
-          />
-        </div>
-      </div>
-      
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="email">Email Address *</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter your email address"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number *</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            required
-            placeholder="Enter your phone number"
-          />
-        </div>
-      </div>
-      
-      <div className="form-group">
-        <label htmlFor="nationality">Nationality *</label>
-        <input
-          type="text"
-          id="nationality"
-          name="nationality"
-          value={formData.nationality}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your nationality"
-        />
-      </div>
-    </div>
-  );
-
-  const renderStep2 = () => (
-    <div className="form-step">
-      <div className="step-header">
-        <div className="step-icon">
-          <i className="fas fa-graduation-cap"></i>
-        </div>
-        <h3>Academic & Professional Background</h3>
-        <p>Share your educational and work experience</p>
-      </div>
-      
-      <div className="form-group">
-        <label htmlFor="programInterest">Program of Interest *</label>
-        <select
-          id="programInterest"
-          name="programInterest"
-          value={formData.programInterest}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="">Select a program</option>
-          <option value="ai">AI Program</option>
-          <option value="robotics">Robotics Program</option>
-          <option value="cybersecurity">Cybersecurity Program</option>
-          <option value="data-science">Data Science Program</option>
-          <option value="agriculture">Agriculture Program</option>
-          <option value="biotechnology">Biotechnology Program</option>
-          <option value="web-development">Web Development Program</option>
-          <option value="mobile-app-development">Mobile App Development Program</option>
-          <option value="cloud-computing">Cloud Computing Program</option>
-          <option value="blockchain">Blockchain Program</option>
-          <option value="iot">IoT Program</option>
-          <option value="game-development">Game Development Program</option>
-          <option value="digital-marketing">Digital Marketing Program</option>
-          <option value="fintech">Fintech Program</option>
-          <option value="electric-vehicle">Electric Vehicle Program</option>
-          <option value="quantum-computing">Quantum Computing Program</option>
-          <option value="network-engineering">Network Engineering Program</option>
-          <option value="software-engineering">Software Engineering Program</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="educationLevel">Highest Education Level *</label>
-          <select
-            id="educationLevel"
-            name="educationLevel"
-            value={formData.educationLevel}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="">Select education level</option>
-            <option value="high-school">High School</option>
-            <option value="bachelors">Bachelor's Degree</option>
-            <option value="masters">Master's Degree</option>
-            <option value="phd">PhD</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="workExperience">Work Experience (Years)</label>
-          <select
-            id="workExperience"
-            name="workExperience"
-            value={formData.workExperience}
-            onChange={handleInputChange}
-          >
-            <option value="">Select experience level</option>
-            <option value="0">No experience</option>
-            <option value="1-2">1-2 years</option>
-            <option value="3-5">3-5 years</option>
-            <option value="6-10">6-10 years</option>
-            <option value="10+">10+ years</option>
-          </select>
-        </div>
-      </div>
-      
-      <div className="form-group">
-        <label htmlFor="currentInstitution">Current Institution/Company</label>
-        <input
-          type="text"
-          id="currentInstitution"
-          name="currentInstitution"
-          value={formData.currentInstitution}
-          onChange={handleInputChange}
-          placeholder="Enter your current institution or company"
-        />
-      </div>
-    </div>
-  );
-
-  const renderStepContent = () => {
-    switch (currentStep) {
-      case 1:
-        return renderStep1();
-      case 2:
-        return renderStep2();
-      default:
-        return renderStep1();
-    }
-  };
-
-  return (
-    <div className="apply-page">
-      {/* Hero Section */}
-      <div className="apply-hero">
-        <div className="hero-content">
-          <div className="hero-text">
-            <h1>Apply for Your Dream Program</h1>
-            <p>Take the first step towards your future career in technology and innovation</p>
-            <div className="hero-features">
-              <div className="feature-item">
-                <i className="fas fa-check-circle"></i>
-                <span>50+ Cutting-edge Programs</span>
-              </div>
-              <div className="feature-item">
-                <i className="fas fa-check-circle"></i>
-                <span>Expert Faculty</span>
-              </div>
-              <div className="feature-item">
-                <i className="fas fa-check-circle"></i>
-                <span>Industry Connections</span>
-              </div>
+const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep, totalSteps, stepTitles }) => {
+    return (
+        <div className="progress-bar-container">
+            <div className="progress-bar">
+                {stepTitles.map((title, index) => {
+                    const step = index + 1;
+                    const isActive = step <= currentStep;
+                    return (
+                        <React.Fragment key={step}>
+                            <div className="progress-step">
+                                <div className={`progress-step-circle ${isActive ? 'active' : ''}`}>
+                                    <span className="progress-step-number">{step}</span>
+                                </div>
+                                <p className={`progress-step-title ${isActive ? 'active' : ''}`}>{title}</p>
+                            </div>
+                            {step < totalSteps && (
+                                <div className={`progress-connector ${isActive && currentStep > step ? 'active' : ''}`}></div>
+                            )}
+                        </React.Fragment>
+                    );
+                })}
             </div>
-          </div>
-          <div className="hero-visual">
-            <div className="hero-card">
-              <div className="card-icon">
-                <i className="fas fa-graduation-cap"></i>
-              </div>
-              <h3>Start Your Journey</h3>
-              <p>Join thousands of successful graduates</p>
-            </div>
-          </div>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="apply-content">
-        <div className="container">
-          <div className="application-form-container">
-            {/* Form Header */}
-            <div className="form-header">
-              <div className="form-header-content">
-                <h2>Application Form</h2>
-                <p>Complete your application in just 2 simple steps</p>
-              </div>
-              
-              {/* Progress Bar */}
-              <div className="progress-bar">
-                <div className={`progress-step ${currentStep >= 1 ? 'active' : ''}`}>
-                  <div className="step-indicator">
-                    <span className="step-number">1</span>
-                    <i className="fas fa-check step-check"></i>
-                  </div>
-                  <span className="step-label">Personal Info</span>
-                </div>
-                <div className="progress-line"></div>
-                <div className={`progress-step ${currentStep >= 2 ? 'active' : ''}`}>
-                  <div className="step-indicator">
-                    <span className="step-number">2</span>
-                    <i className="fas fa-check step-check"></i>
-                  </div>
-                  <span className="step-label">Background</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="application-form">
-              {renderStepContent()}
-
-              {/* Navigation */}
-              <div className="form-navigation">
-                {currentStep > 1 && (
-                  <button type="button" onClick={prevStep} className="btn-secondary">
-                    <i className="fas fa-arrow-left"></i>
-                    Previous
-                  </button>
-                )}
-                {currentStep < 2 ? (
-                  <button type="button" onClick={nextStep} className="btn-primary">
-                    Next
-                    <i className="fas fa-arrow-right"></i>
-                  </button>
-                ) : (
-                  <button type="submit" className="btn-submit" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
-                        <i className="fas fa-spinner fa-spin"></i>
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        <i className="fas fa-paper-plane"></i>
-                        Submit Application
-                      </>
-                    )}
-                  </button>
-                )}
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default ApplyPage;
+interface FormInputProps {
+    id: keyof FormData;
+    label: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    type?: string;
+    placeholder?: string;
+    required?: boolean;
+    iconPath?: string;
+}
+
+const FormInput: React.FC<FormInputProps> = ({ id, label, type = 'text', value, onChange, placeholder, required = true, iconPath }) => (
+    <div className="form-group">
+        <label htmlFor={id} className="form-label">
+            {label} {required && <span className="required-asterisk">*</span>}
+        </label>
+        <div className="input-wrapper">
+            {iconPath && <div className="input-icon-wrapper"><Icon path={iconPath} className="input-icon" /></div>}
+            <input
+                type={type}
+                id={id}
+                name={id}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+                required={required}
+                className={`form-input ${iconPath ? 'with-icon' : ''}`}
+            />
+        </div>
+    </div>
+);
+
+interface FormSelectProps {
+    id: keyof FormData;
+    label: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    children: React.ReactNode;
+    required?: boolean;
+}
+
+const FormSelect: React.FC<FormSelectProps> = ({ id, label, value, onChange, children, required = true }) => (
+    <div className="form-group">
+        <label htmlFor={id} className="form-label">
+            {label} {required && <span className="required-asterisk">*</span>}
+        </label>
+        <select
+            id={id}
+            name={id}
+            value={value}
+            onChange={onChange}
+            required={required}
+            className="form-select"
+        >
+            {children}
+        </select>
+    </div>
+);
+
+
+// --- FORM STEP COMPONENTS ---
+
+interface StepProps {
+    formData: FormData;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}
+
+const Step1PersonalInfo: React.FC<StepProps> = ({ formData, handleChange }) => (
+    <div>
+        <h3 className="step-heading">Personal Information</h3>
+        <div className="grid-2-col">
+            <FormInput id="firstName" label="First Name" value={formData.firstName} onChange={handleChange} placeholder="e.g., John" iconPath="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+            <FormInput id="lastName" label="Last Name" value={formData.lastName} onChange={handleChange} placeholder="e.g., Doe" />
+        </div>
+        <FormInput id="email" label="Email Address" type="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" iconPath="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+        <FormInput id="dob" label="Date of Birth" type="date" value={formData.dob} onChange={handleChange} />
+    </div>
+);
+
+const Step2AcademicInfo: React.FC<StepProps> = ({ formData, handleChange }) => (
+    <div>
+        <h3 className="step-heading">Academic Information</h3>
+        <FormInput id="highSchool" label="High School Name" value={formData.highSchool} onChange={handleChange} placeholder="e.g., Northwood High" />
+        <div className="grid-2-col">
+            <FormInput id="graduationDate" label="Graduation Date" type="month" value={formData.graduationDate} onChange={handleChange} />
+            <FormInput id="gpa" label="Overall GPA" type="text" value={formData.gpa} onChange={handleChange} placeholder="e.g., 3.8 / 4.0" />
+        </div>
+        <FormSelect id="program" label="Desired Program of Study" value={formData.program} onChange={handleChange}>
+            <option value="">Select a program</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Business Administration">Business Administration</option>
+            <option value="Biology">Biology</option>
+            <option value="Fine Arts">Fine Arts</option>
+        </FormSelect>
+    </div>
+);
+
+const Step3Review: React.FC<{ formData: FormData }> = ({ formData }) => (
+    <div>
+        <h3 className="step-heading text-center">Review Your Application</h3>
+        <div className="review-container">
+            {Object.entries(formData).map(([key, value]) => {
+                const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                return (
+                    <div key={key} className="review-row">
+                        <strong className="review-label">{label}:</strong>
+                        <span className="review-value">{value || 'Not provided'}</span>
+                    </div>
+                );
+            })}
+        </div>
+    </div>
+);
+
+// --- MAIN APP COMPONENT ---
+
+export default function ApplyPage() {
+    const [currentStep, setCurrentStep] = useState(1);
+    const [formData, setFormData] = useState<FormData>({
+        firstName: '', lastName: '', email: '', dob: '', highSchool: '',
+        graduationDate: '', gpa: '', program: '',
+    });
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [animationClass, setAnimationClass] = useState('animate-fade-in');
+
+    const stepTitles = ["Personal", "Academic", "Review"];
+    const totalSteps = stepTitles.length;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { id, value } = e.target;
+        setFormData(prev => ({ ...prev, [id]: value as string }));
+    };
+
+    const changeStep = (newStep: number) => {
+        setAnimationClass('animate-fade-out');
+        setTimeout(() => {
+            setCurrentStep(newStep);
+            setAnimationClass('animate-fade-in');
+        }, 300);
+    };
+
+    const nextStep = () => currentStep < totalSteps && changeStep(currentStep + 1);
+    const prevStep = () => currentStep > 1 && changeStep(currentStep - 1);
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("Form Submitted:", formData);
+        setAnimationClass('animate-fade-out');
+        setTimeout(() => setIsSubmitted(true), 300);
+    };
+    
+    const renderStep = () => {
+        switch (currentStep) {
+            case 1: return <Step1PersonalInfo formData={formData} handleChange={handleChange} />;
+            case 2: return <Step2AcademicInfo formData={formData} handleChange={handleChange} />;
+            case 3: return <Step3Review formData={formData} />;
+            default: return null;
+        }
+    };
+    
+    if (isSubmitted) {
+        return (
+            <div className="apply-page">
+                <div className="container submitted-page">
+                <div className="form-container submitted-card">
+                    <div className="submitted-icon-wrapper">
+                        <Icon path="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" className="submitted-icon" />
+                    </div>
+                    <h2 className="submitted-title">Application Submitted!</h2>
+                    <p className="submitted-text">Congratulations, {formData.firstName}! Your application has been received. We will be in touch shortly via email at <strong>{formData.email}</strong>.</p>
+                </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="apply-page">
+            <div className="container">
+            <header className="app-header">
+                <p className="subtitle">Where Innovation Meets Excellence • Shaping Tomorrow's Leaders Today</p>
+            </header>
+
+            <div className="form-container">
+                <ProgressBar currentStep={currentStep} totalSteps={totalSteps} stepTitles={stepTitles} />
+                <form onSubmit={handleSubmit}>
+                    <div className={`step-content ${animationClass}`}>
+                        {renderStep()}
+                    </div>
+                    
+                    <div className="form-footer">
+                        <button type="button" onClick={prevStep} disabled={currentStep === 1} className="btn btn-secondary">
+                            Back
+                        </button>
+                        {currentStep < totalSteps ? (
+                            <button type="button" onClick={nextStep} className="btn btn-primary">
+                                Next Step &rarr;
+                            </button>
+                        ) : (
+                            <button type="submit" className="btn btn-submit">
+                                Submit Application
+                            </button>
+                        )}
+                    </div>
+                </form>
+            </div>
+
+            </div>
+        </div>
+    );
+}
+
