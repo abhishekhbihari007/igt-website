@@ -146,9 +146,9 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ programData }) => {
           <div className="apply-content">
             <h2>Ready to Start Your Journey?</h2>
             <p>Join our program and transform your career</p>
-            <button className="apply-button">
+            <a href="/apply" className="apply-button">
               Apply Now
-            </button>
+            </a>
           </div>
         </div>
       </section>

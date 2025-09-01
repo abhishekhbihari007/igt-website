@@ -806,9 +806,9 @@
 }
 
 .apply-button {
-  background: white !important;
-  color: #D32F2F !important;
-  border: 2px solid #D32F2F !important;
+  background: linear-gradient(135deg, #D32F2F, #B71C1C) !important;
+  color: white !important;
+  border: 2px solid transparent !important;
   padding: 22px 50px;
   font-size: 1.3rem;
   font-weight: 700;
@@ -819,6 +819,9 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 
@@ -836,10 +839,10 @@
 
 .apply-button:hover {
   transform: translateY(-3px) scale(1.02);
-  background: #D32F2F !important;
+  background: linear-gradient(135deg, #B71C1C, #8B0000) !important;
   color: white !important;
-  border-color: #D32F2F !important;
-  box-shadow: 0 15px 35px rgba(211, 47, 47, 0.4);
+  border-color: transparent !important;
+  box-shadow: 0 15px 35px rgba(211, 47, 47, 0.3);
 }
 
 .apply-button:hover::before {

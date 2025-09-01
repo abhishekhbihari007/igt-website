@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useNavigate } from 'react-router-dom';
 import ProgramRouter from './components/ProgramRouter';
+import ApplyPage from './components/ApplyPage';
 
 
 
@@ -5019,8 +5020,9 @@ const Header = ({ activePage }: HeaderProps) => {
             <li><button onClick={() => handleNavClick('/programs')} className={`nav-link ${activePage === '/programs' ? 'active' : ''}`}>Programs</button></li>
             <li><button onClick={() => handleNavClick('/departments')} className={`nav-link ${activePage === '/departments' ? 'active' : ''}`}>Departments</button></li>
             <li><button onClick={() => handleNavClick('/faculty')} className={`nav-link ${activePage === '/faculty' ? 'active' : ''}`}>Faculty</button></li>
-            <li><button onClick={() => handleNavClick('/admissions')} className={`nav-link ${activePage === '/admissions' ? 'active' : ''}`}>Admissions</button></li>
-            <li><button onClick={() => handleNavClick('/contact')} className={`nav-link ${activePage === '/contact' ? 'active' : ''}`}>Contact</button></li>
+                                <li><button onClick={() => handleNavClick('/admissions')} className={`nav-link ${activePage === '/admissions' ? 'active' : ''}`}>Admissions</button></li>
+                    <li><button onClick={() => handleNavClick('/apply')} className={`nav-link ${activePage === '/apply' ? 'active' : ''}`}>Apply</button></li>
+                    <li><button onClick={() => handleNavClick('/contact')} className={`nav-link ${activePage === '/contact' ? 'active' : ''}`}>Contact</button></li>
 
 
           </ul>
@@ -5241,50 +5243,50 @@ const ProgramCard = ({ course }: { course: any }) => {
         // Map homepage program titles to their corresponding program slugs
         const programSlugMap: { [key: string]: string } = {
             // Precision Agriculture Programs
-            'MASTER PROGRAM in Precision Agriculture': 'master-program-in-precision-agriculture',
-            'MASTER PROGRAM in Agriculture Drones': 'master-program-in-agriculture-drones',
-            'MASTER PROGRAM in Hydroponics & Vertical Farming': 'master-program-in-hydroponics-vertical-farming',
-            'MASTER PROGRAM in AI & ML in Agriculture': 'master-program-in-ai-ml-in-agriculture',
-            'MASTER PROGRAM in Agriculture Robotics': 'master-program-in-agriculture-robotics',
-            'MASTER PROGRAM in Advanced Technologies in Agriculture': 'master-program-in-advanced-technologies-in-agriculture',
-            'MASTER PROGRAM in Agri Entrepreneurship': 'master-program-in-agri-entrepreneurship',
+            'MASTER PROGRAM in Precision Agriculture': 'precision-agriculture',
+            'MASTER PROGRAM in Agriculture Drones': 'agriculture-drones',
+            'MASTER PROGRAM in Hydroponics & Vertical Farming': 'hydroponics-farming',
+            'MASTER PROGRAM in AI & ML in Agriculture': 'ai',
+            'MASTER PROGRAM in Agriculture Robotics': 'agriculture-robotics',
+            'MASTER PROGRAM in Advanced Technologies in Agriculture': 'agriculture',
+            'MASTER PROGRAM in Agri Entrepreneurship': 'agri-entrepreneurship',
             
             // AI & Robotics Programs
-            'MASTER PROGRAM in AI & Robotics': 'master-program-in-ai-robotics',
-            'MASTER PROGRAM in Generative AI': 'master-program-in-generative-ai',
-            'MASTER PROGRAM in AI & Blockchain': 'master-program-in-ai-blockchain',
-            'MASTER PROGRAM in AI & Data Analytics': 'master-program-in-ai-data-analytics', // Maps to Data Science program
-            'MASTER PROGRAM in AI & Biological Sciences': 'master-program-in-ai-biological-sciences',
-            'MASTER PROGRAM in AI & Cybersecurity Systems': 'master-program-in-ai-cybersecurity-systems',
-            'Master Program in Cybersecurity': 'master-program-in-cybersecurity',
+            'MASTER PROGRAM in AI & Robotics': 'robotics',
+            'MASTER PROGRAM in Generative AI': 'generative-ai',
+            'MASTER PROGRAM in AI & Blockchain': 'ai-blockchain',
+            'MASTER PROGRAM in AI & Data Analytics': 'data-science',
+            'MASTER PROGRAM in AI & Biological Sciences': 'ai-biological-sciences',
+            'MASTER PROGRAM in AI & Cybersecurity Systems': 'ai-cybersecurity',
+            'Master Program in Cybersecurity': 'cybersecurity',
             
             // AI & Business Programs
-            'MASTER PROGRAM in AI & Business': 'master-program-in-ai-business',
-            'MASTER PROGRAM in AI & Management Studies': 'master-program-in-ai-business', // Maps to same program
-            'MASTER PROGRAM in AI & Law': 'master-program-in-ai-law',
-            'MASTER PROGRAM in IP Law': 'master-program-in-ip-law',
-            'MASTER PROGRAM in AI & Marketing': 'master-program-in-ai-marketing',
+            'MASTER PROGRAM in AI & Business': 'ai-business',
+            'MASTER PROGRAM in AI & Management Studies': 'ai-business',
+            'MASTER PROGRAM in AI & Law': 'ai-law',
+            'MASTER PROGRAM in IP Law': 'ip-law',
+            'MASTER PROGRAM in AI & Marketing': 'ai-marketing',
             
             // Healthcare & Life Sciences
-            'MASTER PROGRAM in Clinical Research & Regulatory Affairs': 'master-program-in-clinical-research-regulatory-affairs',
-            'MASTER PROGRAM in Medical Coding': 'master-program-in-medical-coding',
-            'MASTER PROGRAM in Digital Forensics': 'master-program-in-digital-forensics',
-            'MASTER PROGRAM in Industrial Fermentation Technology': 'master-program-in-industrial-fermentation-technology',
-            'MASTER PROGRAM in Vaccine Technology': 'master-program-in-vaccine-technology',
-            'MASTER PROGRAM in Bioentrepreneurship': 'master-program-in-bioentrepreneurship',
+            'MASTER PROGRAM in Clinical Research & Regulatory Affairs': 'clinical-research-regulatory-affairs',
+            'MASTER PROGRAM in Medical Coding': 'medical-coding',
+            'MASTER PROGRAM in Digital Forensics': 'digital-forensics',
+            'MASTER PROGRAM in Industrial Fermentation Technology': 'fermentation-technology',
+            'MASTER PROGRAM in Vaccine Technology': 'vaccine-technology',
+            'MASTER PROGRAM in Bioentrepreneurship': 'bioentrepreneurship',
             
             // AI & Creative Technologies
-            'MASTER PROGRAM in AI & Designing Technology': 'master-program-in-ai-designing-technology',
-            'MASTER PROGRAM in AI & Arts': 'master-program-in-ai-arts',
+            'MASTER PROGRAM in AI & Designing Technology': 'ai-designing-technology',
+            'MASTER PROGRAM in AI & Arts': 'ai-arts',
             
             // Emerging Technologies & Smart Systems
             'Reality Architect: Master of AR/VR/XR Development': 'reality-architect-master-of-arvrxr-development',
             'Virtual Vanguard: Master in Virtual & Augmented Reality Engineering': 'virtual-vanguard-master-in-virtual-augmented-reality-engineering',
-            'Game Changer: Master Program in XR Gaming': 'reality-architect-master-of-arvrxr-development', // Maps to AR/VR/XR program
-            'Master Program in AR and Mixed Reality': 'reality-architect-master-of-arvrxr-development', // Maps to AR/VR/XR program
-            'Master Program in Electric Vehicle Technology': 'master-program-in-electric-vehicle-technology',
-            'Master Program in IoT and Embedded Systems': 'master-program-in-iot-and-embedded-systems',
-            'Master Program in Human-Computer Interaction': 'master-program-in-human-computer-interaction',
+            'Game Changer: Master Program in XR Gaming': 'reality-architect-master-of-arvrxr-development',
+            'Master Program in AR and Mixed Reality': 'reality-architect-master-of-arvrxr-development',
+            'Master Program in Electric Vehicle Technology': 'electric-vehicle',
+            'Master Program in IoT and Embedded Systems': 'iot',
+            'Master Program in Human-Computer Interaction': 'human-computer-interaction',
             
             // Doctoral & Postdoctoral Programs
             'Doctoral Programs': 'doctoral-programs',
@@ -5329,8 +5331,7 @@ const ProgramCard = ({ course }: { course: any }) => {
                 </div>
                 <div className="program-card-buttons">
                     <button className="btn btn-details" onClick={handleDetailsClick}>Details</button>
-                    <button className="btn btn-apply ag-btn-apply">Apply</button>
-                    <button className="btn btn-test" onClick={() => navigate('/programs')}>Test Navigation</button>
+                                            <a href="/apply" className="btn btn-apply ag-btn-apply">Apply</a>
                 </div>
             </div>
         </div>
@@ -5465,7 +5466,7 @@ const AdmissionsPage = () => {
                             <div className="process-number">1</div>
                             <h3>Application</h3>
                             <p>Submit your online application along with required documents through our portal.</p>
-                            <a href="#" className="process-btn">Apply Now →</a>
+                            <a href="/apply" className="process-btn">Apply Now →</a>
                         </div>
                         <div className="process-card">
                             <div className="process-number">2</div>
@@ -5836,7 +5837,10 @@ const TourPage = () => {
 
 
 // ============== ACADEMIC PROGRAMS COMPONENT ==============
-const AcademicPrograms = () => (
+const AcademicPrograms = () => {
+    const navigate = useNavigate();
+    
+    return (
     <section id="academic-programs" className="academic-programs">
         <div className="container">
             <h2>Our Academic Programs</h2>
@@ -5849,7 +5853,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>EU ACC Certificate Program in AI & Management</h4>
                         <p>Lead the AI Revolution in Your Industry with cutting-edge artificial intelligence and management strategies. Master machine learning, data analytics, and business transformation techniques.</p>
-                        <button className="btn-details">Details</button>
+                        <button className="btn btn-details" onClick={() => navigate('/program/ai-management-certificate')}>Details</button>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-certificate"></i>
@@ -5870,7 +5874,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>EU ACC Master Program in AR & VR Technology</h4>
                         <p>Explore the Future of Immersive Technology through advanced augmented and virtual reality applications. Develop skills in 3D modeling, spatial computing, and interactive design.</p>
-                        <button className="btn-details">Details</button>
+                        <button className="btn btn-details" onClick={() => navigate('/program/ar-vr-technology')}>Details</button>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-building"></i>
@@ -5891,7 +5895,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>MASTER PROGRAM in Agri Drones</h4>
                         <p>Master Precision Agriculture with Drone Technology for sustainable farming. Learn aerial mapping, crop monitoring, automated spraying, and data-driven agricultural decision making.</p>
-                        <button className="btn-details">Details</button>
+                        <button className="btn btn-details" onClick={() => navigate('/program/agriculture-drones')}>Details</button>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-graduation-cap"></i>
@@ -5912,7 +5916,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>MASTER PROGRAM in Medical Robotics</h4>
                         <p>Transform Healthcare with Robotic Innovation through surgical robotics, rehabilitation systems, and medical automation. Master robotic surgery, prosthetics, and healthcare technology integration.</p>
-                        <a href="#" className="learn-more">Details</a>
+                        <button className="btn btn-details" onClick={() => navigate('/program/medical-robotics')}>Details</button>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-graduation-cap"></i>
@@ -5933,7 +5937,7 @@ const AcademicPrograms = () => (
                     <div className="program-content">
                         <h4>MASTER PROGRAM in Agri Robotics</h4>
                         <p>Revolutionize Agriculture with Advanced Robotics for automated farming, crop harvesting, and precision agriculture. Master autonomous vehicles, sensor technology, and smart farming systems.</p>
-                        <a href="#" className="learn-more">Details</a>
+                        <button className="btn btn-details" onClick={() => navigate('/program/agriculture-robotics')}>Details</button>
                         <div className="program-info">
                             <div className="info-item">
                                 <i className="fas fa-graduation-cap"></i>
@@ -5949,7 +5953,8 @@ const AcademicPrograms = () => (
             </div>
         </div>
     </section>
-);
+    );
+};
 
 // ============== UPCOMING COURSES COMPONENT ==============
 const UpcomingCourses = () => (
@@ -5979,7 +5984,6 @@ const UpcomingCourses = () => (
                                 <span>12 Months</span>
                             </div>
                         </div>
-                        <button className="btn-enroll">Details</button>
                     </div>
                 </div>
 
@@ -6001,7 +6005,6 @@ const UpcomingCourses = () => (
                                 <span>12 Months</span>
                             </div>
                         </div>
-                        <button className="btn-enroll">Details</button>
                     </div>
                 </div>
 
@@ -6023,7 +6026,6 @@ const UpcomingCourses = () => (
                                 <span>12 Months</span>
                             </div>
                         </div>
-                        <button className="btn-details-blue">Details</button>
                     </div>
                 </div>
             </div>
@@ -6238,8 +6240,9 @@ const Footer = () => {
                 <li><Link to="/programs" className="footer-nav-link">Academic Programs</Link></li>
                 <li><Link to="/departments" className="footer-nav-link">Research Departments</Link></li>
                 <li><Link to="/faculty" className="footer-nav-link">Faculty</Link></li>
-                <li><Link to="/admissions" className="footer-nav-link">Admissions</Link></li>
-                <li><Link to="/contact" className="footer-nav-link">Contact</Link></li>
+                                        <li><Link to="/admissions" className="footer-nav-link">Admissions</Link></li>
+                        <li><Link to="/apply" className="footer-nav-link">Apply</Link></li>
+                        <li><Link to="/contact" className="footer-nav-link">Contact</Link></li>
               </ul>
             </div>
             <div className="footer-column">
@@ -6519,6 +6522,9 @@ const Layout = () => {
                     
                     {/* Contact page route */}
                     <Route path="/contact" element={<ContactPage />} />
+                    
+                    {/* Apply page route */}
+                    <Route path="/apply" element={<ApplyPage />} />
                     
                     {/* Campus tour page route */}
                     <Route path="/tour" element={<TourPage />} />
