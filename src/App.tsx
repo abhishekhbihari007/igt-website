@@ -5133,7 +5133,6 @@ const Header = ({ activePage }: HeaderProps) => {
             <li><button onClick={() => handleNavClick('/departments')} className={`nav-link ${activePage === '/departments' ? 'active' : ''}`}>Departments</button></li>
             <li><button onClick={() => handleNavClick('/faculty')} className={`nav-link ${activePage === '/faculty' ? 'active' : ''}`}>Faculty</button></li>
                                 <li><button onClick={() => handleNavClick('/admissions')} className={`nav-link ${activePage === '/admissions' ? 'active' : ''}`}>Admissions</button></li>
-                    <li><button onClick={() => handleNavClick('/apply')} className={`nav-link ${activePage === '/apply' ? 'active' : ''}`}>Apply</button></li>
                     <li><button onClick={() => handleNavClick('/contact')} className={`nav-link ${activePage === '/contact' ? 'active' : ''}`}>Contact</button></li>
 
 
@@ -6360,7 +6359,6 @@ const Footer = () => {
                 <li><Link to="/departments" className="footer-nav-link">Research Departments</Link></li>
                 <li><Link to="/faculty" className="footer-nav-link">Faculty</Link></li>
                                         <li><Link to="/admissions" className="footer-nav-link">Admissions</Link></li>
-                        <li><Link to="/apply" className="footer-nav-link">Apply</Link></li>
                         <li><Link to="/contact" className="footer-nav-link">Contact</Link></li>
               </ul>
             </div>
