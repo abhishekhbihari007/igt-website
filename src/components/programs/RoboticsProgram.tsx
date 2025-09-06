@@ -3,41 +3,41 @@ import ProgramTemplate from '../ProgramTemplate';
 
 const RoboticsProgram: React.FC = () => {
   const programData = {
-    title: "Master Program in Robotics Engineering",
-    description: "Design and build intelligent robotic systems",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our Robotics Program covers the design, development, and control of robotic systems. Students learn mechanical design, electronics, programming, control systems, and artificial intelligence for robotics.",
+    title: "Master Program in AI & Robotics",
+    description: "Integrate Artificial Intelligence, Machine Learning, and Robotics. Prepare for a future of intelligent machines, autonomous systems, and human-robot collaboration across industries like healthcare, agriculture, defense, and manufacturing.",
+    duration: "12 Months",
+    overview: "The Master's Program in AI & Robotics is an interdisciplinary curriculum focused on integrating Artificial Intelligence, Machine Learning, and Robotics. It aims to prepare students for a future of intelligent machines, autonomous systems, and human-robot collaboration across industries like healthcare, agriculture, defense, and manufacturing.",
     careerOpportunities: [
-      "Robotics Engineer",
-      "Automation Engineer",
-      "Control Systems Engineer",
+      "AI & ML Engineer",
       "Robotics Software Developer",
-      "Robotics Research Scientist",
-      "Robotics Consultant"
+      "Automation Engineer",
+      "Computer Vision Expert",
+      "AI Research Scientist",
+      "Robotic Process Automation (RPA) Developer",
+      "Embedded Systems & Control Engineer"
     ],
     keyAreas: [
-      "Mechanical Design & Robotics",
-      "Electronics & Control Systems",
-      "Robotics Programming",
-      "Artificial Intelligence in Robotics",
-      "Robot Kinematics & Dynamics",
-      "Robotics Applications"
+      "Artificial Intelligence & Deep Learning",
+      "Robotics Design & Mechatronics",
+      "Computer Vision and Image Processing",
+      "Autonomous Navigation Systems",
+      "Human-Robot Interaction (HRI)",
+      "IoT, Sensors, and Actuators",
+      "Ethics in AI and Responsible Robotics"
     ],
     semester1: [
-      "Introduction to Robotics",
-      "Mechanical Design Fundamentals",
-      "Electronics Basics",
-      "Programming for Robotics",
-      "Control Systems",
-      "Basic Robotics Applications"
+      "Introduction to AI & ML - Supervised & unsupervised learning, regression, clustering, neural networks",
+      "Robotics Fundamentals - Mechanics, kinematics, actuators, sensors, robot control systems",
+      "Python for AI - NumPy, Pandas, Scikit-learn, TensorFlow basics",
+      "Embedded Systems - Microcontrollers (Arduino/Raspberry Pi), interfacing, real-time programming",
+      "Lab I – Robot Programming - Basic robot arm control, sensor inputs, obstacle avoidance logic"
     ],
     semester2: [
-      "Advanced Robotics Design",
-      "Control Systems Engineering",
-      "AI in Robotics",
-      "Robot Kinematics",
-      "Robotics Applications",
-      "Capstone Project Planning"
+      "Deep Learning for Robotics - CNNs, RNNs, object recognition, reinforcement learning",
+      "Computer Vision & Image Processing - OpenCV, real-time detection, image segmentation, gesture recognition",
+      "Autonomous Navigation - SLAM, path planning, GPS & LiDAR, obstacle detection",
+      "Ethical AI and Robotics - Bias, transparency, ethical frameworks, safety design in robotics",
+      "Capstone Project - Develop and demo an intelligent autonomous robot system"
     ]
   };
 

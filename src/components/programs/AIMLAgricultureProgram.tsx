@@ -1,7 +1,7 @@
 import React from 'react';
 import ProgramTemplate from '../ProgramTemplate';
 
-const AgricultureProgram: React.FC = () => {
+const AIMLAgricultureProgram: React.FC = () => {
   const programData = {
     title: "Master Program in AI & ML in Agriculture",
     description: "Focus on data-driven approaches to improve productivity, predict outcomes, and automate tasks in agriculture. Leverage computer vision, predictive analytics, and intelligent systems to revolutionize smart farming, crop monitoring, soil diagnostics, and agri-supply chains.",
@@ -44,5 +44,4 @@ const AgricultureProgram: React.FC = () => {
   return <ProgramTemplate programData={programData} />;
 };
 
-export default AgricultureProgram;
-
+export default AIMLAgricultureProgram;

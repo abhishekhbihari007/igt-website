@@ -3,41 +3,41 @@ import ProgramTemplate from '../ProgramTemplate';
 
 const FermentationTechnologyProgram: React.FC = () => {
   const programData = {
-    title: "Master Program in Fermentation Technology",
-    description: "Master the science and technology of industrial fermentation processes",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our Fermentation Technology Program covers the scientific principles and industrial applications of fermentation processes. Students learn to design, operate, and optimize fermentation systems for food, pharmaceutical, and biofuel production.",
+    title: "Master Program in Industrial Fermentation Technology",
+    description: "Focus on large-scale application of microbial fermentation processes for producing biochemicals, pharmaceuticals, biofuels, and food products. Emphasize bioprocess engineering, microbial physiology, scale-up techniques, and regulatory aspects.",
+    duration: "12 Months",
+    overview: "The Master Program in Industrial Fermentation Technology focuses on the large-scale application of microbial fermentation processes for producing biochemicals, pharmaceuticals, biofuels, and food products. The program emphasizes bioprocess engineering, microbial physiology, scale-up techniques, and regulatory aspects relevant to fermentation-based industries.",
     careerOpportunities: [
-      "Fermentation Engineer",
-      "Biotechnology Specialist",
-      "Food Technology Engineer",
-      "Pharmaceutical Process Engineer",
-      "Biofuel Production Specialist",
-      "Quality Control Manager"
+      "Fermentation Technologist",
+      "Bioprocess Engineer",
+      "Microbiologist in Industry",
+      "Quality Assurance & Regulatory Affairs Officer",
+      "Production Manager in Biotech/Food Industry",
+      "Research Scientist in Biochemical Engineering",
+      "Consultant for Sustainable Bio-Manufacturing"
     ],
     keyAreas: [
-      "Fermentation Science & Microbiology",
-      "Industrial Fermentation Processes",
-      "Bioreactor Design & Operation",
-      "Downstream Processing",
-      "Quality Control & Assurance",
-      "Scale-up & Optimization"
+      "Microbial Metabolism and Physiology",
+      "Fermentation Process Design & Control",
+      "Bioreactor Engineering and Scale-up",
+      "Downstream Processing & Purification",
+      "Industrial Enzymes and Biochemical Production",
+      "Quality Control and Regulatory Compliance",
+      "Sustainable Fermentation & Bioproducts"
     ],
     semester1: [
-      "Introduction to Fermentation Technology",
-      "Microbiology Fundamentals",
-      "Biochemistry Basics",
-      "Fermentation Kinetics",
-      "Bioreactor Fundamentals",
-      "Process Control Basics"
+      "Microbial Physiology & Biochemistry - Metabolism, growth kinetics, industrial microbes",
+      "Introduction to Fermentation Technology - Types of fermentation, substrates, inoculum development",
+      "Bioreactor Design & Instrumentation - Stirred tank, airlift, control systems, sensors",
+      "Analytical Techniques in Fermentation - pH, DO, biomass estimation, chromatography",
+      "Lab I – Batch & Fed-Batch Fermentation - Lab-scale fermenter operations, parameter monitoring"
     ],
     semester2: [
-      "Advanced Fermentation Processes",
-      "Industrial Scale Operations",
-      "Downstream Processing",
-      "Quality Control Systems",
-      "Process Optimization",
-      "Capstone Project Planning"
+      "Industrial Fermentation Products - Antibiotics, alcohol, enzymes, organic acids",
+      "Downstream Processing - Filtration, centrifugation, extraction, drying",
+      "Regulatory Affairs in Biotech Production - GMP, HACCP, biosafety, FDA/EMA compliance",
+      "Sustainable and Green Fermentation - Biofuels, waste utilization, carbon efficiency",
+      "Capstone Project - Design & scale-up of a fermentation-based process"
     ]
   };
 

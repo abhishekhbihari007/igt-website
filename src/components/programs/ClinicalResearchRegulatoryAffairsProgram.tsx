@@ -4,39 +4,40 @@ import ProgramTemplate from '../ProgramTemplate';
 const ClinicalResearchRegulatoryAffairsProgram: React.FC = () => {
   const programData = {
     title: "Master Program in Clinical Research & Regulatory Affairs",
-    description: "Gain expertise in clinical trials and pharmaceutical regulations. Master clinical trial design, regulatory compliance, and drug development processes for global pharmaceutical markets.",
+    description: "In-depth understanding of clinical trial methodology, pharmaceutical development, ethics, and regulatory compliance. Designed for students aiming to enter or advance in healthcare, biotech, and pharmaceutical industries by ensuring safe and ethical research practices.",
     duration: "12 Months",
-    overview: "Our Clinical Research & Regulatory Affairs program provides comprehensive training in clinical trial management and pharmaceutical regulations. Learn clinical trial design, regulatory compliance, and drug development processes that meet global pharmaceutical market requirements.",
+    overview: "The Master Program in Clinical Research & Regulatory Affairs provides an in-depth understanding of clinical trial methodology, pharmaceutical development, ethics, and regulatory compliance. It is designed for students aiming to enter or advance in the healthcare, biotech, and pharmaceutical industries by ensuring safe and ethical research practices aligned with global standards.",
     careerOpportunities: [
-      "Clinical Research Associate",
+      "Clinical Research Associate (CRA)",
       "Regulatory Affairs Specialist",
-      "Clinical Trial Manager",
-      "Pharmaceutical Compliance Officer",
-      "Drug Development Coordinator"
+      "Clinical Data Manager",
+      "Drug Safety & Pharmacovigilance Officer",
+      "Medical Affairs Manager",
+      "Quality Assurance Officer in Clinical Trials",
+      "Regulatory Submission Coordinator"
     ],
     keyAreas: [
-      "Clinical Trial Design",
-      "Regulatory Compliance",
-      "Drug Development Processes",
-      "Clinical Data Management",
-      "Pharmaceutical Regulations",
-      "Global Market Requirements"
+      "Clinical Trial Design & Management",
+      "Good Clinical Practice (GCP) Guidelines",
+      "Pharmacovigilance & Drug Safety Monitoring",
+      "Global Regulatory Frameworks (FDA, EMA, ICH)",
+      "Bioethics in Human Research",
+      "Clinical Data Management Systems",
+      "Documentation and Regulatory Submission"
     ],
     semester1: [
-      "Introduction to Clinical Research",
-      "Clinical Trial Fundamentals",
-      "Regulatory Framework Basics",
-      "Drug Development Process",
-      "Clinical Data Collection",
-      "Ethics in Clinical Research"
+      "Introduction to Clinical Research - Phases of trials, trial stakeholders, clinical protocols",
+      "Ethics & Good Clinical Practice (GCP) - ICMR, Helsinki Declaration, informed consent, GCP guidelines",
+      "Clinical Trial Operations - Site selection, budgeting, monitoring, SOPs",
+      "Clinical Data Management - eCRF, EDC systems, query management, CDISC standards",
+      "Lab I – Clinical Trial Design - Mock trial setup, protocol creation, ICF design"
     ],
     semester2: [
-      "Advanced Clinical Trial Design",
-      "Regulatory Compliance",
-      "Global Market Regulations",
-      "Clinical Data Analysis",
-      "Quality Assurance",
-      "Capstone Project"
+      "Global Regulatory Environment - FDA, EMA, ICH, CDSCO, NDA/ANDA submissions",
+      "Pharmacovigilance & Drug Safety - Adverse event reporting, signal detection, PSURs",
+      "Regulatory Documentation & Dossier Filing - CTD/eCTD format, Module 1-5, regulatory pathways",
+      "Quality Assurance & Compliance - Audit preparation, CAPA, validation protocols",
+      "Capstone Project - Prepare a regulatory submission package for a new drug"
     ]
   };
 

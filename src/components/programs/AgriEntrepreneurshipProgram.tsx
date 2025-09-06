@@ -3,33 +3,32 @@ import ProgramTemplate from '../ProgramTemplate';
 
 const AgriEntrepreneurshipProgram: React.FC = () => {
   const programData = {
-    title: "Master Program in Agri-Entrepreneurship",
-    description: "Build successful agricultural businesses with innovative farming solutions",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our Agri-Entrepreneurship Program combines agricultural knowledge with business acumen to create successful farming entrepreneurs. Students learn sustainable farming practices, business management, marketing strategies, and innovative agricultural solutions.",
+    title: "Master Program in Agri Entrepreneurship",
+    description: "Empower aspiring entrepreneurs with business skills, agricultural knowledge, and innovative tools needed to launch and manage successful agri-based startups. Blend business strategy, value chain management, technology, and field-based innovation.",
+    duration: "12 Months",
+    overview: "The Master Program in Agri Entrepreneurship is designed to empower aspiring entrepreneurs with the business skills, agricultural knowledge, and innovative tools needed to launch and manage successful agri-based startups. The course blends business strategy, value chain management, technology, and field-based innovation tailored for the agricultural domain.",
     careerOpportunities: [
-      "Agricultural Entrepreneur",
-      "Farm Business Manager",
-      "Agricultural Consultant",
-      "Agri-Tech Startup Founder",
-      "Sustainable Farming Specialist",
-      "Agricultural Business Analyst"
+      "Agri Startup Founder / Co-Founder",
+      "Agribusiness Consultant",
+      "Rural Innovation Officer",
+      "Supply Chain & Logistics Manager",
+      "Agri Marketing Strategist",
+      "Social Entrepreneur in AgTech",
+      "Incubation & Policy Expert (Govt & NGO)"
     ],
     keyAreas: [
-      "Agricultural Business Management",
-      "Sustainable Farming Practices",
-      "Marketing & Sales Strategies",
-      "Financial Planning & Management",
-      "Innovation in Agriculture",
-      "Supply Chain Management"
+      "Agri Business Planning & Management",
+      "Rural Marketing and Consumer Behavior",
+      "Agri Finance and Venture Capital",
+      "Supply Chain & Cold Chain Logistics",
+      "AgriTech Startups & Digital Innovation",
+      "Policy, Law, and Agri Regulations",
+      "Incubation, Pitching & Business Modeling"
     ],
     semester1: [
-      "Introduction to Agri-Entrepreneurship",
-      "Agricultural Business Fundamentals",
-      "Sustainable Farming Methods",
-      "Business Planning & Strategy",
-      "Financial Management Basics",
-      "Market Research Methods"
+      "Principles of Entrepreneurship - Idea generation, business modeling, entrepreneurial mindset",
+      "Introduction to Agribusiness - Farm-to-fork value chain, market structures, agri product analysis",
+      "Agri Marketing & Rural Economy - Customer segmentation, rural consumer behavior, distribution channels"
     ],
     semester2: [
       "Advanced Business Strategies",

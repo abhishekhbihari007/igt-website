@@ -3,41 +3,41 @@ import ProgramTemplate from '../ProgramTemplate';
 
 const AIBusinessProgram: React.FC = () => {
   const programData = {
-    title: "Master Program in AI Business",
-    description: "Transform business operations with artificial intelligence and data-driven strategies",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our AI Business Program combines artificial intelligence with business strategy to create innovative business solutions. Students learn AI applications in business, data analytics, automation, and strategic decision-making.",
+    title: "Master Program in AI & Business",
+    description: "Blend artificial intelligence with strategic business applications. Lead organizations through data-driven decision-making, intelligent automation, customer analytics, and innovation-driven management in a rapidly evolving global economy.",
+    duration: "12 Months",
+    overview: "The Master Program in AI & Business is a future-focused degree that blends artificial intelligence with strategic business applications. It prepares professionals to lead organizations through data-driven decision-making, intelligent automation, customer analytics, and innovation-driven management in a rapidly evolving global economy.",
     careerOpportunities: [
-      "AI Business Analyst",
-      "Business Intelligence Manager",
-      "AI Strategy Consultant",
-      "Data-Driven Business Manager",
+      "AI Business Strategist",
       "AI Product Manager",
-      "Business Automation Specialist"
+      "Data-Driven Marketing Manager",
+      "Business Intelligence Analyst",
+      "Operations Optimization Specialist",
+      "AI Innovation Consultant",
+      "Entrepreneur in AI Startups"
     ],
     keyAreas: [
-      "AI in Business Strategy",
-      "Data Analytics & Business Intelligence",
-      "Business Process Automation",
-      "AI-Powered Decision Making",
-      "Digital Transformation",
-      "AI Business Ethics"
+      "AI-Powered Business Models",
+      "Business Analytics & Visualization",
+      "Customer Intelligence & Personalization",
+      "Predictive Analytics & Forecasting",
+      "AI in Marketing, Finance & HR",
+      "Digital Transformation & Industry 4.0",
+      "Ethics & Governance of Business AI"
     ],
     semester1: [
-      "Introduction to AI in Business",
-      "Business Fundamentals",
-      "Data Analytics Basics",
-      "AI Technology Overview",
-      "Business Strategy",
-      "Digital Business Models"
+      "Principles of Artificial Intelligence - AI vs ML vs DL, supervised learning, business use-cases",
+      "Business Intelligence & Dashboards - Power BI, Tableau, KPIs, real-time decision dashboards",
+      "Statistics & Data Analytics - Regression, classification, forecasting models",
+      "Python for Business Analytics - Pandas, NumPy, Seaborn, Plotly, Jupyter dashboards",
+      "Lab I – AI-Driven Sales Analysis - Sales trend forecasting, churn prediction, product insights"
     ],
     semester2: [
-      "Advanced AI Business Applications",
-      "Business Process Automation",
-      "AI Strategy Development",
-      "Digital Transformation",
-      "AI Business Ethics",
-      "Capstone Project Planning"
+      "AI in Marketing & Personalization - Recommendation systems, NLP in feedback, customer clustering",
+      "AI in Financial Analytics - Credit scoring, fraud detection, portfolio prediction",
+      "Digital Transformation & Innovation - Industry 4.0, automation, platform business models",
+      "Ethics & Responsible AI in Business - Bias, transparency, governance of AI decision systems",
+      "Capstone Project - Build a real-world AI application solving a business challenge"
     ]
   };
 

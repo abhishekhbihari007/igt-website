@@ -3,41 +3,39 @@ import ProgramTemplate from '../ProgramTemplate';
 
 const HumanComputerInteractionProgram: React.FC = () => {
   const programData = {
-    title: "Master Program in Human-Computer Interaction",
-    description: "Design intuitive user experiences and interactive systems",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our HCI Program focuses on designing user-friendly interfaces and interactive systems. Students learn user research, interface design, usability testing, and creating seamless human-computer interactions.",
+    title: "Master Program in Human-Computer Interaction (HCI)",
+    description: "Blend computer science, psychology, cognitive science, and design. Create intuitive, accessible, and engaging user experiences across mobile, web, XR, and AI systems by understanding how humans interact with technology.",
+    duration: "12 Months",
+    overview: "The Master Program in Human-Computer Interaction (HCI) is an interdisciplinary course that blends computer science, psychology, cognitive science, and design. The program equips students to create intuitive, accessible, and engaging user experiences across mobile, web, XR, and AI systems by understanding how humans interact with technology.",
     careerOpportunities: [
       "UX/UI Designer",
       "Interaction Designer",
-      "User Experience Researcher",
-      "Usability Specialist",
-      "Product Designer",
-      "HCI Researcher"
+      "Usability Engineer",
+      "HCI Researcher",
+      "Human Factors Specialist",
+      "Voice UI Designer",
+      "Design Technologist"
     ],
     keyAreas: [
-      "User Experience Design",
-      "Interface Design & Prototyping",
-      "User Research & Testing",
-      "Information Architecture",
-      "Accessibility Design",
-      "Interactive Systems"
+      "User-Centered Design & Usability Principles",
+      "Cognitive Psychology & Human Perception",
+      "Prototyping Tools (Figma, Adobe XD, etc.)",
+      "Information Architecture & Accessibility",
+      "Human-AI Interaction & Conversational Interfaces",
+      "AR/VR Interface Design",
+      "Design Thinking & User Research"
     ],
     semester1: [
-      "Introduction to HCI",
-      "User Experience Fundamentals",
-      "Design Principles",
-      "User Research Methods",
-      "Prototyping Tools",
-      "Human Factors"
+      "Introduction to HCI - HCI principles, usability, interaction paradigms",
+      "User-Centered Design - Personas, user journeys, prototyping, testing",
+      "Cognitive Psychology - Memory, attention, perception, human error",
+      "UX Tools & Wireframing - Figma, Adobe XD, paper prototyping, Balsamiq"
     ],
     semester2: [
-      "Advanced UX Design",
-      "Interface Design",
-      "Usability Testing",
-      "Accessibility Design",
-      "Interactive Systems",
-      "Capstone Project Planning"
+      "Multimodal Interfaces - Touch, voice, gesture, eye tracking, haptics",
+      "Human-AI Collaboration - Ethical AI, explainable UX, chatbots, feedback loops",
+      "Accessibility & Inclusive Design - WCAG, ARIA, designing for all abilities",
+      "Capstone HCI Project - UX case study, real-world research & redesign"
     ]
   };
 

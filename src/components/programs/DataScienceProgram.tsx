@@ -3,41 +3,41 @@ import ProgramTemplate from '../ProgramTemplate';
 
 const DataScienceProgram: React.FC = () => {
   const programData = {
-    title: "Master Program in Data Science",
-    description: "Transform data into actionable insights with advanced analytics and machine learning",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our Data Science Program equips students with the skills to extract meaningful insights from complex data sets. Students learn statistical analysis, machine learning, data visualization, and big data technologies to solve real-world problems.",
+    title: "Master Program in AI & Data Analytics",
+    description: "Extract actionable insights from data using advanced Artificial Intelligence techniques. Blend machine learning, statistical modeling, big data processing, and modern AI tools to build intelligent, data-driven systems.",
+    duration: "12 Months",
+    overview: "The Master Program in AI & Data Analytics is designed to empower students with the ability to extract actionable insights from data using advanced Artificial Intelligence techniques. It blends machine learning, statistical modeling, big data processing, and modern AI tools to build intelligent, data-driven systems and solutions.",
     careerOpportunities: [
-      "Data Scientist",
-      "Data Analyst",
-      "Machine Learning Engineer",
+      "Data Scientist / Machine Learning Engineer",
+      "AI & Analytics Consultant",
       "Business Intelligence Analyst",
-      "Data Engineer",
-      "Quantitative Analyst"
+      "Big Data Engineer",
+      "Data Visualization Expert",
+      "Product Analyst / AI Product Manager",
+      "Predictive Modeling Specialist"
     ],
     keyAreas: [
-      "Statistical Analysis & Modeling",
-      "Machine Learning Algorithms",
-      "Data Visualization & Storytelling",
-      "Big Data Technologies",
-      "Database Management",
-      "Predictive Analytics"
+      "Machine Learning & Deep Learning",
+      "Big Data Analytics & Cloud Platforms",
+      "Data Mining & Data Warehousing",
+      "Predictive Analytics & Forecasting",
+      "Natural Language Processing",
+      "Business Intelligence Tools & Dashboards",
+      "Responsible AI and Ethics"
     ],
     semester1: [
-      "Introduction to Data Science",
-      "Statistics & Probability",
-      "Programming for Data Science",
-      "Data Wrangling & Cleaning",
-      "Exploratory Data Analysis",
-      "Database Fundamentals"
+      "Foundations of AI & ML - Supervised & unsupervised learning, neural networks, model training",
+      "Data Mining & Warehousing - ETL processes, data marts, clustering & association techniques",
+      "Statistics for Data Science - Probability, hypothesis testing, regression, inferential stats",
+      "Python & Data Visualization - NumPy, Pandas, Matplotlib, Seaborn, Dash/Plotly",
+      "Lab I – ML Models on Real-world Datasets - Hands-on with datasets in healthcare, agriculture, finance"
     ],
     semester2: [
-      "Machine Learning Fundamentals",
-      "Advanced Statistical Modeling",
-      "Data Visualization Techniques",
-      "Big Data Processing",
-      "Predictive Analytics",
-      "Capstone Project Planning"
+      "Deep Learning & Neural Networks - CNNs, RNNs, LSTMs, model tuning, Keras/PyTorch",
+      "Big Data Analytics - Hadoop, Spark, Hive, distributed data processing",
+      "Natural Language Processing - Text classification, sentiment analysis, transformers",
+      "AI Ethics & Explainability - Bias, fairness, transparency, model interpretability",
+      "Capstone Project - End-to-end AI/Analytics solution to a real industry problem"
     ]
   };
 

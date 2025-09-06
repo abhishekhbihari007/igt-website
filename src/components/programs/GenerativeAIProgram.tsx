@@ -4,39 +4,40 @@ import ProgramTemplate from '../ProgramTemplate';
 const GenerativeAIProgram: React.FC = () => {
   const programData = {
     title: "Master Program in Generative AI",
-    description: "Master the creation of AI models that generate text, images, and media. Learn advanced techniques in natural language processing, computer vision, and creative AI applications for content generation.",
+    description: "In-depth training in building, training, and deploying generative models like Large Language Models (LLMs), GANs, Diffusion Models, and Transformer-based systems. Designed for the future of AI-driven content creation, automation, and intelligence.",
     duration: "12 Months",
-    overview: "Our Generative AI program teaches you to create sophisticated AI models that generate text, images, and multimedia content. Master natural language processing, computer vision, and creative AI applications that are transforming content creation across industries.",
+    overview: "The Master's Program in Generative AI offers in-depth training in building, training, and deploying generative models like Large Language Models (LLMs), GANs, Diffusion Models, and Transformer-based systems. Designed for the future of AI-driven content creation, automation, and intelligence, this program combines theory and hands-on development using cutting-edge technologies.",
     careerOpportunities: [
       "Generative AI Engineer",
-      "AI Content Creator",
-      "Natural Language Processing Specialist",
-      "Computer Vision Engineer",
-      "Creative AI Developer"
+      "LLM Developer / NLP Scientist",
+      "AI Research Scientist",
+      "Data Scientist (AI/ML focus)",
+      "Product Engineer – Conversational AI",
+      "AI Consultant / Prompt Engineer",
+      "Startup Founder in Creative AI / EdTech / HealthTech"
     ],
     keyAreas: [
-      "Natural Language Processing",
-      "Computer Vision & Image Generation",
-      "Text Generation Models",
-      "Creative AI Applications",
-      "Model Training & Optimization",
-      "Ethical AI Development"
+      "Transformer Architectures (GPT, BERT, T5)",
+      "Large Language Models & Fine-Tuning",
+      "Text, Image, Audio, and Video Generation",
+      "GANs and Diffusion Models",
+      "Ethics, Bias, and Explainability in Generative AI",
+      "Multimodal AI and Human-AI Interaction",
+      "Prompt Engineering and Retrieval-Augmented Generation (RAG)"
     ],
     semester1: [
-      "Introduction to Generative AI",
-      "Natural Language Processing Fundamentals",
-      "Text Generation Models",
-      "Computer Vision Basics",
-      "Image Generation Techniques",
-      "AI Model Architecture"
+      "Introduction to Deep Learning - ANNs, CNNs, RNNs, PyTorch/TensorFlow basics",
+      "Transformers & Attention Mechanisms - Encoder-decoder, self-attention, positional encoding",
+      "Natural Language Processing - Tokenization, word embeddings, BERT, GPT architecture",
+      "Generative Adversarial Networks (GANs) - Generator-discriminator models, DCGANs, conditional GANs",
+      "Practical Lab I - Text generation, GAN image synthesis, HuggingFace fine-tuning"
     ],
     semester2: [
-      "Advanced Language Models",
-      "Multimodal AI Generation",
-      "Creative AI Applications",
-      "Model Training & Fine-tuning",
-      "Ethical Considerations",
-      "Capstone Project"
+      "Large Language Models & Fine-Tuning - LLM APIs, parameter-efficient fine-tuning, instruction tuning",
+      "Diffusion & Multimodal Models - Denoising models, DALL·E, Stable Diffusion, CLIP, Whisper",
+      "Prompt Engineering & RAG Systems - Prompt types, chaining, vector databases, LangChain",
+      "Ethics and Safety in GenAI - Bias, hallucinations, responsible deployment, governance",
+      "Capstone Project - Build a GenAI app (chatbot, image AI, audio assistant, etc.)"
     ]
   };
 

@@ -4,40 +4,41 @@ import ProgramTemplate from '../ProgramTemplate';
 const HydroponicsFarmingProgram: React.FC = () => {
   const programData = {
     title: "Master Program in Hydroponics & Vertical Farming",
-    description: "Learn sustainable farming techniques without soil in controlled environments",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our Hydroponics & Vertical Farming Program revolutionizes agriculture through innovative soilless farming techniques and vertical growing systems. Students learn to implement hydroponic systems, utilize vertical farming technologies, and develop sustainable agricultural solutions for urban environments.",
+    description: "Advanced interdisciplinary course focusing on sustainable and soil-less farming techniques. Explore integration of plant biology, environmental control, automation, and agribusiness in vertical growing environments for urban agriculture and food security.",
+    duration: "12 Months",
+    overview: "The Master's Program in Hydroponics & Vertical Farming is an advanced interdisciplinary course that focuses on sustainable and soil-less farming techniques. It explores the integration of plant biology, environmental control, automation, and agribusiness in vertical growing environments. The program empowers students to lead innovation in urban agriculture, food security, and controlled-environment farming systems.",
     careerOpportunities: [
-      "Hydroponic Farm Manager",
-      "Urban Agriculture Specialist",
-      "Agricultural Technology Consultant",
-      "Vertical Farming Engineer",
-      "Sustainable Agriculture Coordinator",
-      "Hydroponic System Designer"
+      "Hydroponics Specialist / Agronomist",
+      "Urban Farming Consultant",
+      "Vertical Farm Manager",
+      "Greenhouse Automation Engineer",
+      "Climate-Control Technician",
+      "AgriTech Product Designer",
+      "Agro-Entrepreneur in Smart Farming",
+      "R&D Scientist in Sustainable Agriculture"
     ],
     keyAreas: [
-      "Hydroponic Systems & Methods",
-      "Vertical Farming Technologies",
-      "Nutrient Solution Management",
-      "Climate Control Systems",
-      "Urban Agriculture Principles",
-      "Automated Growing Systems"
+      "Soilless Cultivation Techniques (NFT, DWC, Aeroponics)",
+      "Plant Physiology and Nutrient Management",
+      "Climate Control Systems & Sensor Technologies",
+      "Automation & IoT in Greenhouses",
+      "LED Lighting and Photobiology",
+      "Water Recycling & Sustainable Practices",
+      "Agri-Business Models for Urban Farming"
     ],
     semester1: [
-      "Plant Physiology Fundamentals",
-      "Hydroponic System Types",
-      "Nutrient Solution Basics",
-      "Environmental Control Systems",
-      "Urban Agriculture Principles",
-      "Basic Hydroponic Operations"
+      "Introduction to Controlled Environment Agriculture (CEA) - Types of vertical farms, urban agriculture, indoor farming advantages",
+      "Hydroponic Systems & Techniques - Deep water culture (DWC), nutrient film technique (NFT), aeroponics",
+      "Plant Nutrition & Root-Zone Management - Macro/micronutrients, EC & pH balance, fertigation",
+      "Lighting and Energy Efficiency - Grow light spectra, photoperiodism, LED lighting systems",
+      "Lab I – Hydroponic Setup - Hands-on with NFT/DWC systems, nutrient mix preparation, pH monitoring"
     ],
     semester2: [
-      "Advanced Nutrient Management",
-      "Vertical Stacking Technologies",
-      "Climate Control Technology",
-      "Automation and IoT Systems",
-      "Disease Prevention & Control",
-      "Capstone Project Planning"
+      "Automation and IoT in Vertical Farming - Sensor integration, remote monitoring, cloud-based farm control",
+      "Climate Control & Environmental Management - Humidity, CO2, temperature, air circulation, smart greenhouse design",
+      "Integrated Pest Management - Biological control, organic solutions, early detection via sensors",
+      "Urban Farming Business Models - Feasibility studies, ROI analysis, market access, agri-startups",
+      "Capstone Project - Designing a sustainable hydroponic vertical farm model with automation"
     ]
   };
 

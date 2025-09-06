@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate, useNavigate } from 'react-router-dom';
 import ProgramRouter from './components/ProgramRouter';
 import ApplyPage from './components/ApplyPage';
+import AdminPage from './components/AdminPage';
 
 
 
@@ -5338,8 +5339,37 @@ const programsData = [
         category: "Doctoral & Postdoctoral Programs",
         subtitle: "Advanced research programs for scholars and fellows in science, engineering, and humanities",
         courses: [
-            { title: "Doctoral Programs", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "Varies", description: "Research-focused degrees in multiple disciplines:", list: ["PhD in Engineering in ICT disciplines", "PhD in Science and Mathematics", "PhD in Humanities, Social Science and Design"] },
-            { title: "Postdoctoral Programs", image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", duration: "Flexible", description: "Postdoctoral fellowships in emerging domains:", list: ["Wireless Communications, Embedded Systems", "AI, ML, and Information Security", "5G/6G, Robotics, VLSI, NLP, Adversarial ML"] },
+            { 
+                title: "Doctoral Programs (Ph.D.)", 
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", 
+                duration: "3-5 Years", 
+                description: "Our Doctoral Programs are designed for scholars and professionals aiming to pursue advanced research, innovation, and academic excellence in their field of interest. With expert mentorship, access to state-of-the-art facilities, and industry collaboration, Ph.D. scholars contribute to groundbreaking discoveries and future-defining technologies.",
+                list: [
+                    "Computer Science & Engineering",
+                    "Artificial Intelligence and Machine Learning", 
+                    "Cybersecurity and Blockchain",
+                    "Biotechnology & Life Sciences",
+                    "Management Studies & Entrepreneurship",
+                    "Agriculture, Robotics & Sustainable Tech",
+                    "Data Science & Business Analytics",
+                    "Electrical, Electronics, and Communication Engineering"
+                ]
+            },
+            { 
+                title: "Postdoctoral Research Programs", 
+                image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", 
+                duration: "1-3 Years", 
+                description: "Our Postdoctoral Research Programs are tailored for scholars who have completed their doctoral studies and wish to pursue advanced research in specialized domains. These programs support innovation, high-impact publications, and collaborative research with academic, industrial, or international partners.",
+                list: [
+                    "Artificial Intelligence & Machine Learning",
+                    "Cybersecurity & Blockchain",
+                    "Precision Agriculture & AgriTech",
+                    "Biotechnology & Genomics",
+                    "Energy Systems & Electric Mobility",
+                    "Health Informatics & Biomedical Engineering",
+                    "Digital Transformation & Management Innovation"
+                ]
+            },
         ]
     }
 ];
@@ -5352,11 +5382,18 @@ const programsData = [
 // Note: This component was removed as it was not being used in the application
 
 // ============== PROGRAM CARD COMPONENT ==============
-const ProgramCard = ({ course }: { course: any }) => {
+interface Course {
+    title: string;
+    image: string;
+    duration: string;
+    description: string;
+    list?: string[];
+}
+
+const ProgramCard = ({ course }: { course: Course }) => {
     const navigate = useNavigate();
     
     const handleDetailsClick = () => {
-        console.log('Details button clicked for:', course.title);
         
         // Map homepage program titles to their corresponding program slugs
         const programSlugMap: { [key: string]: string } = {
@@ -5364,9 +5401,9 @@ const ProgramCard = ({ course }: { course: any }) => {
             'MASTER PROGRAM in Precision Agriculture': 'precision-agriculture',
             'MASTER PROGRAM in Agriculture Drones': 'agriculture-drones',
             'MASTER PROGRAM in Hydroponics & Vertical Farming': 'hydroponics-farming',
-            'MASTER PROGRAM in AI & ML in Agriculture': 'ai',
+            'MASTER PROGRAM in AI & ML in Agriculture': 'ai-ml-agriculture',
             'MASTER PROGRAM in Agriculture Robotics': 'agriculture-robotics',
-            'MASTER PROGRAM in Advanced Technologies in Agriculture': 'agriculture',
+            'MASTER PROGRAM in Advanced Technologies in Agriculture': 'advanced-technologies-agriculture',
             'MASTER PROGRAM in Agri Entrepreneurship': 'agri-entrepreneurship',
             
             // AI & Robotics Programs
@@ -5380,7 +5417,7 @@ const ProgramCard = ({ course }: { course: any }) => {
             
             // AI & Business Programs
             'MASTER PROGRAM in AI & Business': 'ai-business',
-            'MASTER PROGRAM in AI & Management Studies': 'ai-business',
+            'MASTER PROGRAM in AI & Management Studies': 'ai-management-studies',
             'MASTER PROGRAM in AI & Law': 'ai-law',
             'MASTER PROGRAM in IP Law': 'ip-law',
             'MASTER PROGRAM in AI & Marketing': 'ai-marketing',
@@ -5407,8 +5444,8 @@ const ProgramCard = ({ course }: { course: any }) => {
             'Master Program in Human-Computer Interaction': 'human-computer-interaction',
             
             // Doctoral & Postdoctoral Programs
-            'Doctoral Programs': 'doctoral-programs',
-            'Postdoctoral Programs': 'postdoctoral-programs'
+            'Doctoral Programs (Ph.D.)': 'doctoral-programs',
+            'Postdoctoral Research Programs': 'postdoctoral-programs'
         };
         
         const programSlug = programSlugMap[course.title] || course.title
@@ -5418,12 +5455,8 @@ const ProgramCard = ({ course }: { course: any }) => {
             .replace(/-+/g, '-')
             .replace(/^-|-$/g, '');
         
-        console.log('Generated slug:', programSlug);
-        console.log('Navigating to:', `/program/${programSlug}`);
-        
         try {
             navigate(`/program/${programSlug}`, { state: { program: course } });
-            console.log('Navigation successful');
         } catch (error) {
             console.error('Navigation error:', error);
         }
@@ -5441,7 +5474,7 @@ const ProgramCard = ({ course }: { course: any }) => {
                     {course.description}
                     {course.list && (
                         <ul>
-                            {course.list.map((item: any, index: number) => (
+                            {course.list.map((item: string, index: number) => (
                                 <li key={index}>{item}</li>
                             ))}
                         </ul>
@@ -6027,26 +6060,6 @@ const AcademicPrograms = () => {
                     </div>
                 </div>
 
-                <div className="program-card">
-                    <div className="program-visual">
-                        <img src="https://investingnews.com/media-library/surgeons-stand-around-a-hospital-bed-with-patient-on-it-and-a-surgical-robot-above-it.jpg?id=53684268&width=1200&height=800&quality=80&coordinates=0%2C0%2C0%2C0" alt="Medical Robotics" />
-                    </div>
-                    <div className="program-content">
-                        <h4>MASTER PROGRAM in Medical Robotics</h4>
-                        <p>Transform Healthcare with Robotic Innovation through surgical robotics, rehabilitation systems, and medical automation. Master robotic surgery, prosthetics, and healthcare technology integration.</p>
-                        <button className="btn btn-details" onClick={() => navigate('/program/medical-robotics')}>Details</button>
-                        <div className="program-info">
-                            <div className="info-item">
-                                <i className="fas fa-graduation-cap"></i>
-                                <span>MASTER PROGRAM</span>
-                            </div>
-                            <div className="info-item">
-                                <i className="fas fa-clock"></i>
-                                <span>12 Months</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div className="program-card">
                     <div className="program-visual">
@@ -6642,6 +6655,9 @@ const Layout = () => {
                     
                     {/* Apply page route */}
                     <Route path="/apply" element={<ApplyPage />} />
+                    
+                    {/* Admin page route */}
+                    <Route path="/admin" element={<AdminPage />} />
                     
                     {/* Campus tour page route */}
                     <Route path="/tour" element={<TourPage />} />

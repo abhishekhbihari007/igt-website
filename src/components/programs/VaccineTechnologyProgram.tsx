@@ -4,40 +4,38 @@ import ProgramTemplate from '../ProgramTemplate';
 const VaccineTechnologyProgram: React.FC = () => {
   const programData = {
     title: "Master Program in Vaccine Technology",
-    description: "Develop life-saving vaccines and advance immunization science",
-    duration: "2 Years (4 Semesters)",
-    overview: "Our Vaccine Technology Program covers the development, production, and distribution of vaccines. Students learn immunology, vaccine design, manufacturing processes, and regulatory requirements for vaccine development.",
+    description: "Advanced knowledge of vaccine development, from discovery and design to manufacturing and regulatory compliance. Bridge immunology, biotechnology, and clinical research to prepare students for impactful careers in global health and biopharma industries.",
+    duration: "12 Months",
+    overview: "The Master Program in Vaccine Technology provides advanced knowledge of vaccine development, from discovery and design to manufacturing and regulatory compliance. This program bridges immunology, biotechnology, and clinical research to prepare students for impactful careers in global health and biopharma industries.",
     careerOpportunities: [
-      "Vaccine Development Scientist",
-      "Immunology Researcher",
-      "Vaccine Manufacturing Specialist",
-      "Clinical Research Associate",
+      "Vaccine Research Scientist",
+      "Bioprocess Development Engineer",
+      "Clinical Trials Associate (Vaccines)",
       "Regulatory Affairs Specialist",
-      "Public Health Advisor"
+      "Immunology Analyst",
+      "Biomanufacturing Quality Officer",
+      "Vaccine Safety and Surveillance Officer"
     ],
     keyAreas: [
-      "Immunology & Vaccine Science",
-      "Vaccine Development & Design",
-      "Manufacturing & Quality Control",
-      "Clinical Trials & Safety",
-      "Regulatory Compliance",
-      "Public Health Applications"
+      "Immunology and Antigen Design",
+      "Traditional & Modern Vaccine Platforms (e.g., mRNA, DNA)",
+      "Vaccine Delivery Systems",
+      "Bioprocess Scale-up & Manufacturing",
+      "Regulatory Pathways and Clinical Trials",
+      "Vaccine Storage, Stability, and Distribution",
+      "Ethics, Safety, and Public Health Strategy"
     ],
     semester1: [
-      "Introduction to Vaccine Technology",
-      "Immunology Fundamentals",
-      "Microbiology Basics",
-      "Vaccine Development Principles",
-      "Laboratory Safety",
-      "Research Methods"
+      "Advanced Immunology - Immune response, antigens, adjuvants, T/B cell mechanisms",
+      "Vaccine Types & Platforms - Inactivated, live attenuated, subunit, mRNA, vector-based",
+      "Antigen Discovery & Design - Epitope prediction, protein expression, pathogen analysis",
+      "Lab I – Immunoassays & Cell Culture - ELISA, flow cytometry, hybridoma, virus neutralization"
     ],
     semester2: [
-      "Advanced Vaccine Development",
-      "Manufacturing Processes",
-      "Clinical Trial Design",
-      "Quality Control Systems",
-      "Regulatory Requirements",
-      "Capstone Project Planning"
+      "Bioprocess Engineering - Fermentation, cell line development, purification",
+      "Vaccine Clinical Trials & Regulation - Phase I–IV trials, ICMR/FDA/WHO guidelines, GCP",
+      "Cold Chain & Logistics - Storage stability, supply chain management, global distribution",
+      "Capstone Project - Design a pre-clinical vaccine project with process planning"
     ]
   };
 

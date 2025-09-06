@@ -203,11 +203,37 @@ export default function ApplyPage() {
     const nextStep = () => currentStep < totalSteps && changeStep(currentStep + 1);
     const prevStep = () => currentStep > 1 && changeStep(currentStep - 1);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Form Submitted:", formData);
-        setAnimationClass('animate-fade-out');
-        setTimeout(() => setIsSubmitted(true), 300);
+        
+        try {
+            // Show loading state
+            setAnimationClass('animate-fade-out');
+            
+            // Generate application ID
+            const applicationId = `IGT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+            
+            // Store application data locally
+            const applicationData = {
+                ...formData,
+                applicationId,
+                submissionDate: new Date().toISOString(),
+                status: 'Pending'
+            };
+            
+            // Save to localStorage for demo purposes
+            const existingApplications = JSON.parse(localStorage.getItem('applications') || '[]');
+            existingApplications.push(applicationData);
+            localStorage.setItem('applications', JSON.stringify(existingApplications));
+            localStorage.setItem('lastApplicationId', applicationId);
+            
+            setTimeout(() => setIsSubmitted(true), 300);
+        } catch (error) {
+            console.error('Error submitting application:', error);
+            alert('Failed to submit application. Please try again.');
+            setAnimationClass('animate-fade-in');
+        }
     };
     
     const renderStep = () => {
@@ -228,7 +254,9 @@ export default function ApplyPage() {
                         <Icon path="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" className="submitted-icon" />
                     </div>
                     <h2 className="submitted-title">Application Submitted!</h2>
-                    <p className="submitted-text">Congratulations, {formData.firstName}! Your application has been received. We will be in touch shortly via email at <strong>{formData.email}</strong>.</p>
+                    <p className="submitted-text">Congratulations, {formData.firstName}! Your application has been received and saved to our database.</p>
+                    <p className="submitted-text">Application ID: <strong>{localStorage.getItem('lastApplicationId') || 'N/A'}</strong></p>
+                    <p className="submitted-text">We will be in touch shortly via email at <strong>{formData.email}</strong>.</p>
                 </div>
                 </div>
             </div>
